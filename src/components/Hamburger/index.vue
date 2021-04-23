@@ -19,7 +19,7 @@ export default {
 
   methods: {
     toggleCollapsed() {
-      this.$emit("isActive", this.isActive);
+      this.$emit("isActive");
     },
   },
 };
@@ -31,10 +31,6 @@ export default {
   vertical-align: middle;
   width: 20px;
   height: 20px;
-  padding: 15px;
 }
 
-.hamburger.is-active {
-  transform: rotate(180deg);
-}
 </style>

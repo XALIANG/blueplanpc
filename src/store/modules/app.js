@@ -1,6 +1,6 @@
 const state = {
     sidebar: {
-        sidebarSwitch:true,
+        sidebarSwitch:false,
         withoutAnimation:false
     }
 }

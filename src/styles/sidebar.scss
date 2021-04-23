@@ -4,9 +4,10 @@
         transition: margin-left .28s;
         margin-left: $sideBarWidth;
         position: relative;
-      }
+    }
+
     .app-wrapper {
-        .sideber-container {
+        .sidebar-container {
             transition: width 0.28s;
             width: $sideBarWidth !important;
             height: 100%;
@@ -20,9 +21,73 @@
 
             & ul {
                 width: $sideBarWidth !important;
+                border-right: 1px solid #e8e8e8;
+                height: 100%;
+                position: absolute;
+                overflow: hidden;
             }
         }
     }
 
+    .hideSidebar {
+        .sidebar-container {
+            width: 54px !important;
+            & ul{
+                width: 54px !important;
+                overflow: hidden;
+            }
+        }
+
+        .main-container {
+            margin-left: 54px;
+           
+        }
+        // .ant-menu-submenu-noDropdown {
+        //     padding: 0 !important;
+        //     position: relative;
+
+        //     .ant-tooltip {
+        //         padding: 0 !important;
+                
+        //         .svg-icon {
+        //             margin-left: 20px;
+        //         }
+
+        //     }
+        // }
+       
+        .ant-menu-submenu {
+            overflow: hidden;
+            
+            &>.ant-menu-submenu-title {
+                padding: 0 !important;
+                .svg-icon {
+                    margin-left: 20px;
+                }
+
+                .sub-el-icon {
+                    margin-left: 19px;
+                }
+
+                .ant-menu-submenu__icon-arrow {
+                    display: none;
+                }
+            }
+        }
+
+        // .ant-menu--collapse {
+        //     .ant-menu-submenu {
+        //         &>.ant-menu-submenu-title {
+        //             &>span {
+        //                 height: 0;
+        //                 width: 0;
+        //                 overflow: hidden;
+        //                 visibility: hidden;
+        //                 display: inline-block;
+        //             }
+        //         }
+        //     }
+        // }
+    }
 
 }
