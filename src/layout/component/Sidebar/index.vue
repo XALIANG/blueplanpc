@@ -1,49 +1,63 @@
 <template>
-<div>
-    <a-menu :inlineCollapsed="isCollapse" :default-selected-keys="['1']" mode="inline" @click="handleClick">
-        <a-sub-menu key="sub1" @titleClick="titleClick">
-            <span slot="title">
-                <a-icon class="svg-icon" type="mail" /><span>Navigation One</span></span>
-            <a-menu-item-group key="g1">
-                <a-menu-item key="1"> Option 1 </a-menu-item>
-                <a-menu-item key="2"> Option 2 </a-menu-item>
-            </a-menu-item-group>
-        
-        </a-sub-menu>
+  <div>
+    <a-menu
+      :inlineCollapsed="isCollapse"
+      :default-selected-keys="['1']"
+      mode="inline"
+    >
+      <a-menu-item>菜单项</a-menu-item>
+      <a-sub-menu title="子菜单">
+        <a-menu-item>子菜单项</a-menu-item>
+      </a-sub-menu>
     </a-menu>
-</div>
+  </div>
 </template>
 
 <script>
-import {
-    mapGetters
-} from 'vuex';
+import { Menu } from 'ant-design-vue';
+const SubMenu = {
+  template: `
+      <a-sub-menu :key="menuInfo.key" v-bind="$props" v-on="$listeners">
+        <span slot="title">
+          <a-icon type="mail" /><span>{{ menuInfo.title }}</span>
+        </span>
+        <template v-for="item in menuInfo.children">
+          <a-menu-item v-if="!item.children" :key="item.key">
+            <a-icon type="pie-chart" />
+            <span>{{ item.title }}</span>
+          </a-menu-item>
+          <sub-menu v-else :key="item.key" :menu-info="item" />
+        </template>
+      </a-sub-menu>
+    `,
+  name: "SubMenu",
+  // must add isSubMenu: true
+  isSubMenu: true,
+  props: {
+    ...Menu.SubMenu.props,
+    // Cannot overlap with properties within Menu.SubMenu.props
+    menuInfo: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
+};
+import { mapGetters } from "vuex";
 export default {
-    data() {
-        return {
-            current: ["mail"],
-            openKeys: ["sub1"],
-        };
+  components: {'sub-menu': SubMenu,},
+  
+  data() {
+    return {
+      current: ["mail"],
+      openKeys: ["sub1"],
+    };
+  },
+  computed: {
+    ...mapGetters(["sidebar", "permission_routes"]),
+    isCollapse() {
+      return this.sidebar.sidebarSwitch;
     },
-    computed: {
-        ...mapGetters(['sidebar']),
-        isCollapse() {
-            return this.sidebar.sidebarSwitch;
-        }
-    },
-    watch: {
-        openKeys(val) {
-            console.log("openKeys", val);
-        },
-    },
-    methods: {
-        handleClick(e) {
-            console.log("click", e);
-        },
-        titleClick(e) {
-            console.log("titleClick", e);
-        },
-    },
+  },
 };
 </script>
 

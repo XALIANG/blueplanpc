@@ -15,6 +15,7 @@ export const constatRoutes = [{
     redirect: '/index',
     children: [{
       path: 'index',
+      name: 'redirect',
       component: () => import('@/views/redirect/index'),
       meta: {
         title: 'null',
@@ -26,9 +27,9 @@ export const constatRoutes = [{
   {
     path: '/',
     component: Layout,
-    name: 'desktop',
     redirect: '/index',
     children: [{
+      name: '桌面',
       path: 'index',
       component: () => import('@/views/desktop/index'),
       meta: {
@@ -42,9 +43,9 @@ export const constatRoutes = [{
     path: '/mypage',
     component: Layout,
     hidden: true,
-    name: 'mypage',
     redirect: '/index',
     children: [{
+      name: '我的主页',
       path: 'index',
       component: () => import('@/views/mypage/index'),
       meta: {

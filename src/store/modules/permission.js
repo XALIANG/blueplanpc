@@ -12,7 +12,7 @@ import {
 //允许方法
 function hasPermission(roles, route) {
     if (roles.meta && route.meta.roles) {
-        return roles.some(role => route.meta.rloes.include(role));
+        return roles.some(role => route.meta.rloes.includes(role));
     } else {
         return true;
     }
@@ -44,28 +44,30 @@ const state = {
     addRoutes: []
 }
 const mutations = {
-    // SET_ROUTES:(){
-
-    // }
+    SET_ROUTES: (state, routes) => {
+        state.addRoutes = routes;
+        state.routes = constatRoutes.concat(routes);
+    }
 }
 const actions = {
     generateRoutes({
         commit
     }, roles) {
+        console.log(roles)
         return new Promise(resolve => {
             let currentRoutes = [];
-            if (roles.include('admin')) {
-                currentRoutes = filterAsyncRouotes(asyncRoutes, roles);
+            if (roles.includes('admin')) {
+                currentRoutes = asyncRoutes|| [];
             } else {
-
+                currentRoutes = filterAsyncRouotes(asyncRoutes, roles);
             }
             resolve(currentRoutes);
+            commit('SET_ROUTES', currentRoutes)
         })
     }
 }
 
 
-console.log('constatRoutes', constatRoutes);
 
 export default {
     namespaced: true,

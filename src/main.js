@@ -5,6 +5,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import './plugins/antdesign';
+import './permission'
 
 Vue.config.productionTip = false;
 
