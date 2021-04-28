@@ -1,0 +1,109 @@
+#app {
+    .blueplan-container {
+        min-height: 100%;
+        transition: margin-left .28s;
+        margin-left: $sideBarWidth;
+        position: relative;
+    }
+
+    .app-wrapper {
+        .sidebar-container {
+            transition: width 0.28s;
+            width: $sideBarWidth !important;
+            height: 100%;
+            font-size: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1001;
+            overflow: hidden;
+
+            & ul {
+                width: $sideBarWidth !important;
+                border-right: 1px solid #e8e8e8;
+                height: 100%;
+                position: absolute;
+                overflow: hidden;
+            }
+        }
+    }
+
+    .hideSidebar {
+        .sidebar-container {
+            width: 54px !important;
+
+            & ul {
+                width: 54px !important;
+                overflow: hidden;
+            }
+        }
+
+        .blueplan-container {
+            margin-left: 54px;
+
+        }
+
+        .a-menu-inline {
+            padding: 0 !important;
+            position: relative;
+
+            .ant-tooltip-open {
+                padding: 0 !important;
+
+                .svg-icon {
+                    margin-left: 20px;
+                }
+
+            }
+        }
+
+        .ant-menu-item .anticon,
+        .ant-menu-submenu-title .anticon {
+            margin-right: 0px;
+        }
+
+        .ant-menu-item {
+            overflow: hidden;
+
+            &>.ant-menu-submenu-title {
+
+                padding: 0 !important;
+
+                .svg-icon {
+                    margin-left: 20px;
+                    margin-right: 0px !important;
+
+                }
+
+                .a-icon {
+                    margin-left: 20px;
+                }
+
+                .a-sub-menu_icon-arrow {
+                    display: none;
+                }
+            }
+
+            & .title {
+                display: none;
+            }
+
+        }
+
+        .ant-menu--collapse {
+            .ant-menu-submenu {
+                &>.ant-menu-submenu-title {
+                    &>span {
+                        height: 0;
+                        width: 0;
+                        overflow: hidden;
+                        visibility: hidden;
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+
+}

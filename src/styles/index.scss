@@ -1,0 +1,77 @@
+@import './variables.scss';
+@import './imixin.scss';
+@import './transtiton.scss';
+@import './sidebar.scss';
+
+body {
+   height: 100%;
+   -moz-osx-font-smoothing: grayscale;
+   -webkit-font-smoothing: antialiased;
+   text-rendering: optimizeLegibility;
+   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+   -moz-user-select: none;
+   /*火狐*/
+   /*选中文字时避免出现蓝色背景*/
+   -webkit-user-select: none;
+   /*webkit浏览器*/
+   /*选中文字时避免出现蓝色背景*/
+   -ms-user-select: none;
+   /*IE10*/
+   /*选中文字时避免出现蓝色背景*/
+   user-select: none;
+   /*选中文字时避免出现蓝色背景*/
+
+ }
+
+
+ html {
+   height: 100%;
+   box-sizing: border-box;
+ }
+
+ //public style
+ .fl {
+   float: left;
+ }
+
+ .fr {
+   float: right;
+ }
+
+ .pr-5 {
+   padding-right: 5px;
+ }
+
+ .pl-5 {
+   padding-left: 5px;
+ }
+
+ .block {
+   display: block;
+ }
+
+ .pointer {
+   cursor: pointer;
+ }
+
+ #app {
+   height: 100%;
+ }
+
+ .clearfix {
+   &:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+   }
+ }
+
+
+ //全局样式
+ .bluePlan-container {
+   padding: 20px;
+   background: rgb(240 242 245);
+ }
