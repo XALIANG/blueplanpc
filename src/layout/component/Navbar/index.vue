@@ -19,11 +19,19 @@
                     <a href="javascript:;">注销账号</a>
                 </a-menu-item>
                 <a-menu-item>
-                    <a href="javascript:;">关于我们</a>
+                    <a @click="showDrawer" href="javascript:;">关于我们</a>
+                </a-menu-item>
+                <a-menu-item>
+                    <a href="javascript:;">设置</a>
                 </a-menu-item>
             </a-menu>
         </a-dropdown>
     </div>
+    <a-drawer title="Basic Drawer" :placement="placement" :closable="false" :visible="visible" @close="onClose">
+        <p>关于蓝计划...</p>
+        <p>关于蓝计划...</p>
+        <p>关于蓝计划...</p>
+    </a-drawer>
 </div>
 </template>
 
@@ -34,6 +42,12 @@ import {
     mapGetters
 } from "vuex";
 export default {
+    data() {
+        return {
+            visible: false,
+            placement: 'right',
+        }
+    },
     components: {
         Hamburger,
         Breadcrumb
@@ -44,6 +58,15 @@ export default {
     methods: {
         cllapsed() {
             this.$store.dispatch("app/toggleSideBar");
+        },
+        showDrawer() {
+            this.visible = true;
+        },
+        onClose() {
+            this.visible = false;
+        },
+        onChange(e) {
+            this.placement = e.target.value;
         },
     },
 };

@@ -7,7 +7,13 @@ Vue.use(VueRouter)
  * @hidden 控制菜单显隐
  */
 // export const asyncRoutes = [];
-export const constatRoutes = [{
+export const constatRoutes = [
+  {
+    path:'/register',
+    component: ()=> import('@/views/userRegister/index'),
+    hidden:true
+  },
+  {
     path: '/',
     component: Layout,
     redirect: '/index',
