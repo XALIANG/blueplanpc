@@ -1,6 +1,8 @@
 <template>
 <div class="navbar-container">
     <hamburger id="hamburger-container" class="hamburger-container" :is-active="sidebar.sidebarSwitch" @isActive="cllapsed" />
+
+    <breadcrumb class="breadcrumb-container" />
     <div class="navbar-right-menu">
         <a-dropdown :trigger="['click']">
             <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
@@ -27,12 +29,14 @@
 
 <script>
 import Hamburger from "@/components/Hamburger";
+import Breadcrumb from '@/components/Breadcrumb';
 import {
     mapGetters
 } from "vuex";
 export default {
     components: {
         Hamburger,
+        Breadcrumb
     },
     computed: {
         ...mapGetters(["sidebar"]),
@@ -60,6 +64,10 @@ export default {
         height: 100%;
         float: left;
         cursor: pointer;
+    }
+
+    .breadcrumb-container {
+        float: left;
     }
 
     .navbar-right-menu {

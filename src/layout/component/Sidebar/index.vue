@@ -10,7 +10,7 @@
                 ? `${item.path}${item.children[0].path}`
                 : `${item.path}/${item.children[0].path}`
             ">
-                    <a-icon class="svg-icon" :type="item.type ? item.type : 'icon'" />
+                    <a-icon class="svg-icon" :type="item.type ? item.type : item.children[0].meta.type" />
                     <router-link style="display: inline-block" :to="{
                 path:
                   item.path === '/'

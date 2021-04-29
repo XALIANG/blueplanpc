@@ -12,11 +12,12 @@ export const constatRoutes = [{
     component: Layout,
     redirect: '/index',
     name: '主页应用',
-    type: 'home',
+    // type: 'home',
     children: [{
       path: 'index',
+      name:'HomeApp',
       component: () => import('@/views/desktop/index'),
-
+      meta: { title: 'HomeApp', type: 'home' }
     }]
 
   }, {
@@ -30,8 +31,7 @@ export const constatRoutes = [{
       name: 'redirect',
       component: () => import('@/views/redirect/index'),
       meta: {
-        title: 'null',
-        icon: '',
+        title: 'redirect',
       }
     }]
 
@@ -44,6 +44,7 @@ export const constatRoutes = [{
     name: '我的主页',
     children: [{
       path: 'index',
+      name: '个人主页',
       component: () => import('@/views/mypage/index'),
       meta: {
         title: '我的主页',

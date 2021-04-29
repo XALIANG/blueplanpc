@@ -12,6 +12,7 @@ import {
     Carousel,
     Skeleton,
     Dropdown,
+    Breadcrumb,
     Avatar
 } from 'ant-design-vue';
 Vue.use(Tag);
@@ -26,3 +27,4 @@ Vue.use(Card);
 Vue.use(List);
 Vue.use(Carousel);
 Vue.use(Avatar);
+Vue.use(Breadcrumb);
