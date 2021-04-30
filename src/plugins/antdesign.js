@@ -1,8 +1,10 @@
 import Vue from 'vue';
 import 'ant-design-vue/dist/antd.css'
+import {message,notification} from 'ant-design-vue';
+window.Message = message;
+window.Notification = notification;
 import {
     Button,
-    message,
     Menu,
     Tag,
     Tabs,
@@ -12,6 +14,7 @@ import {
     Radio,
     FormModel,
     Carousel,
+    Checkbox,
     Skeleton,
     Dropdown,
     Breadcrumb,
@@ -21,7 +24,6 @@ import {
 } from 'ant-design-vue';
 Vue.use(Tag);
 Vue.use(Button);
-Vue.use(message);
 Vue.use(Menu);
 Vue.use(Icon);
 Vue.use(Tabs);
@@ -35,4 +37,5 @@ Vue.use(Avatar);
 Vue.use(Drawer);
 Vue.use(Input);
 Vue.use(FormModel);
+Vue.use(Checkbox);
 Vue.use(Breadcrumb);

@@ -53,7 +53,6 @@ const actions = {
     generateRoutes({
         commit
     }, roles) {
-        console.log(roles)
         return new Promise(resolve => {
             let currentRoutes = [];
             if (roles.includes('admin')) {
@@ -61,6 +60,7 @@ const actions = {
             } else {
                 currentRoutes = filterAsyncRouotes(asyncRoutes, roles);
             }
+            console.log(currentRoutes)
             resolve(currentRoutes);
             commit('SET_ROUTES', currentRoutes)
         })

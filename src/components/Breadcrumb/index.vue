@@ -48,7 +48,6 @@ export default {
 
             // 当item.meta 和 item.meta.title 和 item.meta.breadcrumb !== false 时 才会通过筛选
             this.routeList = matched.filter((item) => item.meta && item.meta.title);
-            console.log('面包', this.routeList);
         },
         isHomeApp(route) {
             const name = route && route.name;
@@ -58,7 +57,6 @@ export default {
             return name.trim().toLocaleLowerCase() === "HomeApp".toLocaleLowerCase();
         },
         handleLink(route) {
-            console.log(route)
             const {
                 path,
                 redirect

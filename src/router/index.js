@@ -14,16 +14,43 @@ export const constatRoutes = [
     hidden:true
   },
   {
+    path:'/login',
+    component: ()=> import('@/views/userLogin/index'),
+    hidden:true
+  },
+  {
     path: '/',
     component: Layout,
     redirect: '/index',
     name: '主页应用',
-    // type: 'home',
     children: [{
       path: 'index',
       name:'HomeApp',
       component: () => import('@/views/desktop/index'),
       meta: { title: 'HomeApp', type: 'home' }
+    }]
+
+  },
+  {
+    path: '/permission',
+    component: Layout,
+    name: '系统管理',
+    hidden: true,
+    redirect: 'permission/role',
+    children: [{
+      path: 'role',
+      name: '角色管理',
+      component: () => import('@/views/system/role'),
+      meta: {
+        title: '角色管理',type: 'home'
+      }
+    },{
+      path: 'permissonlist',
+      name: '权限管理',
+      component: () => import('@/views/system/permissionList'),
+      meta: {
+        title: '权限管理',type: 'home'
+      }
     }]
 
   }, {
@@ -42,6 +69,7 @@ export const constatRoutes = [
     }]
 
   },
+ 
   {
     path: '/mypage',
     component: Layout,

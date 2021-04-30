@@ -39,7 +39,6 @@ export default {
             return path === this.$route.path;
         },
         hoemApp(route) {
-            console.log(route)
             return route.title === "HomeApp";
         },
         //获取标签
