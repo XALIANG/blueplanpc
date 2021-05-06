@@ -5,28 +5,22 @@
         <div class="register-title">Blue plan is a love</div>
         <div class="center-box">
             <a-tabs default-active-key="1" @change="callback">
-                <a-tab-pane key="1" tab="账号密码登录">
+                <a-tab-pane key="1" tab="注册">
                     <a-form-model layout="horizontal" :model="formInline" @submit="handleSubmit" @submit.native.prevent>
                         <a-form-model-item>
-                            <a-input v-model="formInline.user" placeholder="账户：admin">
-                                <a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25)" />
+                            <a-input v-model="formInline.email" placeholder="邮箱">
                             </a-input>
                         </a-form-model-item>
                         <a-form-model-item>
-                            <a-input v-model="formInline.password" type="password" placeholder="密码：******">
-                                <a-icon slot="prefix" type="lock" theme="twoTone" style="color:rgba(0,0,0,.25)" />
+                            <a-input v-model="formInline.password" type="password" placeholder="至少6位密码，区分大小写">
                             </a-input>
                         </a-form-model-item>
                         <a-form-model-item>
-                        </a-form-model-item>
-                    </a-form-model>
-                </a-tab-pane>
-                <a-tab-pane key="2" tab="手机号登录" force-render>
-                    <a-form-model layout="horizontal" :model="fromPhone" @submit="handleSubmit" @submit.native.prevent>
-                        <a-form-model-item>
-                            <a-input v-model="fromPhone.numberPhone" placeholder="手机号">
-                                <a-icon slot="prefix" type="mobile" theme="twoTone" style="color:rgba(0,0,0,.25)" />
+                            <a-input v-model="formInline.passwords" type="password" placeholder="至确认密码">
                             </a-input>
+                        </a-form-model-item>
+                        <a-form-model-item>
+                            <a-input addon-before="+86" placeholder="11位手机号" />
                         </a-form-model-item>
                         <a-form-model-item>
                             <a-input class="code" v-model="fromPhone.code" type="password" placeholder="验证码">
@@ -34,25 +28,18 @@
                             </a-input>
                             <a-button size="large">获取验证码</a-button>
                         </a-form-model-item>
-                        <a-form-model-item>
-                        </a-form-model-item>
                     </a-form-model>
                 </a-tab-pane>
+
             </a-tabs>
-        </div>
-        <div class="check-box">
-            <a-checkbox @change="onChange">
-                自动登录
-            </a-checkbox>
-            <a href="">忘记密码</a>
         </div>
         <div class="submit-register">
             <a-button type="primary" size="large" :loading="iconLoading" @click="register">
-                确定
+                注册
             </a-button>
         </div>
         <div class="user-register">
-            <a href="">注册用户</a>
+            <router-link  to="/login" >已有账户登录</router-link>
         </div>
     </div>
 </div>
@@ -64,8 +51,9 @@ export default {
         return {
             iconLoading: false,
             formInline: {
-                user: '',
+                email: '',
                 password: '',
+                passwords: '',
             },
             fromPhone: {
                 numberPhone: '',
@@ -75,9 +63,7 @@ export default {
         };
 
     },
-    mounted() {
-        console.log(Message)
-    },
+    mounted() {},
     methods: {
         callback(key) {
             console.log(key);
@@ -89,13 +75,14 @@ export default {
             console.log(`checked = ${e.target.checked}`);
         },
         register() {
+            return;
             this.iconLoading = true;
             this.iconLoading = !this.iconLoading;
             Message.loading('正在登录中...', 1).then(() => {
                 this.$router.push('/');
                 Notification['success']({
-                    message:'Welcome',
-                    description:`Hey, my friend`
+                    message: 'Welcome',
+                    description: `Hey, my friend`
                 });
             });
 
@@ -158,7 +145,7 @@ export default {
         }
 
         .center-box {
-            height: 200px;
+            // height: 200px;
             overflow: hidden;
         }
 

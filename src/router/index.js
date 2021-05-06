@@ -27,7 +27,7 @@ export const constatRoutes = [
       path: 'index',
       name:'HomeApp',
       component: () => import('@/views/desktop/index'),
-      meta: { title: 'HomeApp', type: 'home' }
+      meta: { title: '主页应用', type: 'home' }
     }]
 
   },
@@ -35,21 +35,20 @@ export const constatRoutes = [
     path: '/permission',
     component: Layout,
     name: '系统管理',
-    hidden: true,
     redirect: 'permission/role',
     children: [{
       path: 'role',
       name: '角色管理',
       component: () => import('@/views/system/role'),
       meta: {
-        title: '角色管理',type: 'home'
+        title: '角色管理',type: 'usergroup-add'
       }
     },{
       path: 'permissonlist',
       name: '权限管理',
       component: () => import('@/views/system/permissionList'),
       meta: {
-        title: '权限管理',type: 'home'
+        title: '权限管理',type: 'user-add'
       }
     }]
 

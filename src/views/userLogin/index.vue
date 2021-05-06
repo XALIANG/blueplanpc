@@ -1,8 +1,8 @@
 <template>
-<div class="userRegister-container">
-    <div class="register-form">
-        <div class="register-image">图片</div>
-        <div class="register-title">Blue plan is a love</div>
+<div class="userlogin-container">
+    <div class="login-form">
+        <div class="login-image">图片</div>
+        <div class="login-title">Blue plan is a love</div>
         <div class="center-box">
             <a-tabs default-active-key="1" @change="callback">
                 <a-tab-pane key="1" tab="账号密码登录">
@@ -46,13 +46,13 @@
             </a-checkbox>
             <a href="">忘记密码</a>
         </div>
-        <div class="submit-register">
-            <a-button type="primary" size="large" :loading="iconLoading" @click="register">
+        <div class="submit-login">
+            <a-button type="primary" size="large" :loading="iconLoading" @click="login">
                 确定
             </a-button>
         </div>
-        <div class="user-register">
-            <a href="">注册用户</a>
+        <div class="user-login">
+            <router-link  to="/register" >注册用户</router-link>
         </div>
     </div>
 </div>
@@ -88,7 +88,7 @@ export default {
         onChange(e) {
             console.log(`checked = ${e.target.checked}`);
         },
-        register() {
+        login() {
             this.iconLoading = true;
             this.iconLoading = !this.iconLoading;
             Message.loading('正在登录中...', 1).then(() => {
@@ -106,7 +106,7 @@ export default {
 
 <style lang="scss">
 /*Reset ang desing  */
-.userRegister-container {
+.userlogin-container {
     .ant-tabs-bar {
         border: none;
     }
@@ -135,21 +135,21 @@ export default {
     }
 }
 </style><style lang="scss" scoped>
-.userRegister-container {
+.userlogin-container {
     min-height: 100%;
     height: 100%;
     background-color: #fdfafa;
     padding: 110px 0 144px;
     overflow: hidden;
 
-    .register-form {
+    .login-form {
         position: relative;
         width: 375px;
         max-width: 100%;
         margin: auto;
         overflow: hidden;
 
-        .register-title {
+        .login-title {
             margin-top: 12px;
             margin-bottom: 40px;
             color: rgba(0, 0, 0, .45);
@@ -168,7 +168,7 @@ export default {
 
         }
 
-        .submit-register {
+        .submit-login {
             max-width: 100%;
             margin: 13px 0 13px;
 
@@ -178,7 +178,7 @@ export default {
             }
         }
 
-        .user-register {
+        .user-login {
             a {
                 float: right;
             }
