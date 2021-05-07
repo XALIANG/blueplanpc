@@ -1,12 +1,11 @@
 <template>
 <div>
-    <a-menu :selected-keys="currentSelectMenu" mode="inline" theme="light" :inline-collapsed="sidebar.sidebarSwidth">
+    <a-menu mode="inline" theme="light" :selected-keys="currentSelectMenu" :inline-collapsed="isCollapse">
         <template v-for="item in permission_routes">
             <template v-if="!item.hidden && item.children">
-                <!-- menu -->
+
                 <a-menu-item v-if="hasOneChildren(item.children)" :key="item.redirect">
-                    <a-icon :type="
-                item.children[0] &&  item.children[0].meta &&     item.children[0].meta.type     " /> <span class="menu-title">
+                    <a-icon class="svg-icon"  :type="item.children[0] &&  item.children[0].meta &&  item.children[0].meta.type" /> <span class="menu-title">
                         <router-link style="display: inline-block" :to="{path:
                     item.path === '/'
                       ? `${item.path}${item.children[0].path}`
@@ -16,7 +15,7 @@
                         </router-link>
                     </span>
                 </a-menu-item>
-                <!-- submenu -->
+
                 <sub-menu v-else :key="item.path" :menu-info="item" :base-route="item.path" />
             </template>
         </template>
@@ -30,7 +29,8 @@
     } from "vuex";
     import {
         generateTitle
-    } from "../../../utils/getTitle";
+    } from "@/utils/getTitle";
+   
     import {
         Menu
     } from "ant-design-vue";
@@ -38,14 +38,14 @@
     const SubMenu = {
             template: `
     <a-sub-menu :key="menuInfo.path" v-bind="$props" v-on="$listeners">
-        <span slot="title" class="menu-title">
-          <a-icon :type="menuInfo.meta && menuInfo.meta.type" />
+        <span slot="title" >
+          <a-icon class="svg-icon" :type="menuInfo.meta && menuInfo.meta.type" />
           <span v-if="menuInfo.meta">{{ menuInfo.meta.title }}</span>
         </span>
     <template v-for="item in menuInfo.children">
           <a-menu-item v-if="!item.children" :key="resovePath(item.path)">
             <router-link style="display: inline-block;" :to="resovePath(item.path)">
-              {{ item.meta.title }}
+             <span> {{ item.meta.title }}</span>
             </router-link>
           </a-menu-item>
         <sub-menu v-else :key="item.path" :menu-info="item"  :base-route="resovePath(item.path)" />
@@ -77,7 +77,6 @@
 
 export default {
   components: {
-    // "sub-menu":SubMenu,
     "sub-menu": SubMenu,
   },
   data() {
@@ -100,10 +99,20 @@ export default {
     hasOneChildren(item) {
       return !item.some((menu) => menu.children) && item.length === 1;
     },
-
   },
 };
 </script>
 
 <style lang="scss" scoped>
+
+.menu-title {
+    a {
+        display: inline-block;
+        color: #595959;
+
+        &:hover {
+            color: #2196f3;
+        }
+    }
+}
 </style>
