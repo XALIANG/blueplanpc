@@ -39,7 +39,7 @@ export default {
             return path === this.$route.path;
         },
         hoemApp(route) {
-            return route.title === "HomeApp";
+            return route.title === "主页应用";
         },
         //获取标签
         obtainTags(route) {

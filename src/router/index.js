@@ -35,6 +35,7 @@ export const constatRoutes = [
     path: '/permission',
     component: Layout,
     name: '系统管理',
+    meta: { title: '系统管理', type: 'setting' },
     redirect: 'permission/role',
     children: [{
       path: 'role',

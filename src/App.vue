@@ -5,5 +5,7 @@
 </template>
 
 <style lang="scss">
-
+#nprogress .bar {
+  background: #1890ff !important;
+}
 </style>

@@ -6,7 +6,8 @@
         position: relative;
     }
 
-    .app-wrapper {
+    
+       .app-wrapper {
         .sidebar-container {
             transition: width 0.28s;
             width: $sideBarWidth !important;
@@ -36,6 +37,12 @@
             & ul {
                 width: 54px !important;
                 overflow: hidden;
+               
+                li{
+                    span{
+                        display: none;
+                    }
+                }
             }
         }
 

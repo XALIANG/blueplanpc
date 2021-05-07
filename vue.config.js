@@ -10,11 +10,14 @@ module.exports = {
     assetsDir: 'static',
     lintOnSave: false,
     productionSourceMap: false,
+    //Solution For Issue:You are using the runtime-only build of Vue where the template compiler is not available. Either pre-compile the templates into render functions, or use the compiler-included build.
+    //zhengkai.blog.csdn.net
+    runtimeCompiler: true,
     devServer: {},
     css: {
         loaderOptions: {
             sass: {
-                prependData: `@import "@/styles/variables.scss";`  
+                prependData: `@import "@/styles/variables.scss";`
             },
         }
     },
