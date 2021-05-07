@@ -39,16 +39,27 @@
                 overflow: hidden;
                
                 li{
-                    span{
+                    .ant-menu-item-group-list > .ant-menu-submenu > .ant-menu-submenu-title, .ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title{
+                        padding: 0 0px !important;
+                    }
+            
+                    .menu-title {
+                        display: none
+                    }
+                    .router-link-exact-active .router-link-active{
+                        display: none;
+                    }
+                    .ant-menu-submenu-arrow{
                         display: none;
                     }
                 }
             }
         }
 
+
+        
         .blueplan-container {
             margin-left: 54px;
-
         }
 
         .a-menu-inline {
@@ -65,52 +76,39 @@
             }
         }
 
-        .ant-menu-item .anticon,
-        .ant-menu-submenu-title .anticon {
-            margin-right: 0px;
-        }
+        // .ant-menu-item .anticon,
+        // .ant-menu-submenu-title .anticon {
+        //     margin-right: 0px;
+        // }
 
-        .ant-menu-item {
-            overflow: hidden;
+        // .ant-menu-item {
+        //     overflow: hidden;
 
-            &>.ant-menu-submenu-title {
+        //     &>.ant-menu-submenu-title {
 
-                padding: 0 !important;
+        //         padding: 0 !important;
 
-                .svg-icon {
-                    margin-left: 20px;
-                    margin-right: 0px !important;
+        //         .svg-icon {
+        //             margin-left: 20px;
+        //             margin-right: 0px !important;
 
-                }
+        //         }
 
-                .a-icon {
-                    margin-left: 20px;
-                }
+        //         .a-icon {
+        //             margin-left: 20px;
+        //         }
 
-                .a-sub-menu_icon-arrow {
-                    display: none;
-                }
-            }
+        //         .a-sub-menu_icon-arrow {
+        //             display: none;
+        //         }
+        //     }
 
-            & .title {
-                display: none;
-            }
+        //     & .title {
+        //         display: none;
+        //     }
 
-        }
+        // }
 
-        .ant-menu--collapse {
-            .ant-menu-submenu {
-                &>.ant-menu-submenu-title {
-                    &>span {
-                        height: 0;
-                        width: 0;
-                        overflow: hidden;
-                        visibility: hidden;
-                        display: inline-block;
-                    }
-                }
-            }
-        }
     }
 
 }
