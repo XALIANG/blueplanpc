@@ -22,7 +22,9 @@ import {
     Breadcrumb,
     Drawer,
     Input,
-    Avatar
+    Table,
+    Avatar,
+    Divider
 } from 'ant-design-vue';
 Vue.use(Tag);
 Vue.use(Button);
@@ -40,6 +42,8 @@ Vue.use(Drawer);
 Vue.use(Input);
 Vue.use(FormModel);
 Vue.use(Checkbox);
+Vue.use(Table);
 Vue.use(Layout);
+Vue.use(Divider);
 Vue.use(Breadcrumb);
 

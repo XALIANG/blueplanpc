@@ -45,11 +45,11 @@ export const constatRoutes = [
         title: '角色管理',type: 'usergroup-add'
       }
     },{
-      path: 'permissonlist',
-      name: '权限管理',
-      component: () => import('@/views/system/permissionList'),
+      path: 'account',
+      name: '账号管理',
+      component: () => import('@/views/system/account'),
       meta: {
-        title: '权限管理',type: 'user-add'
+        title: '账号管理',type: 'usergroup-add'
       }
     }]
 
