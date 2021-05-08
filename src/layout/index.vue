@@ -3,7 +3,7 @@
     <sidebar class="sidebar-container" />
     <div class="blueplan-container">
         <div class="fixed-header">
-            <navbar></navbar>
+            <navbar/>
             <tagsview />
         </div>
         <app-main />
