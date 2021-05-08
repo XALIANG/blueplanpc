@@ -19,7 +19,7 @@
                     <a href="javascript:;">注销账号</a>
                 </a-menu-item>
                 <a-menu-item>
-                    <a @click="showDrawer" href="javascript:;">关于我们</a>
+                    <a @click="showDrawer" href="javascript:;">留言</a>
                 </a-menu-item>
                 <a-menu-item>
                     <a href="javascript:;">设置</a>
@@ -27,10 +27,10 @@
             </a-menu>
         </a-dropdown>
     </div>
-    <a-drawer title="Basic Drawer" :placement="placement" :closable="false" :visible="visible" @close="onClose">
-        <p>关于蓝计划...</p>
-        <p>关于蓝计划...</p>
-        <p>关于蓝计划...</p>
+    <a-drawer width="500" title="Basic Drawer" :placement="placement" :closable="false" :visible="visible" @close="onClose">
+        <p>哇...</p>
+        <p>辛苦啦...</p>
+        <p>加油...</p>
     </a-drawer>
 </div>
 </template>
