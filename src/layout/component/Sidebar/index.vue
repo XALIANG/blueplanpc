@@ -3,9 +3,8 @@
     <a-menu mode="inline" theme="light" :selected-keys="currentSelectMenu" :inline-collapsed="isCollapse">
         <template v-for="item in permission_routes">
             <template v-if="!item.hidden && item.children">
-
                 <a-menu-item v-if="hasOneChildren(item.children)" :key="item.redirect">
-                    <a-icon class="svg-icon"  :type="item.children[0] &&  item.children[0].meta &&  item.children[0].meta.type" /> <span class="menu-title">
+                    <a-icon class="svg-icon" :type="item.children[0] &&  item.children[0].meta &&  item.children[0].meta.type" /> <span class="menu-title">
                         <router-link style="display: inline-block" :to="{path:
                     item.path === '/'
                       ? `${item.path}${item.children[0].path}`
@@ -15,7 +14,6 @@
                         </router-link>
                     </span>
                 </a-menu-item>
-
                 <sub-menu v-else :key="item.path" :menu-info="item" :base-route="item.path" />
             </template>
         </template>
@@ -30,7 +28,7 @@
     import {
         generateTitle
     } from "@/utils/getTitle";
-   
+
     import {
         Menu
     } from "ant-design-vue";
@@ -49,8 +47,7 @@
             </router-link>
           </a-menu-item>
         <sub-menu v-else :key="item.path" :menu-info="item"  :base-route="resovePath(item.path)" />
-        
-</template>
+    </template>
 
      </a-sub-menu>
     `,
@@ -80,7 +77,7 @@ export default {
     "sub-menu": SubMenu,
   },
   data() {
-    return {};
+    return {openKeys:[]};
   },
   computed: {
     ...mapGetters(["sidebar", "permission_routes"]),
@@ -96,6 +93,8 @@ export default {
   },
   methods: {
     generateTitle,
+     // 点击菜单触发事件
+
     hasOneChildren(item) {
       return !item.some((menu) => menu.children) && item.length === 1;
     },
@@ -104,7 +103,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .menu-title {
     a {
         display: inline-block;

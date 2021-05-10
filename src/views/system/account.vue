@@ -1,90 +1,88 @@
 <template>
 <div class="account-container bgsytle">
-    <a-table bordered :columns="columns" :data-source="data">
-        <a slot="name" slot-scope="text">{{ text }}</a>/
-        <span slot="customTitle"></span>
-        <span   slot="tags" slot-scope="tags">
-            <a-tag v-for="tag in tags" :key="tag" :color="tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'">
-                {{ tag.toUpperCase() }}
-            </a-tag>
-        </span>
-        <span slot="action" slot-scope="text, record">
-            <a>Invite 一 {{ record.name }}</a>
-        </span>
+    <a-table  :pagination="pagination" bordered :data-source="data">
+        <a-table-column key="name" title="账号" data-index="name"  />
+        <a-table-column key="address" title="秘钥" data-index="address" />
+        <a-table-column key="tags" title="状态" :width="130" data-index="tags" align="center" >
+            <template slot-scope="tags">
+                <span>
+                    <a-tag v-for="(tag,index) in tags" :key="index" :color="tag.state === 1 ? 'green' :'red'">
+                        {{ tag.state === 1 ? tag.title: tag.title }}
+                    </a-tag>
+                </span>
+            </template>
+        </a-table-column>
+        <a-table-column key="action" title="操作"  align="center" >
+            <template slot-scope="text, record">
+                <span>
+                    <a-button size="small" >编辑</a-button>
+                </span>
+            </template>
+        </a-table-column>
+
     </a-table>
 </div>
 </template>
 
 <script>
-const columns = [{
-        title: '账号',
-        dataIndex: 'name',
-        key: 'name',
-        slots: {
-            title: 'customTitle'
-        },
-        scopedSlots: {
-            customRender: 'name'
-        },
-    },
-    {
-        title: '秘钥',
-        dataIndex: 'age',
-        key: 'age',
-    },
-    {
-        title: '状态',
-        key: 'tags',
-        dataIndex: 'tags',
-        width: '5%',
-        scopedSlots: {
-            customRender: 'tags'
-        },
-    },
-    {
-        title: '权限',
-        key: 'action',
-        scopedSlots: {
-            customRender: 'action'
-        },
-    },
-];
-
 const data = [{
         key: '1',
         name: 'John Brown',
-        age: 32,
         address: 'New',
-        tags: ['nice'],
+        tags: [{
+            state: 1,
+            color: 'red',
+            title: '离线'
+        }],
     },
     {
         key: '2',
         name: 'Jim Green',
-        age: 42,
         address: 'London',
-        tags: ['loser'],
+        tags: [{
+            state: 1,
+            color: 'green',
+            title: '在线'
+        }],
     },
     {
         key: '3',
         name: 'Joe Black',
-        age: 32,
         address: 'Sidney',
-        tags: ['cool'],
+        tags: [{
+            state: 0,
+            color: 'red',
+            title: '离线'
+        }],
     },
-     {
+    {
         key: '4',
         name: 'Joe Black',
-        age: 32,
         address: 'Sidney',
-        tags: ['cool'],
+        tags: [{
+            state: 1,
+            color: 'green',
+            title: '在线'
+        }],
     },
 ];
 
 export default {
     data() {
+        const pagination = {
+            total:0,
+            pageSize:20,
+            current:1,
+            pageSizeOptions:["10","20"],
+            showSizeChanger:true,
+            showQuickJumper:false,
+            showTotal:(total,range)=>{
+               return `${range[0]}-${range[1]}总 ${total}条`
+            }
+        };
         return {
+            pagination,
             data,
-            columns,
         };
     },
 };

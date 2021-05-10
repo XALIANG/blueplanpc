@@ -5,7 +5,27 @@ Vue.use(VueRouter)
 
 /**
  * @hidden 控制菜单显隐
+ * 
  */
+
+
+/**
+ *  {
+    path: '/feedback',
+    component: Layout,
+    redirect: '/feedback/index',
+    name: '反馈中心',
+    children: [
+      {
+        path: 'index',
+        name: '反馈中心',
+        component: () => import('@/views/feedback/index'),
+        meta: { title: '反馈中心',type: 'usergroup-add' }
+      }
+    ]
+  }
+ */
+
 // export const asyncRoutes = [];
 export const constatRoutes = [
   {
@@ -53,7 +73,8 @@ export const constatRoutes = [
       }
     }]
 
-  }, {
+  },
+  {
     path: '/redirect',
     component: Layout,
     name: 'redirect',
@@ -69,7 +90,6 @@ export const constatRoutes = [
     }]
 
   },
- 
   {
     path: '/mypage',
     component: Layout,
@@ -87,12 +107,36 @@ export const constatRoutes = [
     }]
 
   },
+  {
+    path: '/feedback',
+    component: Layout,
+    redirect: '/feedback/index',
+    name: '反馈中心',
+    children: [
+      {
+        path: 'index',
+        name: '反馈中心',
+        component: () => import('@/views/feedback/index'),
+        meta: { title: '反馈中心',type: 'usergroup-add' }
+      }
+    ]
+  }
 ]
 
-const router = new VueRouter({
-  mode: 'hash',
-  base: process.env.BASE_URL,
-  routes: constatRoutes
-})
+
+const createRouter = () =>
+  new VueRouter({
+    mode: 'history', // require service support
+    scrollBehavior: () => ({ y: 0 }),
+    routes: constatRoutes
+  })
+
+const router = createRouter()
+
+export function resetRouter() {
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher // reset router
+}
+
 
 export default router

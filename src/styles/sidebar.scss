@@ -24,8 +24,12 @@
                 width: $sideBarWidth !important;
                 border-right: 1px solid #e8e8e8;
                 height: 100%;
-                position: absolute;
                 overflow: hidden;
+                span{
+                    a{
+                      width: 100px;
+                    }
+                 }
             }
         }
     }
@@ -33,26 +37,25 @@
     .hideSidebar {
         .sidebar-container {
             width: 54px !important;
-
             & ul {
                 width: 54px !important;
                 overflow: hidden;
-               
-                li{
-                    .ant-menu-item-group-list > .ant-menu-submenu > .ant-menu-submenu-title, .ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title{
-                        padding: 0 0px !important;
-                    }
+              
+                // li{
+                //     .ant-menu-item-group-list > .ant-menu-submenu > .ant-menu-submenu-title, .ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title{
+                //         padding: 0 0px !important;
+                //     }
             
-                    .menu-title {
-                        display: none
-                    }
-                    .router-link-exact-active .router-link-active{
-                        display: none;
-                    }
-                    .ant-menu-submenu-arrow{
-                        display: none;
-                    }
-                }
+                //     .menu-title {
+                //         display: none
+                //     }
+                //     .router-link-exact-active .router-link-active{
+                //         display: none;
+                //     }
+                //     .ant-menu-submenu-arrow{
+                //         display: none;
+                //     }
+                // }
             }
         }
 

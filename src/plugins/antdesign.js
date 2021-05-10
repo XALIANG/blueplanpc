@@ -24,7 +24,8 @@ import {
     Input,
     Table,
     Avatar,
-    Divider
+    Divider,
+    ConfigProvider
 } from 'ant-design-vue';
 Vue.use(Tag);
 Vue.use(Button);
@@ -46,4 +47,5 @@ Vue.use(Table);
 Vue.use(Layout);
 Vue.use(Divider);
 Vue.use(Breadcrumb);
+Vue.use(ConfigProvider);
 
