@@ -52,7 +52,7 @@
                             </a-list-item>
                         </a-list>
                     </div>
-                    <div class="swiper-constainer">
+                    <!-- <div class="swiper-constainer">
                         <a-carousel arrows>
                             <div class="swiper-box">
                                 <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1543094632,1454141156&fm=26&gp=0.jpg" alt="" />
@@ -67,7 +67,7 @@
                                 <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1543094632,1454141156&fm=26&gp=0.jpg" alt="" />
                             </div>
                         </a-carousel>
-                    </div>
+                    </div> -->
                 </a-tab-pane>
                 <a-tab-pane class="padding" key="2" tab="Tab 2" force-render>
                     <div class="menu-car">

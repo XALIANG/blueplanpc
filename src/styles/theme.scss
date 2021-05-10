@@ -1,0 +1,106 @@
+#app {
+    .DarkTheme {
+        background-color: #090c10;
+        color: #c9cecd !important;
+
+        //头部  #161b22 .navbar-container
+        .navbar-container {
+            background-color: #161b22;
+
+        }
+
+        //标签栏
+        .navbar-containerr {
+            background-color: #141414;
+
+            #hamburger-container {
+                span {
+                    color: #686b70;
+                }
+            }
+
+        }
+
+        //导航栏 #0d1117
+        .sidebar-container {
+            ul {
+                background-color: #090c10;
+                border-right: none !important;
+                border: none;
+
+                span {
+                    color: #c9cecd;
+                }
+            }
+        }
+
+        // //内容区 #090c10
+        // background-color: #090c10;
+        .app-wrapper,
+        .bluePlan-container {
+            background-color: #090c10;
+
+            .ant-table-wrapper,
+            .role-container {
+                opacity: 0.8;
+                background-color: #000;
+
+                th {
+                    color: #c9cecd;
+                    background-color: rgb(29 29 29);
+                    opacity: 0.4;
+                }
+
+                tr {
+                    color: #a3adad;
+                }
+            }
+        }
+
+        //个人页
+        .mypage-container {
+
+            .mypage-rightMenu,
+            .mypage-headCar {
+                background-color: rgb(20 20 20);
+
+                .ant-tabs-bar {
+                    border-bottom: 1px solid hsl(0deg 0% 19%);
+                }
+
+                .ant-spin-container,
+                .ant-list-item-meta-description,
+                .ant-list-item-meta {
+                    color: #adadad;
+                }
+
+                .ant-list-item-meta-title {
+                    a {
+                        color: #adadad;
+                    }
+                }
+
+                .ant-tabs-tab {
+                    color: hsl(60deg 25% 15%);
+                }
+
+                .ant-list-item {
+                    border-bottom: 1px solid #303030;
+                }
+
+                .ant-list-item-action {
+                    li {
+                        color: #adadad;
+                    }
+                }
+
+                .horizontal {
+                    background-color: #303030;
+                }
+            }
+        }
+    }
+
+
+
+}

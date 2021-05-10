@@ -22,7 +22,7 @@
                     <a @click="showDrawer" href="javascript:;">留言</a>
                 </a-menu-item>
                 <a-menu-item>
-                    <a href="javascript:;">设置</a>
+                    <a @click="showSetUp" href="javascript:;">设置</a>
                 </a-menu-item>
             </a-menu>
         </a-dropdown>
@@ -31,6 +31,11 @@
         <p>哇...</p>
         <p>辛苦啦...</p>
         <p>加油...</p>
+    </a-drawer>
+    <!-- 设置 -->
+    <a-drawer title="风格设置" :placement="placement" :closable="false" :visible="setUp" @close="onClose">
+        <p>暗黑主题</p>
+        <a-switch :defaultChecked="false" default-checked @change="onchangeSetUpDrak" />
     </a-drawer>
 </div>
 </template>
@@ -46,6 +51,7 @@ export default {
         return {
             visible: false,
             placement: 'right',
+            setUp: false,
         }
     },
     components: {
@@ -62,11 +68,19 @@ export default {
         showDrawer() {
             this.visible = true;
         },
+        showSetUp() {
+            this.setUp = true;
+        },
         onClose() {
-            this.visible = false;
+            this.visible = false
+            this.setUp = false;
         },
         onChange(e) {
             this.placement = e.target.value;
+        },
+        onchangeSetUpDrak(checked) {
+            this.$store.dispatch('app/openDark',checked);
+            console.log(checked);
         },
     },
 };

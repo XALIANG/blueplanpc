@@ -1,7 +1,9 @@
 const state = {
+    isDark:false,
     sidebar: {
         sidebarSwitch:false,
-        withoutAnimation:false
+        withoutAnimation:false,
+       
     }
 }
 const mutations = {
@@ -12,6 +14,10 @@ const mutations = {
     CLOSE_SIDEBAR:(state,withoutAnimation)=>{
         state.sidebar.sidebarSwitch = false;
         state.sidebar.withoutAnimation = withoutAnimation;
+    },
+    SWITCH_DARK:(state,callbackDARk)=>{
+        state.isDark = callbackDARk;
+        console.log('callbackDARk',state.isDark)
     }
 }
 const actions = {
@@ -20,7 +26,11 @@ const actions = {
     },
     closeSideBar({commit,withoutAnimation}){
         commit('CLOSE_SIDEBAR',withoutAnimation);
-    }
+    },
+    openDark({commit},val){
+        console.log('val',val)
+        commit('SWITCH_DARK',val);
+    },
 }
 
 export default {

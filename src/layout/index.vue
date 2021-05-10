@@ -1,5 +1,6 @@
 <template>
 <div :class="classObj" class="app-wrapper">
+    {
     <sidebar class="sidebar-container" />
     <div class="blueplan-container">
         <div class="fixed-header">
@@ -29,10 +30,11 @@ export default {
         Tagsview,
     },
     computed: {
-        ...mapGetters(["sidebar"]),
+        ...mapGetters(["sidebar","isDark"]),
         classObj() {
             return {
                 hideSidebar: this.sidebar.sidebarSwitch,
+                DarkTheme:this.isDark,
             };
         },
     },

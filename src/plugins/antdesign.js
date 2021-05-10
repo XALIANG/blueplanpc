@@ -25,6 +25,7 @@ import {
     Table,
     Avatar,
     Divider,
+    Switch,
     ConfigProvider
 } from 'ant-design-vue';
 Vue.use(Tag);
@@ -45,6 +46,7 @@ Vue.use(FormModel);
 Vue.use(Checkbox);
 Vue.use(Table);
 Vue.use(Layout);
+Vue.use(Switch);
 Vue.use(Divider);
 Vue.use(Breadcrumb);
 Vue.use(ConfigProvider);
