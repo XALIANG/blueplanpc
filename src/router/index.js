@@ -10,6 +10,10 @@ Vue.use(VueRouter)
 
 
 /**
+ * @path 路由格式
+ * @redirect 重定向路径
+ * @children index
+ * @meta 描述
  *  {
     path: '/feedback',
     component: Layout,
