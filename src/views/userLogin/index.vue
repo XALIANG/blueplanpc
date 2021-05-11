@@ -144,7 +144,7 @@ export default {
             this.$refs[ruleLogin].validate(valid => {
                 if (!valid) {
                     this.iconLoading = !this.iconLoading;
-                    this.$refs[ruleLogin].resetFields()
+                    
                     return;
                 }
                 this.checkForm();
