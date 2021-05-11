@@ -18,6 +18,10 @@
                             </a-input>
                         </a-form-model-item>
                         <a-form-model-item>
+                            <a-input class="code-1" v-model="formInline.code" type="text " placeholder="验证码">
+                            </a-input>
+                            <!-- <a-button size="large">获取验证码</a-button> -->
+                            <span class="code-from-mid" @click="obtianCode" v-html="svg"></span>
                         </a-form-model-item>
                     </a-form-model>
                 </a-tab-pane>
@@ -52,20 +56,28 @@
             </a-button>
         </div>
         <div class="user-login">
-            <router-link  to="/register" >注册用户</router-link>
+            <router-link to="/register">注册用户</router-link>
         </div>
     </div>
 </div>
 </template>
 
 <script>
+import {
+    VerificationCode
+} from '@/apis/h1';
+
 export default {
     data() {
         return {
+            svg: '',
             iconLoading: false,
+            errorMsg: [],
+            serviceCode:'',
             formInline: {
                 user: '',
                 password: '',
+                code: ''
             },
             fromPhone: {
                 numberPhone: '',
@@ -76,7 +88,7 @@ export default {
 
     },
     mounted() {
-        console.log(Message)
+        this.obtianCode();
     },
     methods: {
         callback(key) {
@@ -91,15 +103,50 @@ export default {
         login() {
             this.iconLoading = true;
             this.iconLoading = !this.iconLoading;
+            this.checkForm();
+            if(this.serviceCode!=this.formInline['code']){
+                Notification['warning']({
+                    message: '验证码错误'
+                })
+                 this.formInline['code'] = '';
+                return;
+            }
             Message.loading('正在登录中...', 1).then(() => {
                 this.$router.push('/');
                 Notification['success']({
-                    message:'Welcome',
-                    description:`Hey, my friend`
+                    message: 'Welcome',
+                    description: `Hey, my friend`
                 });
             });
 
         },
+        obtianCode() {
+            VerificationCode().then(res => {
+                if (res.code == 200) {
+                    this.svg = res.data.data;
+                    this.serviceCode = res.data.text.toLowerCase();
+                    console.log(this.serviceCode)
+                }
+                console.log(res)
+            })
+        },
+        //类型检查 
+        checkForm() {
+            this.errorMsg = [];
+                if (!this.formInline['user']) {
+                    this.errorMsg.push('登录名为空')
+                }
+                if (!this.formInline['password']) {
+                    this.errorMsg.push('密码不得为空')
+
+                }
+                if (!this.formInline['code']) {
+                    this.errorMsg.push('验证码为空')
+                }
+                
+         
+            console.log(this.errorMsg)
+        }
     }
 }
 </script>
@@ -121,6 +168,17 @@ export default {
             width: 240px;
             padding-right: 8px;
 
+        }
+
+        .code-1 {
+            width: 200px;
+            padding-right: 8px;
+        }
+
+        .code-from-mid {
+            margin-left: 10px;
+            position: relative;
+            top: 5px;
         }
 
         .code+button {
@@ -158,7 +216,7 @@ export default {
         }
 
         .center-box {
-            height: 200px;
+            // height: 200px;
             overflow: hidden;
         }
 
