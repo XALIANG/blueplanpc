@@ -8,8 +8,7 @@
                 <a-tab-pane key="1" tab="账号密码登录">
                     <a-form-model ref="ruleLogin" layout="horizontal" :rules="rules" :model="formInline" @submit="handleSubmit" @submit.native.prevent>
                         <a-form-model-item prop="user">
-                            <a-input v-model="formInline.user" placeholder="账户：admin" v-decorator="[
-                                 formInline.user, { rules: [{ required: true, message: 'Please input your username!' }] }, ]">
+                            <a-input v-model="formInline.user" placeholder="账户：admin" >
                                 <a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25)" />
                             </a-input>
                         </a-form-model-item>
@@ -19,7 +18,7 @@
                             </a-input>
                         </a-form-model-item>
                         <a-form-model-item prop="code">
-                            <a-input class="code-1" v-model="formInline.code" type="text " placeholder="验证码" @keyup.enter.native="login">
+                            <a-input class="code-1" v-model="formInline.code" type="text " placeholder="验证码" @keyup.enter.native="login('ruleLogin')">
                             </a-input>
                             <span class="code-from-mid" @click="obtianCode" v-html="svg"></span>
                         </a-form-model-item>
@@ -77,8 +76,7 @@ export default {
             callback();
         };
         let validatePass2 = (rule, value, callback) => {
-
-            if (this.formInline.user === '') {
+            if (this.formInline.password === '') {
                 callback(new Error('密码不得为空'));
                 this.$refs.formInline.validateField('checkPass');
             }
@@ -144,7 +142,6 @@ export default {
             this.$refs[ruleLogin].validate(valid => {
                 if (!valid) {
                     this.iconLoading = !this.iconLoading;
-                    
                     return;
                 }
                 this.checkForm();
