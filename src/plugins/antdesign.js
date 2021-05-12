@@ -26,6 +26,11 @@ import {
     Avatar,
     Divider,
     Switch,
+    Modal,
+    Tree,
+    Tooltip,
+    Comment,
+    TreeSelect,
     ConfigProvider
 } from 'ant-design-vue';
 Vue.use(Tag);
@@ -49,5 +54,10 @@ Vue.use(Layout);
 Vue.use(Switch);
 Vue.use(Divider);
 Vue.use(Breadcrumb);
+Vue.use(Tree);
+Vue.use(Modal);
+Vue.use(Comment);
+Vue.use(TreeSelect);
+Vue.use(Tooltip);
 Vue.use(ConfigProvider);
 
