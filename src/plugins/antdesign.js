@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import 'ant-design-vue/dist/antd.css'
-import {message,notification} from 'ant-design-vue';
+import { message, notification } from 'ant-design-vue';
 
 window.Message = message;
 window.Notification = notification;

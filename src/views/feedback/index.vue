@@ -35,7 +35,6 @@
                 <a-comment :author="item.author" :avatar="item.avatar" :content="item.content" :datetime="item.datetime" />
             </a-list-item>
         </a-list>
-        
         </a-comment>
     </div>
 </div>

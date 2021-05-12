@@ -8,8 +8,14 @@ import './plugins/antdesign';
 import './permission';
 import i18n from './lang';// i18n
 
+import * as filters from './filters'; 
+
 Vue.config.productionTip = false;
 
+
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key]);
+});
 
 new Vue({
   router,
