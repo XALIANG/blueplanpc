@@ -12,7 +12,7 @@ import * as filters from './filters';
 
 Vue.config.productionTip = false;
 
-
+  
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key]);
 });
