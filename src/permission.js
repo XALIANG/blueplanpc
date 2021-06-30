@@ -10,8 +10,8 @@ NProgress.configure({ showSpinner: false });
 
 router.beforeEach(async (to, from, next) => {
     NProgress.start()
-   
-    NProgress.done()
+
+
     const token = store.state.user.userForm.token;
     if (to.path === '/login') {
         next();
@@ -26,5 +26,5 @@ router.beforeEach(async (to, from, next) => {
         }
     }
 
-
+    NProgress.done()
 })
