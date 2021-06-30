@@ -3,6 +3,7 @@ const state = {
     userForm:{
         username:'',
         password:'',
+        token:null,
         userSign:false,
     },
     phoneForm:{

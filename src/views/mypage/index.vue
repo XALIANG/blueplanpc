@@ -18,13 +18,13 @@
         <div class="account-center-tag">
             <div class="tagsTitle">标签</div>
             <div class="tagsTitle-children">
-                <a-tag color="pink"> pink </a-tag>
-                <a-tag color="red"> red </a-tag>
-                <a-tag color="orange"> orange </a-tag>
-                <a-tag color="green"> green </a-tag>
-                <a-tag color="cyan"> cyan </a-tag>
-                <a-tag color="blue"> blue </a-tag>
-                <a-tag color="purple"> purple </a-tag>
+                <a-tag color="pink"> Java </a-tag>
+                <a-tag color="red"> Node </a-tag>
+                <a-tag color="orange"> JavaScript </a-tag>
+                <a-tag color="green"> Vue </a-tag>
+                <a-tag color="cyan"> Python </a-tag>
+                <a-tag color="blue"> C </a-tag>
+                <a-tag color="purple"> C++ </a-tag>
             </div>
             <div class="horizontal"></div>
         </div>

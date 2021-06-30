@@ -95,9 +95,9 @@ export default {
             errorMsg: [],
             serviceCode: '',
             formInline: {
-                user: '',
-                password: '',
-                code: ''
+                user: 'admin',
+                password: 'admin',
+                code: 'admin'
             },
             fromPhone: {
                 numberPhone: '',
@@ -140,19 +140,20 @@ export default {
         login(ruleLogin) {
             this.iconLoading = true;
             this.$refs[ruleLogin].validate(valid => {
+                this.$store.state.user.userForm.token = 'admin';
                 if (!valid) {
                     this.iconLoading = !this.iconLoading;
                     return;
                 }
                 this.checkForm();
-                if (this.serviceCode != this.formInline['code']) {
-                    Notification['warning']({
-                        message: '验证码错误'
-                    })
-                    this.iconLoading = !this.iconLoading;
-                    this.formInline['code'] = '';
-                    return;
-                }
+                // if (this.serviceCode != this.formInline['code']) {
+                //     Notification['warning']({
+                //         message: '验证码错误'
+                //     })
+                //     this.iconLoading = !this.iconLoading;
+                //     this.formInline['code'] = '';
+                //     return;
+                // }
                 Message.loading('正在登录中...', 1).then(() => {
                     this.iconLoading = !this.iconLoading;
                     this.$router.push('/');

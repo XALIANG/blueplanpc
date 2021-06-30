@@ -6,7 +6,7 @@ function currentDir(dir) {
 }
 module.exports = {
     publicPath: '/',
-    outputDir: '/blueDist',
+    outputDir: 'blueDist',
     assetsDir: 'static',
     lintOnSave: false,
     productionSourceMap: false,
