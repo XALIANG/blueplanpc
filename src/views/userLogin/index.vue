@@ -57,9 +57,9 @@
                 确定
             </a-button>
         </div>
-        <div class="user-login">
+        <!-- <div class="user-login">
             <router-link to="/register">注册用户</router-link>
-        </div>
+        </div> -->
     </div>
 
 </div>
