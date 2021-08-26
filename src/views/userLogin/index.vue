@@ -57,9 +57,9 @@
                 确定
             </a-button>
         </div>
-        <!-- <div class="user-login">
+        <div class="user-login">
             <router-link to="/register">注册用户</router-link>
-        </div> -->
+        </div>
     </div>
 
 </div>
@@ -248,8 +248,8 @@ export default {
     height: 100%;
     min-height: 100%;
     background-image: url("../../assets/image/background.png");
+    background-repeat: no-repeat;
     background-size: cover;
-    background-repeat: repeat;
     padding: 110px 0 144px;
     overflow: hidden;
 

@@ -11,18 +11,20 @@ NProgress.configure({ showSpinner: false });
 router.beforeEach(async (to, from, next) => {
     NProgress.start()
 
-
     const token = store.state.user.userForm.token;
     if (to.path === '/login') {
         next();
-    } else {
+    }
+    else {
+        // 测试阶段
         if (token) {
             const addRoutes = store.dispatch('permission/generateRoutes', currentRoles);
-            console.log(1)
+            // console.log(1)
             next();
         } else {
-            console.log(1)
-            next({ path: '/login' });
+            const addRoutes = store.dispatch('permission/generateRoutes', currentRoles);
+            next();
+            // next({ path: '/login' });
         }
     }
 

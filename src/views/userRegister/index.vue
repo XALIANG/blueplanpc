@@ -8,7 +8,7 @@
                 <a-tab-pane key="1" tab="注册">
                     <a-form-model layout="horizontal" :model="formInline" @submit="handleSubmit" @submit.native.prevent>
                         <a-form-model-item>
-                            <a-input v-model="formInline.email" placeholder="邮箱">
+                            <a-input v-model="formInline.emailAndUserName" placeholder="邮箱 | 用户名">
                             </a-input>
                         </a-form-model-item>
                         <a-form-model-item>
@@ -20,10 +20,10 @@
                             </a-input>
                         </a-form-model-item>
                         <a-form-model-item>
-                            <a-input addon-before="+86" placeholder="11位手机号" />
+                            <a-input v-model="formInline.Phone" addon-before="+86" placeholder="11位手机号" />
                         </a-form-model-item>
                         <a-form-model-item>
-                            <a-input class="code" v-model="fromPhone.code" type="password" placeholder="验证码">
+                            <a-input class="code" v-model="formInline.code" type="password" placeholder="验证码">
                                 <a-icon slot="prefix" type="mail" theme="twoTone" style="color:rgba(0,0,0,.25)" />
                             </a-input>
                             <a-button size="large">获取验证码</a-button>
@@ -39,7 +39,7 @@
             </a-button>
         </div>
         <div class="user-register">
-            <router-link  to="/login" >已有账户登录</router-link>
+            <router-link to="/login">已有账户登录</router-link>
         </div>
     </div>
 </div>
@@ -51,15 +51,12 @@ export default {
         return {
             iconLoading: false,
             formInline: {
-                email: '',
+                code: '',
+                Phone: '',
                 password: '',
                 passwords: '',
+                emailAndUserName: '',
             },
-            fromPhone: {
-                numberPhone: '',
-                code: ''
-
-            }
         };
 
     },
@@ -75,15 +72,11 @@ export default {
             console.log(`checked = ${e.target.checked}`);
         },
         register() {
-            return;
             this.iconLoading = true;
             this.iconLoading = !this.iconLoading;
-            Message.loading('正在登录中...', 1).then(() => {
-                this.$router.push('/');
-                Notification['success']({
-                    message: 'Welcome',
-                    description: `Hey, my friend`
-                });
+            Message.loading('注册成功', 0.5).then(() => {
+                this.$router.push('/login');
+
             });
 
         },
