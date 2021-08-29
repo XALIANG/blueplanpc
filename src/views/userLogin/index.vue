@@ -248,7 +248,7 @@ export default {
     height: 100%;
     min-height: 100%;
     background-image: url("../../assets/image/background.png");
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
     background-size: cover;
     padding: 110px 0 144px;
     overflow: hidden;

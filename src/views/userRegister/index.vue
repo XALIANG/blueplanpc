@@ -19,9 +19,9 @@
                             <a-input v-model="formInline.passwords" type="password" placeholder="至确认密码">
                             </a-input>
                         </a-form-model-item>
-                        <a-form-model-item>
+                        <!-- <a-form-model-item>
                             <a-input v-model="formInline.Phone" addon-before="+86" placeholder="11位手机号" />
-                        </a-form-model-item>
+                        </a-form-model-item> -->
                         <a-form-model-item>
                             <a-input class="code" v-model="formInline.code" type="password" placeholder="验证码">
                                 <a-icon slot="prefix" type="mail" theme="twoTone" style="color:rgba(0,0,0,.25)" />
@@ -46,13 +46,14 @@
 </template>
 
 <script>
+import {userRegister} from '@/apis/user.js';
+
 export default {
     data() {
         return {
             iconLoading: false,
             formInline: {
                 code: '',
-                Phone: '',
                 password: '',
                 passwords: '',
                 emailAndUserName: '',
@@ -74,6 +75,13 @@ export default {
         register() {
             this.iconLoading = true;
             this.iconLoading = !this.iconLoading;
+            userRegister({
+                userName:this.formInline.emailAndUserName,
+                userPassword :this.formInline.passwords
+            }).then(res=>{
+                console.log(res)
+            })
+            return;
             Message.loading('注册成功', 0.5).then(() => {
                 this.$router.push('/login');
 
