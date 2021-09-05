@@ -6,33 +6,30 @@
         <div class="center-box">
             <a-tabs default-active-key="1" @change="callback">
                 <a-tab-pane key="1" tab="注册">
-                    <a-form-model ref="rule" :rules="rules" layout="horizontal" :model="formInline" @submit="handleSubmit" @submit.native.prevent>
-                        <a-form-model-item>
+                    <a-form-model ref="ruleLogin" :rules="rules" layout="horizontal" :model="formInline" @submit="handleSubmit" @submit.native.prevent>
+                        <a-form-model-item prop="emailAndUserName">
                             <a-input v-model="formInline.emailAndUserName" placeholder="邮箱 | 用户名">
                             </a-input>
                         </a-form-model-item>
-                        <a-form-model-item>
+                        <a-form-model-item prop="password">
                             <a-input v-model="formInline.password" type="password" placeholder="至少6位密码，区分大小写">
                             </a-input>
                         </a-form-model-item>
-                        <a-form-model-item>
+                        <a-form-model-item prop="passwords">
                             <a-input v-model="formInline.passwords" type="password" placeholder="确认密码">
                             </a-input>
                         </a-form-model-item>
-                        <!-- <a-form-model-item>
-                            <a-input v-model="formInline.Phone" addon-before="+86" placeholder="11位手机号" />
-                        </a-form-model-item> -->
-                        <a-form-model-item>
-                            <a-input style="margin-right: 10px" class="code" v-model="formInline.code" type="password" placeholder="验证码">
+                        <a-form-model-item prop="code">
+                            <a-input style="margin-right: 10px" class="code" v-model="formInline.code" placeholder="验证码">
                             </a-input>
-                            <span @click="obtainCode"><img  ref="image" src="http://localhost:9999/conviction/blue/code" alt="" /></span>
+                            <span @click="obtainCode"><img ref="image" src="http://localhost:9999/conviction/blue/code" alt="" /></span>
                         </a-form-model-item>
                     </a-form-model>
                 </a-tab-pane>
             </a-tabs>
         </div>
         <div class="submit-register">
-            <a-button type="primary" size="large" :loading="iconLoading" @click="register('rule')">
+            <a-button type="primary" size="large" :loading="iconLoading" @click="register('ruleLogin')">
                 注册
             </a-button>
         </div>
@@ -46,48 +43,48 @@
 <script>
 import {
     userRegister,
-    userCodeImage
 } from "@/apis/user.js";
-let validatePass = (rule, value, callback) => {
-    if (this.formInline.emailAndUserName === "") {
-        callback(new Error("注册名为空"));
-        this.$refs.formInline.validateField("checkPass");
-    }
-    callback();
-};
 
-let validatePass2 = (rule, value, callback) => {
-    if (this.formInline.password === "") {
-        callback(new Error("密码不得为空"));
-        this.$refs.formInline.validateField("checkPass");
-    }
-    callback();
-};
-
-let validatePass3 = (rule, value, callback) => {
-    if (this.formInline.password2 === "") {
-        callback(new Error("密码不得为空"));
-        this.$refs.formInline.validateField("checkPass");
-    }
-    callback();
-};
-// let validatePass4 = (rule, value, callback) => {
-//     if (this.formInline.code === "") {
-//         callback(new Error("验证码为空"));
-//         this.$refs.formInline.validateField("checkPass");
-//     }
-//     callback();
-// };
 export default {
     data() {
+        let validatePass = (rule, value, callback) => {
+            if (this.formInline.emailAndUserName === "") {
+                callback(new Error("注册名为空"));
+                this.$refs.ruleLogin.validateField("checkPass");
+            }
+            callback();
+        };
+
+        let validatePass2 = (rule, value, callback) => {
+            if (this.formInline.password === "") {
+                callback(new Error("密码不得为空"));
+                this.$refs.ruleLogin.validateField("checkPass");
+            }
+            callback();
+        };
+
+        let validatePass3 = (rule, value, callback) => {
+            if (this.formInline.passwords === "") {
+                callback(new Error("确认密码不得为空"));
+                this.$refs.ruleLogin.validateField("checkPass");
+            }
+            callback();
+        };
+        let validatePass4 = (rule, value, callback) => {
+            if (this.formInline.code === "") {
+                callback(new Error("验证码为空"));
+                this.$refs.ruleLogin.validateField("checkPass");
+            }
+            callback();
+        };
         return {
             iconLoading: false,
             codeImage: "",
             formInline: {
-                // code: "",
+                emailAndUserName: "",
                 password: "",
                 passwords: "",
-                emailAndUserName: "",
+                code: "",
             },
             errorMsg: [],
             rules: {
@@ -107,18 +104,16 @@ export default {
                     trigger: "change",
                 }, ],
 
-                code: [
-                  {
+                code: [{
                     required: true,
-                    validator: validatePass3,
+                    validator: validatePass4,
                     trigger: "change",
-                  },
-                ],
+                }, ],
             },
+
         };
     },
-    created() {
-    },
+    created() {},
     mounted() {},
     methods: {
         //验证码
@@ -134,18 +129,17 @@ export default {
         onChange(e) {
             console.log(`checked = ${e.target.checked}`);
         },
-        register(rule) {
+        register(formName) {
             this.iconLoading = true;
             this.iconLoading = !this.iconLoading;
 
-            this.$refs[rule].validate((valid) => {
+            this.$refs[formName].validate((valid) => {
                 if (valid) {
-
                     return;
                     userRegister({
                         userName: this.formInline.emailAndUserName,
                         userPassword: this.formInline.passwords,
-                        code:this.formInline.code
+                        code: this.formInline.code
                     }).then((res) => {
                         console.log(res);
                         if (res.status === 200) {
@@ -158,22 +152,6 @@ export default {
                     });
                 }
             });
-        },
-        //类型检查
-        checkForm() {
-            this.errorMsg = [];
-            if (!this.formInline["emailAndUserName"]) {
-                this.errorMsg.push("登录名为空");
-            }
-            if (!this.formInline["password"]) {
-                this.errorMsg.push("密码不得为空");
-            }
-            if (!this.formInline["passwords"]) {
-                this.errorMsg.push("确认密码不得为空");
-            }
-             if (!this.formInline["code"]) {
-                this.errorMsg.push("验证码不得为空");
-            }
         },
     },
 };

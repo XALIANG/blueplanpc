@@ -100,7 +100,7 @@ export default {
             errorMsg: [],
             serviceCode: "",
             title: settings.userLoginTitle,
-            codeImage:"",
+            codeImage: "",
             formInline: {
                 user: "",
                 password: "",
@@ -152,7 +152,6 @@ export default {
                     this.iconLoading = !this.iconLoading;
                     return;
                 }
-                this.checkForm();
                 userLogin({
                     data: {
                         userName: this.formInline.user,
@@ -184,20 +183,7 @@ export default {
             });
         },
         obtianCode() {
-            
-        },
-        //类型检查
-        checkForm() {
-            this.errorMsg = [];
-            if (!this.formInline["user"]) {
-                this.errorMsg.push("登录名为空");
-            }
-            if (!this.formInline["password"]) {
-                this.errorMsg.push("密码不得为空");
-            }
-            if (!this.formInline["code"]) {
-                this.errorMsg.push("验证码为空");
-            }
+
         },
     },
 };
