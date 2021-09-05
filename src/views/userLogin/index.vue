@@ -67,8 +67,8 @@
 
 <script>
 import {
-    VerificationCode
-} from "@/apis/h1";
+    userLogin
+} from "@/apis/user";
 
 import settings from "@/settings";
 export default {
@@ -100,10 +100,11 @@ export default {
             errorMsg: [],
             serviceCode: "",
             title: settings.userLoginTitle,
+            codeImage:"",
             formInline: {
-                user: "admin",
-                password: "admin",
-                code: "admin",
+                user: "",
+                password: "",
+                code: "",
             },
             fromPhone: {
                 numberPhone: "",
@@ -146,11 +147,31 @@ export default {
             this.iconLoading = true;
             this.$refs[ruleLogin].validate((valid) => {
                 this.$store.state.user.userForm.token = "admin";
+                console.log(valid)
                 if (!valid) {
                     this.iconLoading = !this.iconLoading;
                     return;
                 }
                 this.checkForm();
+                userLogin({
+                    data: {
+                        userName: this.formInline.user,
+                        password: this.formInline.password
+                    }
+                }).then(res => {
+                    console.log(res)
+                    if (res.status === 200) {
+                        return
+                        Message.loading("正在登录中...", 1).then(() => {
+                            this.iconLoading = !this.iconLoading;
+                            this.$router.push("/");
+                            Notification["success"]({
+                                message: "Welcome",
+                                description: `Hey, my friend`,
+                            });
+                        });
+                    }
+                })
                 // if (this.serviceCode != this.formInline['code']) {
                 //     Notification['warning']({
                 //         message: '验证码错误'
@@ -159,25 +180,11 @@ export default {
                 //     this.formInline['code'] = '';
                 //     return;
                 // }
-                Message.loading("正在登录中...", 1).then(() => {
-                    this.iconLoading = !this.iconLoading;
-                    this.$router.push("/");
-                    Notification["success"]({
-                        message: "Welcome",
-                        description: `Hey, my friend`,
-                    });
-                });
+
             });
         },
         obtianCode() {
-            VerificationCode().then((res) => {
-                if (res.code == 200) {
-                    this.svg = res.data.data;
-                    this.serviceCode = res.data.text.toLowerCase();
-                    console.log(this.serviceCode);
-                }
-                console.log(res);
-            });
+            
         },
         //类型检查
         checkForm() {
@@ -191,7 +198,6 @@ export default {
             if (!this.formInline["code"]) {
                 this.errorMsg.push("验证码为空");
             }
-            console.log(this.errorMsg);
         },
     },
 };

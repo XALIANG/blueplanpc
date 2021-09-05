@@ -6,7 +6,7 @@
         <div class="center-box">
             <a-tabs default-active-key="1" @change="callback">
                 <a-tab-pane key="1" tab="注册">
-                    <a-form-model layout="horizontal" :model="formInline" @submit="handleSubmit" @submit.native.prevent>
+                    <a-form-model ref="rule" :rules="rules" layout="horizontal" :model="formInline" @submit="handleSubmit" @submit.native.prevent>
                         <a-form-model-item>
                             <a-input v-model="formInline.emailAndUserName" placeholder="邮箱 | 用户名">
                             </a-input>
@@ -16,25 +16,23 @@
                             </a-input>
                         </a-form-model-item>
                         <a-form-model-item>
-                            <a-input v-model="formInline.passwords" type="password" placeholder="至确认密码">
+                            <a-input v-model="formInline.passwords" type="password" placeholder="确认密码">
                             </a-input>
                         </a-form-model-item>
                         <!-- <a-form-model-item>
                             <a-input v-model="formInline.Phone" addon-before="+86" placeholder="11位手机号" />
                         </a-form-model-item> -->
                         <a-form-model-item>
-                            <a-input class="code" v-model="formInline.code" type="password" placeholder="验证码">
-                                <a-icon slot="prefix" type="mail" theme="twoTone" style="color:rgba(0,0,0,.25)" />
+                            <a-input style="margin-right: 10px" class="code" v-model="formInline.code" type="password" placeholder="验证码">
                             </a-input>
-                            <a-button size="large">获取验证码</a-button>
+                            <span @click="obtainCode"><img  ref="image" src="http://localhost:9999/conviction/blue/code" alt="" /></span>
                         </a-form-model-item>
                     </a-form-model>
                 </a-tab-pane>
-
             </a-tabs>
         </div>
         <div class="submit-register">
-            <a-button type="primary" size="large" :loading="iconLoading" @click="register">
+            <a-button type="primary" size="large" :loading="iconLoading" @click="register('rule')">
                 注册
             </a-button>
         </div>
@@ -46,23 +44,87 @@
 </template>
 
 <script>
-import {userRegister} from '@/apis/user.js';
+import {
+    userRegister,
+    userCodeImage
+} from "@/apis/user.js";
+let validatePass = (rule, value, callback) => {
+    if (this.formInline.emailAndUserName === "") {
+        callback(new Error("注册名为空"));
+        this.$refs.formInline.validateField("checkPass");
+    }
+    callback();
+};
 
+let validatePass2 = (rule, value, callback) => {
+    if (this.formInline.password === "") {
+        callback(new Error("密码不得为空"));
+        this.$refs.formInline.validateField("checkPass");
+    }
+    callback();
+};
+
+let validatePass3 = (rule, value, callback) => {
+    if (this.formInline.password2 === "") {
+        callback(new Error("密码不得为空"));
+        this.$refs.formInline.validateField("checkPass");
+    }
+    callback();
+};
+// let validatePass4 = (rule, value, callback) => {
+//     if (this.formInline.code === "") {
+//         callback(new Error("验证码为空"));
+//         this.$refs.formInline.validateField("checkPass");
+//     }
+//     callback();
+// };
 export default {
     data() {
         return {
             iconLoading: false,
+            codeImage: "",
             formInline: {
-                code: '',
-                password: '',
-                passwords: '',
-                emailAndUserName: '',
+                // code: "",
+                password: "",
+                passwords: "",
+                emailAndUserName: "",
+            },
+            errorMsg: [],
+            rules: {
+                emailAndUserName: [{
+                    required: true,
+                    validator: validatePass,
+                    trigger: "change",
+                }, ],
+                password: [{
+                    required: true,
+                    validator: validatePass2,
+                    trigger: "change",
+                }, ],
+                passwords: [{
+                    required: true,
+                    validator: validatePass3,
+                    trigger: "change",
+                }, ],
+
+                code: [
+                  {
+                    required: true,
+                    validator: validatePass3,
+                    trigger: "change",
+                  },
+                ],
             },
         };
-
+    },
+    created() {
     },
     mounted() {},
     methods: {
+        //验证码
+        obtainCode() {
+            this.$refs.image.src = `http://localhost:9999/conviction/blue/code?ts=${new Date().getTime()}`
+        },
         callback(key) {
             console.log(key);
         },
@@ -72,24 +134,49 @@ export default {
         onChange(e) {
             console.log(`checked = ${e.target.checked}`);
         },
-        register() {
+        register(rule) {
             this.iconLoading = true;
             this.iconLoading = !this.iconLoading;
-            userRegister({
-                userName:this.formInline.emailAndUserName,
-                userPassword :this.formInline.passwords
-            }).then(res=>{
-                console.log(res)
-            })
-            return;
-            Message.loading('注册成功', 0.5).then(() => {
-                this.$router.push('/login');
 
+            this.$refs[rule].validate((valid) => {
+                if (valid) {
+
+                    return;
+                    userRegister({
+                        userName: this.formInline.emailAndUserName,
+                        userPassword: this.formInline.passwords,
+                        code:this.formInline.code
+                    }).then((res) => {
+                        console.log(res);
+                        if (res.status === 200) {
+                            Message.loading("注册成功", 0.5).then(() => {
+                                this.$router.push("/login");
+                            });
+                        } else {
+                            Message.warning(res.msg);
+                        }
+                    });
+                }
             });
-
         },
-    }
-}
+        //类型检查
+        checkForm() {
+            this.errorMsg = [];
+            if (!this.formInline["emailAndUserName"]) {
+                this.errorMsg.push("登录名为空");
+            }
+            if (!this.formInline["password"]) {
+                this.errorMsg.push("密码不得为空");
+            }
+            if (!this.formInline["passwords"]) {
+                this.errorMsg.push("确认密码不得为空");
+            }
+             if (!this.formInline["code"]) {
+                this.errorMsg.push("验证码不得为空");
+            }
+        },
+    },
+};
 </script>
 
 <style lang="scss">
@@ -108,7 +195,6 @@ export default {
         .code {
             width: 240px;
             padding-right: 8px;
-
         }
 
         .code+button {
@@ -140,7 +226,7 @@ export default {
         .register-title {
             margin-top: 12px;
             margin-bottom: 40px;
-            color: rgba(0, 0, 0, .45);
+            color: rgba(0, 0, 0, 0.45);
             font-size: 14px;
             text-align: center;
         }
@@ -153,7 +239,6 @@ export default {
         .check-box {
             display: flex;
             justify-content: space-between;
-
         }
 
         .submit-register {

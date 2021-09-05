@@ -2,6 +2,7 @@ import axios from 'axios';
 
 axios.defaults.timeout = 3000;
 axios.defaults.baseURL = "http://localhost:9999/conviction";
+axios.defaults.withCredentials = true
 axios.defaults.headers.post['Content-Type'] = 'application/json;x-www-form-urlencoded;charset=UTF-8;multipart/form-data';
 
 
