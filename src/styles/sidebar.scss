@@ -4,11 +4,11 @@
         transition: margin-left .28s;
         margin-left: $sideBarWidth;
         position: relative;
-       
+
     }
 
-    
-       .app-wrapper {
+
+    .app-wrapper {
         .sidebar-container {
             transition: width 0.28s;
             width: $sideBarWidth !important;
@@ -26,11 +26,12 @@
                 border-right: 1px solid #e8e8e8;
                 height: 100%;
                 overflow: hidden;
-                span{
-                    a{
-                      width: 100px;
+
+                span {
+                    a {
+                        width: 100px;
                     }
-                 }
+                }
             }
         }
     }
@@ -38,6 +39,7 @@
     .hideSidebar {
         .sidebar-container {
             width: 54px !important;
+
             & ul {
                 width: 54px !important;
                 overflow: hidden;
@@ -45,7 +47,7 @@
         }
 
 
-        
+
         .blueplan-container {
             margin-left: 54px;
         }
@@ -64,6 +66,14 @@
             }
         }
 
+    }
+
+    //icon bug
+    .ant-menu-inline-collapsed>.ant-menu-item,
+    .ant-menu-inline-collapsed>.ant-menu-item-group>.ant-menu-item-group-list>.ant-menu-item,
+    .ant-menu-inline-collapsed>.ant-menu-item-group>.ant-menu-item-group-list>.ant-menu-submenu>.ant-menu-submenu-title,
+    .ant-menu-inline-collapsed>.ant-menu-submenu>>>.ant-menu-submenu-title {
+        padding: 0 !important;
     }
 
 }

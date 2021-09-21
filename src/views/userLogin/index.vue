@@ -160,7 +160,6 @@ export default {
                 }).then(res => {
                     console.log(res)
                     if (res.status === 200) {
-                        return
                         Message.loading("正在登录中...", 1).then(() => {
                             this.iconLoading = !this.iconLoading;
                             this.$router.push("/");
@@ -169,6 +168,8 @@ export default {
                                 description: `Hey, my friend`,
                             });
                         });
+                    }else{
+                        console.log(res)
                     }
                 })
                 // if (this.serviceCode != this.formInline['code']) {

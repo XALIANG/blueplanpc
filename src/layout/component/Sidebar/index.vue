@@ -47,7 +47,8 @@
             </router-link>
           </a-menu-item>
         <sub-menu v-else :key="item.path" :menu-info="item"  :base-route="resovePath(item.path)" />
-    </template>
+    
+</template>
 
      </a-sub-menu>
     `,
@@ -113,4 +114,6 @@ export default {
         }
     }
 }
+
+
 </style>
