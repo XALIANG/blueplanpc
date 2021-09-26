@@ -4,8 +4,14 @@
         <template v-for="item in permission_routes">
             <template v-if="!item.hidden && item.children">
                 <a-menu-item v-if="hasOneChildren(item.children)" :key="item.redirect">
-                    <a-icon class="svg-icon" :type="item.children[0] &&  item.children[0].meta &&  item.children[0].meta.type" /> <span class="menu-title">
-                        <router-link style="display: inline-block" :to="{path:
+                    <a-icon class="svg-icon" :type="
+                item.children[0] &&
+                item.children[0].meta &&
+                item.children[0].meta.type
+              " />
+                    <span class="menu-title">
+                        <router-link style="display: inline-block" :to="{
+                  path:
                     item.path === '/'
                       ? `${item.path}${item.children[0].path}`
                       : `${item.path}/${item.children[0].path}`,
@@ -32,7 +38,7 @@
     import {
         Menu
     } from "ant-design-vue";
-    import path from 'path'
+    import path from "path";
     const SubMenu = {
             template: `
     <a-sub-menu :key="menuInfo.path" v-bind="$props" v-on="$listeners">
@@ -57,20 +63,20 @@
   isSubMenu: true,
   props: {
     ...Menu.SubMenu.props,
-     menuInfo: {
+    menuInfo: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     baseRoute: {
       type: String,
-      default: ''
-    }
+      default: "",
+    },
   },
-  methods:{
-      resovePath(item) {
-      return path.resolve(this.baseRoute, item)
-    }
-  }
+  methods: {
+    resovePath(item) {
+      return path.resolve(this.baseRoute, item);
+    },
+  },
 };
 
 export default {
@@ -78,7 +84,7 @@ export default {
     "sub-menu": SubMenu,
   },
   data() {
-    return {openKeys:[]};
+    return { openKeys: [] };
   },
   computed: {
     ...mapGetters(["sidebar", "permission_routes"]),
@@ -94,7 +100,7 @@ export default {
   },
   methods: {
     generateTitle,
-     // 点击菜单触发事件
+    // 点击菜单触发事件
 
     hasOneChildren(item) {
       return !item.some((menu) => menu.children) && item.length === 1;
@@ -115,5 +121,13 @@ export default {
     }
 }
 
-
+//icon bug
+// .ant-menu-inline-collapsed>.ant-menu-item,
+// .ant-menu-inline-collapsed>.ant-menu-item-group>.ant-menu-item-group-list>.ant-menu-item,
+// .ant-menu-inline-collapsed>.ant-menu-item-group>.ant-menu-item-group-list>.ant-menu-submenu>.ant-menu-submenu-title,
+// .ant-menu-inline-collapsed>.ant-menu-submenu>.ant-menu-submenu-title {
+//     left: 0;
+//     padding: 0 32px !important;
+//     text-overflow: clip;
+// }
 </style>

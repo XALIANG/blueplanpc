@@ -14,20 +14,7 @@ Vue.use(VueRouter)
  * @redirect 重定向路径
  * @children index
  * @meta 描述
- *  {
-    path: '/feedback',
-    component: Layout,
-    redirect: '/feedback/index',
-    name: '反馈中心',
-    children: [
-      {
-        path: 'index',
-        name: '反馈中心',
-        component: () => import('@/views/feedback/index'),
-        meta: { title: '反馈中心',type: 'usergroup-add' }
-      }
-    ]
-  }
+ *  
  */
 
 // export const asyncRoutes = [];

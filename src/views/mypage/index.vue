@@ -22,7 +22,8 @@
                 <a-tag color="red"> Node </a-tag>
                 <a-tag color="orange"> JavaScript </a-tag>
                 <a-tag color="green"> Vue </a-tag>
-                <a-tag color="cyan"> Python </a-tag>
+                    <a-tag color="cyan"> Python </a-tag>
+                <a-tag color="cyan"> Liunx </a-tag>
                 <a-tag color="blue"> C </a-tag>
                 <a-tag color="purple"> C++ </a-tag>
             </div>

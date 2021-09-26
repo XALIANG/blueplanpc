@@ -1,7 +1,7 @@
 <template>
 <div class="userRegister-container">
     <div class="register-form">
-        <div class="register-image">图片</div>
+        <!-- <div class="register-image">图片</div> -->
         <div class="register-title">Blue plan is a love</div>
         <div class="center-box">
             <a-tabs default-active-key="1" @change="callback">
@@ -135,10 +135,9 @@ export default {
 
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    return;
                     userRegister({
                         userName: this.formInline.emailAndUserName,
-                        userPassword: this.formInline.passwords,
+                        password: this.formInline.passwords,
                         code: this.formInline.code
                     }).then((res) => {
                         console.log(res);
