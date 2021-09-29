@@ -95,6 +95,7 @@ export default {
     background: #fff;
     position: relative;
     box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+    background-image: linear-gradient(143deg,#dde0e2 20%,#5fd9e9 81%,#43ddd0);
 
     .hamburger-container {
         line-height: 50px;

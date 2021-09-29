@@ -2,11 +2,11 @@
 <div class="userRegister-container">
     <div class="register-form">
         <!-- <div class="register-image">图片</div> -->
-        <div class="register-title">Blue plan is a love</div>
+        <div class="register-title">{{title}}</div>
         <div class="center-box">
             <a-tabs default-active-key="1" @change="callback">
                 <a-tab-pane key="1" tab="注册">
-                    <a-form-model ref="ruleLogin" :rules="rules" layout="horizontal" :model="formInline" @submit="handleSubmit" @submit.native.prevent>
+                    <a-form-model ref="register" :rules="rules" layout="horizontal" :model="formInline" @submit="handleSubmit" @submit.native.prevent>
                         <a-form-model-item prop="emailAndUserName">
                             <a-input v-model="formInline.emailAndUserName" placeholder="邮箱 | 用户名">
                             </a-input>
@@ -20,7 +20,7 @@
                             </a-input>
                         </a-form-model-item>
                         <a-form-model-item prop="code">
-                            <a-input style="margin-right: 10px" class="code" v-model="formInline.code" placeholder="验证码">
+                            <a-input style="margin-right: 10px" class="code" v-model="formInline.code" placeholder="验证码" @keyup.enter.native="register('register')">
                             </a-input>
                             <span @click="obtainCode"><img ref="image" src="http://localhost:9999/conviction/blue/code" alt="" /></span>
                         </a-form-model-item>
@@ -29,7 +29,7 @@
             </a-tabs>
         </div>
         <div class="submit-register">
-            <a-button type="primary" size="large" :loading="iconLoading" @click="register('ruleLogin')">
+            <a-button type="primary" size="large" :loading="iconLoading" @click="register('register')">
                 注册
             </a-button>
         </div>
@@ -44,41 +44,46 @@
 import {
     userRegister,
 } from "@/apis/user.js";
-
+import settings from "@/settings";
 export default {
     data() {
-        let validatePass = (rule, value, callback) => {
+        const validateUserName = (rule, value, callback) => {
             if (this.formInline.emailAndUserName === "") {
                 callback(new Error("注册名为空"));
-                this.$refs.ruleLogin.validateField("checkPass");
+                this.$refs.ruleLogin.validateField();
             }
             callback();
         };
 
-        let validatePass2 = (rule, value, callback) => {
+        const validatePassword = (rule, value, callback) => {
             if (this.formInline.password === "") {
                 callback(new Error("密码不得为空"));
-                this.$refs.ruleLogin.validateField("checkPass");
+                this.$refs.ruleLogin.validateField();
             }
             callback();
         };
 
-        let validatePass3 = (rule, value, callback) => {
+        const validatePasswords = (rule, value, callback) => {
             if (this.formInline.passwords === "") {
                 callback(new Error("确认密码不得为空"));
-                this.$refs.ruleLogin.validateField("checkPass");
+                this.$refs.ruleLogin.validateField();
+            }
+            if (this.formInline.password !== this.formInline.passwords) {
+                callback(new Error("俩次密码不一致"));
+                this.$refs.ruleLogin.validateField();
             }
             callback();
         };
-        let validatePass4 = (rule, value, callback) => {
+        const validateCode = (rule, value, callback) => {
             if (this.formInline.code === "") {
                 callback(new Error("验证码为空"));
-                this.$refs.ruleLogin.validateField("checkPass");
+                this.$refs.ruleLogin.validateField();
             }
             callback();
         };
         return {
             iconLoading: false,
+            title: settings.userLoginTitle,
             codeImage: "",
             formInline: {
                 emailAndUserName: "",
@@ -90,23 +95,23 @@ export default {
             rules: {
                 emailAndUserName: [{
                     required: true,
-                    validator: validatePass,
+                    validator: validateUserName,
                     trigger: "change",
                 }, ],
                 password: [{
                     required: true,
-                    validator: validatePass2,
+                    validator: validatePassword,
                     trigger: "change",
                 }, ],
                 passwords: [{
                     required: true,
-                    validator: validatePass3,
+                    validator: validatePasswords,
                     trigger: "change",
                 }, ],
 
                 code: [{
                     required: true,
-                    validator: validatePass4,
+                    validator: validateCode,
                     trigger: "change",
                 }, ],
             },
@@ -134,22 +139,21 @@ export default {
             this.iconLoading = !this.iconLoading;
 
             this.$refs[formName].validate((valid) => {
-                if (valid) {
-                    userRegister({
-                        userName: this.formInline.emailAndUserName,
-                        password: this.formInline.passwords,
-                        code: this.formInline.code
-                    }).then((res) => {
-                        console.log(res);
-                        if (res.status === 200) {
-                            Message.loading("注册成功", 0.5).then(() => {
-                                this.$router.push("/login");
-                            });
-                        } else {
-                            Message.warning(res.msg);
-                        }
-                    });
-                }
+                if (!valid) return;
+                userRegister({
+                    userName: this.formInline.emailAndUserName,
+                    password: this.formInline.passwords,
+                    code: this.formInline.code
+                }).then((res) => {
+                    console.log(res);
+                    if (res.status === 200) {
+                        Message.loading(res.msg, 0.5).then(() => {
+                            this.$router.push("/login");
+                        });
+                    } else {
+                        Message.warning(res.msg);
+                    }
+                });
             });
         },
     },
@@ -189,7 +193,7 @@ export default {
 .userRegister-container {
     min-height: 100%;
     height: 100%;
-    background-color: #fdfafa;
+    background: linear-gradient(-45deg, rgba(46, 176, 236, 0.83) 0%, rgba(161, 167, 168, 0.82) 100%);
     padding: 110px 0 144px;
     overflow: hidden;
 
