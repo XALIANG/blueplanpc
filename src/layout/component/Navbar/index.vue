@@ -7,7 +7,7 @@
         <a-dropdown :trigger="['click']">
             <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
                 <span class="navbar-head">
-                    <a-avatar src="https://m.aicealiang.cn/images/61f2d7c69e211819d95204dd9dc955a5.gif" alt="网络错误" shape="square" :size="40" icon="user" />
+                    <a-avatar :src="userForm.headPortrait" alt="网络错误" shape="square" :size="40" icon="user" />
                 </span>
                 <!-- <a-icon type="down" /> -->
             </a>
@@ -16,7 +16,7 @@
                     <router-link to="/mypage/index">我的主页</router-link>
                 </a-menu-item>
                 <a-menu-item>
-                    <a href="javascript:;">注销账号</a>
+                    <a @click="loginOut" href="javascript:;">注销账号</a>
                 </a-menu-item>
                 <a-menu-item>
                     <a @click="showDrawer" href="javascript:;">留言</a>
@@ -59,11 +59,17 @@ export default {
         Breadcrumb
     },
     computed: {
-        ...mapGetters(["sidebar"]),
+        ...mapGetters(["sidebar","userForm"]),
     },
     methods: {
+        loginOut(){
+            sessionStorage.removeItem('token');
+            sessionStorage.removeItem('userForm');
+            this.$router.push("/login");
+        },
         cllapsed() {
             this.$store.dispatch("app/toggleSideBar");
+            this.$router.push('/login');
         },
         showDrawer() {
             this.visible = true;

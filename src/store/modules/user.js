@@ -1,11 +1,8 @@
 
 const state = {
-    userForm: {
-        username: '',
-        password: '',
-        token: null,
-        userSign: false,
-    },
+        token: sessionStorage.getItem("token") || "",
+        userForm: JSON.parse(sessionStorage.getItem("userForm")) || {},
+  
 
 };
 const mutations = {};

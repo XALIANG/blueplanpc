@@ -9,12 +9,12 @@
                         <a-form-model ref="ruleLogin" layout="horizontal" :rules="rules" :model="formInline" @submit="handleSubmit" @submit.native.prevent>
                             <a-form-model-item prop="user">
                                 <a-input v-model="formInline.user" size="small" placeholder="账户：admin">
-                                    <a-icon slot="prefix" type="user" style="color: rgba(0, 0, 0, 0.25)" />
+                                    <a-icon slot="prefix" type="user" style="color: #40a9ff" />
                                 </a-input>
                             </a-form-model-item>
                             <a-form-model-item prop="password">
                                 <a-input v-model="formInline.password" type="password" size="small" placeholder="密码：******">
-                                    <a-icon slot="prefix" type="lock" theme="twoTone" style="color: rgba(0, 0, 0, 0.25)" />
+                                    <a-icon slot="prefix" type="lock" style="color: #40a9ff" />
                                 </a-input>
                             </a-form-model-item>
                             <a-form-model-item prop="code">
@@ -74,7 +74,6 @@ export default {
             callback();
         };
         return {
-            svg: "",
             iconLoading: false,
             errorMsg: [],
             serviceCode: "",
@@ -127,7 +126,6 @@ export default {
         login(ruleLogin) {
             this.iconLoading = true;
             this.$refs[ruleLogin].validate((valid) => {
-                this.$store.state.user.userForm.token = "admin";
                 if (!valid) {
                     this.iconLoading = !this.iconLoading;
                     return;
@@ -139,11 +137,20 @@ export default {
                 }).then((res) => {
                     console.log(res);
                     if (res.status === 200) {
+                        this.iconLoading = !this.iconLoading;
+                        const params = {
+                            userName: res.data.userName,
+                            token: res.data.token,
+                            headPortrait: res.data.userImage,
+                            userStatus: res.data.userStatus,
+                            userDescribe: res.data.userDescribe
+                        }
+                        sessionStorage.setItem("userForm", JSON.stringify(params))
+                        sessionStorage.setItem("token", res.data.token);
                         Message.loading("正在登录中...", 1).then(() => {
-                            this.iconLoading = !this.iconLoading;
                             this.$router.push("/");
                             Notification["success"]({
-                                message: "Welcome",
+                                message: `Welcome ${res.data.userName}`,
                                 description: `Hey, my friend`,
                             });
                         });
@@ -245,41 +252,41 @@ export default {
             overflow: hidden;
             z-index: 9999;
         }
-         .login-title {
-                margin-top: 12px;
-                margin-bottom: 10px;
-                color: rgba(0, 0, 0, 0.45);
-                font-size: 14px;
-                text-align: center;
-            }
 
-            .center-box {
-                // height: 200px;
-                overflow: hidden;
-            }
+        .login-title {
+            margin-top: 12px;
+            margin-bottom: 10px;
+            color: rgba(0, 0, 0, 0.45);
+            font-size: 14px;
+            text-align: center;
+        }
 
-            .check-box {
-                display: flex;
-                justify-content: space-between;
-            }
+        .center-box {
+            overflow: hidden;
+        }
 
-            .submit-login {
-                max-width: 100%;
-                margin: 13px 0 13px;
+        .check-box {
+            display: flex;
+            justify-content: space-between;
+        }
 
-                button {
-                    width: 100%;
-                    border-radius: 1px;
-                }
-            }
+        .submit-login {
+            max-width: 100%;
+            margin: 13px 0 13px;
 
-            .user-login {
+            button {
                 width: 100%;
-
-                a {
-                    float: right;
-                }
+                border-radius: 1px;
             }
+        }
+
+        .user-login {
+            width: 100%;
+
+            a {
+                float: right;
+            }
+        }
     }
 
     // .center-image {
@@ -292,10 +299,8 @@ export default {
     //     transform: translate(-50%, -50%);
     //     z-index: -1;
 
-           
     //     }
-    }
-
+}
 
 .ant-tabs-nav-scroll {
     border: none;
@@ -305,11 +310,5 @@ export default {
     width: 102px;
     height: 47px;
     padding-left: 30%;
-}
-
-.form {
-    // position: absolute;
-    // top: 50%;
-    // left: 50%;
 }
 </style>

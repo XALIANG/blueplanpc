@@ -44,7 +44,9 @@
 import {
     userRegister,
 } from "@/apis/user.js";
+
 import settings from "@/settings";
+
 export default {
     data() {
         const validateUserName = (rule, value, callback) => {

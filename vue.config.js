@@ -1,8 +1,8 @@
 const path = require('path');
 const defaultSettings = require('./src/settings.js');
 const webpack = require('webpack')
-// const createThemeColorReplacerPlugin = require('./config/plugin.config')
-
+const createThemeColorReplacerPlugin = require("./src/config/plugin.config")
+console.log(createThemeColorReplacerPlugin)
 function currentDir(dir) {
     return path.join(__dirname, dir);
 }
