@@ -8,6 +8,7 @@ import {
     Button,
     Menu,
     Tag,
+    Select,
     Tabs,
     Card,
     Icon,
@@ -33,6 +34,7 @@ import {
     TreeSelect,
     ConfigProvider
 } from 'ant-design-vue';
+Vue.use(Select)
 Vue.use(Tag);
 Vue.use(Button);
 Vue.use(Menu);

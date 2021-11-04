@@ -24,6 +24,21 @@ body {
 
  }
 
+ body {
+  &.colorWeak {
+    filter: invert(85%);
+    overflow: hidden;
+    .fixed-header + .appMain {
+      background-color: #fff;
+    }
+    .app-wrapper,.bluePlan-container{
+      background-color: #fff;
+    }
+  }
+  &.userLayout {
+    overflow: auto;
+  }
+}
 
  html {
    height: 100%;
@@ -81,4 +96,5 @@ body {
    padding: 10px;
    background: rgb(240 242 245);
    padding-top: 50px;
+   overflow: hidden;
  }

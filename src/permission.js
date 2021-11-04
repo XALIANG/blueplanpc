@@ -5,6 +5,7 @@ const currentRoles = ['admin'];
 
 const token = store.state.user.token;
 router.beforeEach(async (to, from, next) => {
+    document.title = `${to.meta.title}`;
     if (to.path === '/login') {
         next()
     } else {
@@ -24,7 +25,7 @@ router.beforeEach(async (to, from, next) => {
         //               ...to,
         //               replace: true
         //             });
-          
+
         //           } catch (error) {
         //             console.log(error)
         //           }

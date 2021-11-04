@@ -16,7 +16,7 @@ const messages = {
   }
 }
 
-store.commit('user/SET_LANGUAGE', Cookies.get('antd-vue-language') || null)
+// store.commit('user/SET_LANGUAGE', Cookies.get('antd-vue-language') || null)
 
 const i18n = new VueI18n({
   locale: Cookies.get('antd-vue-language') || 'en', // 默认为英文

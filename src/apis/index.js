@@ -11,7 +11,6 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 
 axios.interceptors.request.use(config => {
     NProgress.start()
-
     return config;
 
 }, error => {

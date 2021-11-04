@@ -2,7 +2,6 @@ const path = require('path');
 const defaultSettings = require('./src/settings.js');
 const webpack = require('webpack')
 const createThemeColorReplacerPlugin = require("./src/config/plugin.config")
-console.log(createThemeColorReplacerPlugin)
 function currentDir(dir) {
     return path.join(__dirname, dir);
 }
@@ -12,14 +11,23 @@ module.exports = {
     assetsDir: 'static',
     lintOnSave: false,
     productionSourceMap: false,
-    //Solution For Issue:You are using the runtime-only build of Vue where the template compiler is not available. Either pre-compile the templates into render functions, or use the compiler-included build.
-    //zhengkai.blog.csdn.net
     runtimeCompiler: true,
     css: {
         loaderOptions: {
             sass: {
                 prependData: `@import "@/styles/variables.scss";`
             },
+            less: {
+                modifyVars: {
+                  // less vars，customize ant design theme
+        
+                  // 'primary-color': '#F5222D',
+                  // 'link-color': '#F5222D',
+                  // 'border-radius-base': '4px'
+                },
+                // DO NOT REMOVE THIS LINE
+                javascriptEnabled: true
+              }
         }
     },
     devServer: {
@@ -39,7 +47,7 @@ module.exports = {
             alias: {
                 '@': currentDir('src')
             }
-        }
+        },
+        plugins:[createThemeColorReplacerPlugin()]
     },
-    chainWebpack(config) { }
 }
