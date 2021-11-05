@@ -79,12 +79,7 @@ export default {
   width: 100%;
   border-bottom: 1px solid #d8dce5;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12) 0 3px 10px rgba(0, 0, 0, 0.12);
-  background-image: linear-gradient(
-    143deg,
-    #c1cdd1 20%,
-    #c1cdd1 20%,
-    #c1cdd1 20%
-  );
+ 
 
   .tags-box {
     margin: 0;
@@ -111,7 +106,7 @@ export default {
       float: left;
       line-height: 10px;
       border: 1px solid #d8dce5;
-      margin-left: 7px;
+      margin-right: 7px;
       cursor: pointer;
 
       a {

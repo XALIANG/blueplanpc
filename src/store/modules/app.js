@@ -25,21 +25,19 @@ const state = {
     color: null,
     weak: false,
     multiTab: true,
-    sidebar: {
-        sidebarSwitch: false,
-        withoutAnimation: false,
+    sidebarSwitch: false,
+    withoutAnimation: false,
 
 
-    }
 }
 const mutations = {
     SET_SIDEBAR: state => {
-        state.sidebar.sidebarSwitch = !state.sidebar.sidebarSwitch;
-        state.sidebar.withoutAnimation = false;
+        state.sidebarSwitch = !state.sidebarSwitch;
+        state.withoutAnimation = false;
     },
     CLOSE_SIDEBAR: (state, withoutAnimation) => {
-        state.sidebar.sidebarSwitch = false;
-        state.sidebar.withoutAnimation = withoutAnimation;
+        state.sidebarSwitch = false;
+        state.withoutAnimation = withoutAnimation;
     },
     SWITCH_DARK: (state, callbackDARk) => {
         state.isDark = callbackDARk;

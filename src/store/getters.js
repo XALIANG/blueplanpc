@@ -1,7 +1,6 @@
 const getters = {
-    sidebar:state => state.app.sidebar,
+    sidebarSwitch:state => state.app.sidebarSwitch,
     isDark:state=> state.app.isDark,
-    permission_routes:state => state.permission.routes,
     userForm:state=> state.user.userForm,
 
 }

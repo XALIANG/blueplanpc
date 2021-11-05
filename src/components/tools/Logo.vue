@@ -1,6 +1,6 @@
 <template>
   <div class="logo">
-      sdsad
+    sdsad
     <!-- <router-link :to="{name:'dashboard'}">
       <h1 v-if="showTitle">{{ title }}</h1>
     </router-link> -->
@@ -8,21 +8,26 @@
 </template>
 
 <script>
-
-
 export default {
-  name: 'Logo',
+  name: "Logo",
   props: {
     title: {
       type: String,
-      default: 'BLUE PLAN',
-      required: false
+      default: "BLUE PLAN",
+      required: false,
     },
     showTitle: {
       type: Boolean,
       default: true,
-      required: false
-    }
-  }
-}
+      required: false,
+    },
+  },
+  mounted() {},
+};
 </script>
+
+<style lang="scss" scoped>
+.logo {
+  height: 48px;
+}
+</style>

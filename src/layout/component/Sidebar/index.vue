@@ -48,11 +48,9 @@
 
 <script>
 import SettingDrawer from "@/components/SettingDrawer";
-import Logo from "../../../components/tools/Logo";
 import { mixin, mixinDevice } from "@/utils/mixin";
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
 import { generateTitle } from "@/utils/getTitle";
-
 import { Menu } from "ant-design-vue";
 import path from "path";
 const SubMenu = {
@@ -100,16 +98,15 @@ export default {
   components: {
     "sub-menu": SubMenu,
     SettingDrawer,
-    Logo,
   },
   mixins: [mixin, mixinDevice],
   data() {
     return { openKeys: [] };
   },
   computed: {
-    ...mapGetters(["sidebar", "permission_routes"]),
+    // ...mapGetters(["sidebar", "permission_routes"]),
     isCollapse() {
-      return this.sidebar.sidebarSwitch;
+      return this.sidebarSwitch;
     },
     item() {
       return this.permission_routes;
@@ -118,6 +115,7 @@ export default {
       return [this.$route.path];
     },
   },
+  mounted() {},
   methods: {
     generateTitle,
     // 点击菜单触发事件

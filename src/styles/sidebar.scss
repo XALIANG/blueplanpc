@@ -1,40 +1,18 @@
 #app {
     .blueplan-container {
         min-height: 100%;
-        transition: margin-left .28s;
-        margin-left: $sideBarWidth;
         position: relative;
 
     }
 
 
-    .app-wrapper {
         .sidebar-container {
             transition: width 0.28s;
-            width: $sideBarWidth !important;
             height: 100%;
-            font-size: 0;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 666;
-            overflow: hidden;
+            overflow-x: hidden;
 
-            & ul {
-                width: $sideBarWidth !important;
-                border-right: 1px solid #e8e8e8;
-                height: 100%;
-                overflow: hidden;
-
-                span {
-                    a {
-                        width: 100px;
-                    }
-                }
-            }
+         
         }
-    }
 
     .hideSidebar {
         .sidebar-container {
