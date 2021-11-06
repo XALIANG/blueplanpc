@@ -1,6 +1,10 @@
 <template>
-  <a-layout id="components-layout-demo-custom-trigger">
+  <a-layout
+    :style="{ background: navTheme === 'dark' ? '#001529' : '#fff' }"
+    id="components-layout-demo-custom-trigger"
+  >
     <a-layout-sider
+      :style="{ display: layoutHeader ? 'none' : 'block' }"
       class="layout-sider"
       v-model="collapsed"
       :trigger="null"
@@ -9,8 +13,24 @@
       <div class="logo">{{ collapsed ? "" : logo }}</div>
       <Sidebar class="sidebar-container" />
     </a-layout-sider>
-    <a-layout>
+    <a-layout :class="[layoutMode, `content-width-${contentWidth}`]">
+      <!-- center header -->
       <a-layout-header
+        v-if="layoutHeader"
+        :style="{ background: navTheme === 'dark' ? '#001529' : '#fff' }"
+        class="header"
+      >
+        <div class="layout-headerTop">
+          <Amenu :route="permission_routes" :theme="navTheme" />
+          <Navbar :color="navTheme" />
+        </div>
+
+        <Tagsview class="layout-tagsview" v-if="multiTab" />
+        <SettingDrawer />
+      </a-layout-header>
+
+      <a-layout-header
+        v-else
         class="layout-header-navber"
         style="background: #fff; padding: 0"
       >
@@ -26,10 +46,11 @@
       </a-layout-header>
       <a-layout-content
         :style="{
+          height: '100%',
           margin: '45px 16px',
-          padding: '24px',
+          padding: '8px',
           background: '#fff',
-          minHeight: '280px',
+          minHeight: layoutHeader ? '280px' : '0px',
         }"
       >
         <div class="blueplan-container">
@@ -49,6 +70,7 @@ import Sidebar from "@/layout/component/Sidebar";
 import Navbar from "@/layout/component/Navbar";
 import Tagsview from "@/layout/component/Tagsview";
 import SettingDrawer from "@/layout/component/SettingDrawer";
+import Amenu from "@/components/tools/Amenu";
 
 export default {
   mixins: [mixin, mixinDevice],
@@ -57,6 +79,7 @@ export default {
     AppMain,
     Sidebar,
     Navbar,
+    Amenu,
     Breadcrumb,
     Tagsview,
     SettingDrawer,
@@ -76,7 +99,14 @@ export default {
       };
     },
   },
-  mounted() {},
+  mounted() {
+    console.log(this.fixSiderbar);
+  },
+  methods: {
+    drawerClose() {
+      this.collapsed = false;
+    },
+  },
 };
 </script>
 
@@ -102,8 +132,9 @@ export default {
 .hideSidebar .fixed-header {
   width: calc(100% - 54px);
 }
-#components-layout-demo-custom-trigger{
+#components-layout-demo-custom-trigger {
   background-color: #fff;
+  overflow: hidden;
 }
 #components-layout-demo-custom-trigger .trigger {
   font-size: 18px;
@@ -128,6 +159,16 @@ export default {
 }
 .layout-sider {
   height: 100%;
-  background: rgb(212, 211, 211);
+  background: #d8e9f7;
+}
+.layout-headerTop {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+}
+.ant-menu {
+  height: 100%;
 }
 </style>

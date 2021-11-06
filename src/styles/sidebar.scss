@@ -1,6 +1,7 @@
 #app {
     .blueplan-container {
         min-height: 100%;
+        overflow: hidden;
         position: relative;
 
     }
@@ -13,39 +14,5 @@
 
          
         }
-
-    .hideSidebar {
-        .sidebar-container {
-            width: 54px !important;
-
-            & ul {
-                width: 54px !important;
-                overflow: hidden;
-            }
-        }
-
-
-
-        .blueplan-container {
-            margin-left: 54px;
-        }
-
-        .a-menu-inline {
-            padding: 0 !important;
-            position: relative;
-
-            .ant-tooltip-open {
-                padding: 0 !important;
-
-                .svg-icon {
-                    margin-left: 20px;
-                }
-
-            }
-        }
-
-    }
-
-    
 
 }

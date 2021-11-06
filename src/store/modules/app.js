@@ -9,6 +9,7 @@ import {
     DEFAULT_FIXED_SIDEMENU,
     DEFAULT_FIXED_HEADER_HIDDEN,
     DEFAULT_CONTENT_WIDTH_TYPE,
+    TOGGLE_SET_SIDBAR_HEADER,
     DEFAULT_MULTI_TAB
 } from '@/store/mutation-types'
 
@@ -20,6 +21,7 @@ const state = {
     layout: '',
     contentWidth: '',
     fixedHeader: false,
+    headerSidebar: false,
     fixSiderbar: false,
     autoHideHeader: false,
     color: null,
@@ -89,6 +91,10 @@ const mutations = {
     TOGGLE_MULTI_TAB: (state, bool) => {
         Vue.ls.set(DEFAULT_MULTI_TAB, bool)
         state.multiTab = bool
+    },
+    TOGGLE_SET_HEADER: (state, flag) => {
+        Vue.ls.set(TOGGLE_SET_SIDBAR_HEADER, flag)
+        state.headerSidebar = flag;
     }
 }
 const actions = {
@@ -140,6 +146,9 @@ const actions = {
     },
     ToggleMultiTab({ commit }, bool) {
         commit('TOGGLE_MULTI_TAB', bool)
+    },
+    toggleSetSidbarHeader({ commit }, bool) {
+        commit('TOGGLE_SET_HEADER', bool)
     }
 }
 

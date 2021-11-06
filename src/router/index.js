@@ -56,6 +56,13 @@ export const constatRoutes = [
         title: '角色管理',type: 'usergroup-add'
       }
     },{
+      path: 'node',
+      name: '权限管理',
+      component: () => import('@/views/system/node'),
+      meta: {
+        title: '权限管理',type: 'usergroup-add'
+      }
+    },{
       path: 'account',
       name: '账号管理',
       component: () => import('@/views/system/account'),

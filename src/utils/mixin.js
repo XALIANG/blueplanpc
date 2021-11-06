@@ -10,6 +10,7 @@ const mixin = {
       navTheme: state => state.app.theme,
       primaryColor: state => state.app.color,
       colorWeak: state => state.app.weak,
+      layoutHeader:state => state.app.headerSidebar,
       fixedHeader: state => state.app.fixedHeader,
       fixSiderbar: state => state.app.fixSiderbar,
       fixSidebar: state => state.app.fixSiderbar,

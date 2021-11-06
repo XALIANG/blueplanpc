@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="layout-sidebar" >
     <a-menu
       mode="inline"
       :theme="navTheme"
@@ -139,13 +139,7 @@ export default {
   }
 }
 
-//icon bug
-// .ant-menu-inline-collapsed>.ant-menu-item,
-// .ant-menu-inline-collapsed>.ant-menu-item-group>.ant-menu-item-group-list>.ant-menu-item,
-// .ant-menu-inline-collapsed>.ant-menu-item-group>.ant-menu-item-group-list>.ant-menu-submenu>.ant-menu-submenu-title,
-// .ant-menu-inline-collapsed>.ant-menu-submenu>.ant-menu-submenu-title {
-//     left: 0;
-//     padding: 0 32px !important;
-//     text-overflow: clip;
-// }
+.layout-sidebar{
+  height: 100%;
+}
 </style>

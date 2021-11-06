@@ -1,5 +1,8 @@
 <template>
-  <div class="navbar-container">
+  <div
+    class="navbar-container"
+    :style="{ background: color === 'dark' ? '#001529' : '#fff' }"
+  >
     <div class="navbar-right-menu">
       <a-dropdown :trigger="['click']">
         <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
@@ -48,6 +51,12 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
+  props: {
+    color: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       visible: false,
@@ -58,6 +67,9 @@ export default {
   components: {},
   computed: {
     ...mapGetters(["sidebarSwitch", "userForm"]),
+  },
+  mounted () {
+    console.log("color",this.color)
   },
   methods: {
     loginOut() {
@@ -91,14 +103,11 @@ export default {
 
 <style lang="scss" scoped>
 .navbar-container {
-  width: 500px;
-  height: 54px;
-  margin-top: 5px;
+  height: 100%;
   line-height: 54px;
   float: right;
-  padding: 0 15px;
+  padding: 5px 15px;
   overflow: hidden;
-  background: #fff;
 
   .hamburger-container {
     line-height: 50px;

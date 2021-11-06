@@ -261,6 +261,7 @@ export default {
   data() {
     return {
       visible: false,
+      headerControl: false,
       colorList,
       handle: <div />,
     };
@@ -281,6 +282,8 @@ export default {
     },
     onColorWeak(checked) {
       this.$store.dispatch("app/ToggleWeak", checked);
+      //重置为暗色
+      this.$store.dispatch("app/ToggleTheme", checked ? "light" : "dark");
       updateColorWeak(checked);
     },
     onMultiTab(checked) {
@@ -312,10 +315,13 @@ export default {
     },
     handleFixSiderbar(fixed) {
       if (this.layoutMode === "topmenu") {
+        console.log("topmenu");
+        this.$store.dispatch("app/toggleSetSidbarHeader", true);
         this.$store.dispatch("app/ToggleFixSiderbar", false);
         return;
       }
       this.$store.dispatch("app/ToggleFixSiderbar", fixed);
+      this.$store.dispatch("app/toggleSetSidbarHeader", false);
     },
   },
 };
@@ -376,7 +382,7 @@ export default {
   background: #1890ff;
   width: 48px;
   height: 48px;
-  right: 300px;
+  right: 283px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -407,7 +413,7 @@ export default {
   cursor: pointer;
   pointer-events: auto;
   z-index: 1001;
-  transition: 0.5s;
+  transition: 0.3s;
   text-align: center;
   font-size: 16px;
   border-radius: 4px 0 0 4px;
