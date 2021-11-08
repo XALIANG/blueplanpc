@@ -20,14 +20,14 @@ Vue.use(VueRouter)
 // export const asyncRoutes = [];
 export const constatRoutes = [
   {
-    path:'/register',
-    component: ()=> import('@/views/userRegister/index'),
-    hidden:true
+    path: '/register',
+    component: () => import('@/views/userRegister/index'),
+    hidden: true
   },
   {
-    path:'/login',
-    component: ()=> import('@/views/userLogin/index'),
-    hidden:true
+    path: '/login',
+    component: () => import('@/views/userLogin/index'),
+    hidden: true
   },
   {
     path: '/',
@@ -36,9 +36,24 @@ export const constatRoutes = [
     name: '主页应用',
     children: [{
       path: 'index',
-      name:'HomeApp',
+      name: 'HomeApp',
       component: () => import('@/views/desktop/index'),
       meta: { title: '主页应用', type: 'home' }
+    }]
+  },
+  {
+    path: '/work',
+    component: Layout,
+    name: '工作',
+    meta: { title: '工作', type: 'settings' },
+    redirect: '/work/workplace',
+    children: [{
+      path: 'workplace',
+      name: '工作计划',
+      component: () => import('@/views/workplace/index'),
+      meta: {
+        title: '工作计划', type: 'laptop'
+      }
     }]
 
   },
@@ -53,21 +68,21 @@ export const constatRoutes = [
       name: '角色管理',
       component: () => import('@/views/system/role'),
       meta: {
-        title: '角色管理',type: 'usergroup-add'
+        title: '角色管理', type: 'usergroup-add'
       }
-    },{
+    }, {
       path: 'node',
       name: '权限管理',
       component: () => import('@/views/system/node'),
       meta: {
-        title: '权限管理',type: 'usergroup-add'
+        title: '权限管理', type: 'usergroup-add'
       }
-    },{
+    }, {
       path: 'account',
       name: '账号管理',
       component: () => import('@/views/system/account'),
       meta: {
-        title: '账号管理',type: 'usergroup-add'
+        title: '账号管理', type: 'usergroup-add'
       }
     }]
 
@@ -115,7 +130,7 @@ export const constatRoutes = [
         path: 'index',
         name: '反馈中心',
         component: () => import('@/views/feedback/index'),
-        meta: { title: '反馈中心',type: 'usergroup-add' }
+        meta: { title: '反馈中心', type: 'usergroup-add' }
       }
     ]
   }
@@ -123,8 +138,8 @@ export const constatRoutes = [
 
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location, onResolve, onReject) {
-	if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
-	return originalPush.call(this, location).catch(err => err)
+  if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
+  return originalPush.call(this, location).catch(err => err)
 }
 
 

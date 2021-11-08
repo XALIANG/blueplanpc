@@ -246,10 +246,10 @@
 
 <script>
 import { DetailList } from "@/components";
-import SettingItem from "./SettingItem";
-import config from "../../../config/defaultSettings";
-import { updateTheme, updateColorWeak, colorList } from "./settingConfig";
 import { mixin, mixinDevice } from "@/utils/mixin";
+import config from "../../../config/defaultSettings";
+import { colorList, updateColorWeak, updateTheme } from "./settingConfig";
+import SettingItem from "./SettingItem";
 
 export default {
   mixins: [mixin, mixinDevice],

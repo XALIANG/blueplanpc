@@ -12,6 +12,7 @@ import i18n from './lang';// i18n
 import bootstrap from './core/bootstrap'
 import * as filters from './filters';
 
+
 Vue.config.productionTip = false;
 
 Object.keys(filters).forEach(key => {

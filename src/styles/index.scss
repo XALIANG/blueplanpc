@@ -3,99 +3,109 @@
 @import './transtiton.scss';
 @import './sidebar.scss';
 @import './theme.scss';
+@import './common.scss';
 
 body {
-   height: 100%;
-   -moz-osx-font-smoothing: grayscale;
-   -webkit-font-smoothing: antialiased;
-   text-rendering: optimizeLegibility;
-   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
-   -moz-user-select: none;
-   /*火狐*/
-   /*选中文字时避免出现蓝色背景*/
-   -webkit-user-select: none;
-   /*webkit浏览器*/
-   /*选中文字时避免出现蓝色背景*/
-   -ms-user-select: none;
-   /*IE10*/
-   /*选中文字时避免出现蓝色背景*/
-   user-select: none;
-   /*选中文字时避免出现蓝色背景*/
+  height: 100%;
+  overflow: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  -moz-user-select: none;
+  /*火狐*/
+  /*选中文字时避免出现蓝色背景*/
+  -webkit-user-select: none;
+  /*webkit浏览器*/
+  /*选中文字时避免出现蓝色背景*/
+  -ms-user-select: none;
+  /*IE10*/
+  /*选中文字时避免出现蓝色背景*/
+  user-select: none;
+  /*选中文字时避免出现蓝色背景*/
 
- }
+}
 
- body {
+body {
   &.colorWeak {
     filter: invert(85%);
     overflow: hidden;
-    .fixed-header + .appMain {
+
+    .fixed-header+.appMain {
       background-color: #fff;
     }
-    .app-wrapper,.bluePlan-container{
-      background-color: #fff;
+
+    .app-wrapper,
+    .bluePlan-container {
+      background-color: none;
+    }
+
+    .desktop {
+      h1,.title {
+        color: #000 !important;
+        background-color: #fff;
+      }
     }
   }
+
   &.userLayout {
     overflow: auto;
   }
 }
 
- html {
-   height: 100%;
-  
-   box-sizing: border-box;
- }
+html {
+  height: 100%;
 
- //public style
- .fl {
-   float: left;
- }
+  box-sizing: border-box;
+}
 
- .fr {
-   float: right;
- }
+//public style
+.fl {
+  float: left;
+}
 
- .pr-5 {
-   padding-right: 5px;
- }
+.fr {
+  float: right;
+}
 
- .pl-5 {
-   padding-left: 5px;
- }
+.pr-5 {
+  padding-right: 5px;
+}
 
- .block {
-   display: block;
- }
+.pl-5 {
+  padding-left: 5px;
+}
 
- .pointer {
-   cursor: pointer;
- }
+.block {
+  display: block;
+}
 
- #app {
-   height: 100%;
- }
+.pointer {
+  cursor: pointer;
+}
 
- .clearfix {
-   &:after {
-     visibility: hidden;
-     display: block;
-     font-size: 0;
-     content: " ";
-     clear: both;
-     height: 0;
-   }
- }
+#app {
+  height: 100%;
+}
 
- .bgsytle{
-   background-color: #fff;
- }
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
 
- //全局样式
- .bluePlan-container {
-   padding: 10px;
-   background: rgb(240 242 245);
-   overflow: hidden;
- }
+.bgsytle {
+  background-color: #fff;
+}
 
-
- 
+//全局样式
+.bluePlan-container {
+  padding: 10px;
+  height: 800px;
+  overflow: auto;
+}

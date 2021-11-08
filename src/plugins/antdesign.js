@@ -8,6 +8,8 @@ import {
     Button,
     Menu,
     Tag,
+    Row,
+    Col,
     Select,
     Tabs,
     Card,
@@ -34,8 +36,10 @@ import {
     TreeSelect,
     ConfigProvider
 } from 'ant-design-vue';
-Vue.use(Select)
+Vue.use(Select);
+Vue.use(Col);
 Vue.use(Tag);
+Vue.use(Row);
 Vue.use(Button);
 Vue.use(Menu);
 Vue.use(Icon);

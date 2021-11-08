@@ -8,7 +8,7 @@
         <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
           <span class="navbar-head">
             <a-avatar
-              :src="userForm.headPortrait"
+              :src="userForm.headPortrait ?userForm.headPortrait  :'../../../assets/image/626.png'"
               alt="网络错误"
               shape="square"
               :size="40"

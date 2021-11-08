@@ -1,6 +1,7 @@
 <template>
 <div class="account-container bgsytle">
-    <a-table :pagination="pagination" bordered :data-source="data">
+
+    <a-table  :pagination="pagination" bordered :data-source="data">
         <a-table-column key="uid" title="ID" data-index="uid" />
         <a-table-column key="name" title="账号" data-index="name" />
         <a-table-column key="address" title="秘钥" data-index="address" />
@@ -23,7 +24,6 @@
     </a-table>
     <!-- 编辑账号以及权限控制 -->
     <a-modal v-model="visible" title="Title" on-ok="handleOk">
-
         <a-form-model ref="FromACcount" :model="FromACcount" :rules="rules" v-bind="layout">
             <a-form-model-item has-feedback label="Password" prop="pass">
                 <a-input v-model="FromACcount.pass" type="password" autocomplete="off" />

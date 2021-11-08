@@ -49,7 +49,6 @@
 <script>
 import SettingDrawer from "@/components/SettingDrawer";
 import { mixin, mixinDevice } from "@/utils/mixin";
-import { mapGetters, mapState } from "vuex";
 import { generateTitle } from "@/utils/getTitle";
 import { Menu } from "ant-design-vue";
 import path from "path";
@@ -112,6 +111,7 @@ export default {
       return this.permission_routes;
     },
     currentSelectMenu() {
+      console.log("this.$route.path",this.$route.path)
       return [this.$route.path];
     },
   },

@@ -5,7 +5,7 @@
   >
     <a-layout-sider
       :style="{ display: layoutHeader ? 'none' : 'block' }"
-      class="layout-sider"
+      :class="navTheme === 'dark' ? 'active-layout-sider' : 'layout-sider'"
       v-model="collapsed"
       :trigger="null"
       collapsible
@@ -47,9 +47,8 @@
       <a-layout-content
         :style="{
           height: '100%',
-          margin: '45px 16px',
+          margin: '45px 3px',
           padding: '8px',
-          background: '#fff',
           minHeight: layoutHeader ? '280px' : '0px',
         }"
       >
@@ -132,10 +131,12 @@ export default {
 .hideSidebar .fixed-header {
   width: calc(100% - 54px);
 }
+
 #components-layout-demo-custom-trigger {
   background-color: #fff;
   overflow: hidden;
 }
+
 #components-layout-demo-custom-trigger .trigger {
   font-size: 18px;
   line-height: 64px;
@@ -157,9 +158,16 @@ export default {
   line-height: 32px;
   font-weight: 800;
 }
+
 .layout-sider {
   height: 100%;
-  background: #d8e9f7;
+  color: rgb(206, 203, 203);
+  background: #f7f7f7;
+}
+.active-layout-sider {
+  height: 100%;
+  color: rgb(206, 203, 203);
+  background: #001529;
 }
 .layout-headerTop {
   width: 70%;
@@ -168,7 +176,9 @@ export default {
   justify-content: space-around;
   margin: auto;
 }
+
 .ant-menu {
   height: 100%;
 }
+
 </style>
