@@ -1,14 +1,11 @@
 <template>
-  <div
-    class="navbar-container"
-    :style="{ background: color === 'dark' ? '#001529' : '#fff' }"
-  >
+  <div class="navbar-container" :style="{ background: color === 'dark' ? '#001529' : '#fff' }">
     <div class="navbar-right-menu">
       <a-dropdown :trigger="['click']">
         <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
           <span class="navbar-head">
             <a-avatar
-              :src="userForm.headPortrait ?userForm.headPortrait  :'../../../assets/image/626.png'"
+              :src="userForm.headPortrait ? userForm.headPortrait : '../../../assets/image/626.png'"
               alt="网络错误"
               shape="square"
               :size="40"
@@ -68,8 +65,7 @@ export default {
   computed: {
     ...mapGetters(["sidebarSwitch", "userForm"]),
   },
-  mounted () {
-    console.log("color",this.color)
+  mounted() {
   },
   methods: {
     loginOut() {
@@ -95,7 +91,6 @@ export default {
     },
     onchangeSetUpDrak(checked) {
       this.$store.dispatch("app/openDark", checked);
-      console.log(checked);
     },
   },
 };

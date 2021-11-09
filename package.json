@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node color && vue-cli-service serve --mode dev",
+    "dev": "vue-cli-service serve --mode dev",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
@@ -22,11 +22,13 @@
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",
     "qs": "^6.10.1",
+    "socket.io-client": "^4.3.2",
     "vue": "^2.6.11",
     "vue-i18n": "^8.24.4",
     "vue-image-crop-upload": "^3.0.3",
     "vue-ls": "^3.2.2",
     "vue-router": "^3.2.0",
+    "vue-socket.io": "^3.0.10",
     "vuex": "^3.4.0"
   },
   "devDependencies": {

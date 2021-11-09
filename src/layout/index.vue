@@ -29,11 +29,7 @@
         <SettingDrawer />
       </a-layout-header>
 
-      <a-layout-header
-        v-else
-        class="layout-header-navber"
-        style="background: #fff; padding: 0"
-      >
+      <a-layout-header v-else class="layout-header-navber" style="background: #fff; padding: 0">
         <a-icon
           class="trigger"
           :type="collapsed ? 'menu-unfold' : 'menu-fold'"
@@ -54,6 +50,7 @@
       >
         <div class="blueplan-container">
           <App-main />
+          <WebSocket />
         </div>
       </a-layout-content>
     </a-layout>
@@ -180,5 +177,4 @@ export default {
 .ant-menu {
   height: 100%;
 }
-
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-sidebar" >
+  <div class="layout-sidebar">
     <a-menu
       mode="inline"
       :theme="navTheme"
@@ -47,7 +47,6 @@
 </template>
 
 <script>
-import SettingDrawer from "@/components/SettingDrawer";
 import { mixin, mixinDevice } from "@/utils/mixin";
 import { generateTitle } from "@/utils/getTitle";
 import { Menu } from "ant-design-vue";
@@ -96,7 +95,6 @@ const SubMenu = {
 export default {
   components: {
     "sub-menu": SubMenu,
-    SettingDrawer,
   },
   mixins: [mixin, mixinDevice],
   data() {
@@ -111,7 +109,6 @@ export default {
       return this.permission_routes;
     },
     currentSelectMenu() {
-      console.log("this.$route.path",this.$route.path)
       return [this.$route.path];
     },
   },
@@ -139,7 +136,7 @@ export default {
   }
 }
 
-.layout-sidebar{
+.layout-sidebar {
   height: 100%;
 }
 </style>

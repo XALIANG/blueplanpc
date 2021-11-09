@@ -5,13 +5,13 @@ export function timeFix() {
 }
 
 export function welcome() {
-    const arr = ['码累了吧，去吃些东西', '准备吃什么呢?', '要不要打一把PUBG ', '明天在做什么'];
+    const arr = ['码累了吧，去吃些东西', '准备吃什么呢?', '要不要打一把PUBG', '明天在要做什么？'];
     const index = Math.floor(Math.random() * arr.length)
-    return arr[index]
+    return arr[index];
 }
 
 
-/**
+/**FF
  * Parse the time to string
  * @param {(Object|string|number)} time
  * @param {string} cFormat

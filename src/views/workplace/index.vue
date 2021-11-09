@@ -37,16 +37,16 @@
     </div>
 
     <!-- probject -->
-    <div class="probject-list m-t-20"> 
-      <a-row class="list ">
+    <div class="probject-list m-t-20">
+      <a-row class="list">
         <a-col>
-          <CardList :cardList='[]' :title="'进行中的项目'" />
+          <CardList :cardList="[]" :title="'进行中的项目'" />
         </a-col>
       </a-row>
       <a-row class="right-content bg">
         <a-col>
           <div>
-            <a-card title="预留位置" :bordered="false" >
+            <a-card title="预留位置" :bordered="false">
               <p>content</p>
               <p>content</p>
               <p>content</p>
@@ -75,7 +75,9 @@
 </template>
 
 <script>
-import { CardList } from "@/components/index";
+import {
+  CardList
+} from "@/components/index";
 export default {
   components: {
     CardList,
@@ -83,15 +85,17 @@ export default {
 };
 </script>
 
-<style lang="scss"  scoped>
+<style lang="scss" scoped>
 .userinfo-card {
   width: 100%;
+
   .userinfo {
     display: flex;
     justify-content: space-between;
 
     .avatar {
       display: flex;
+
       img {
         width: 100px;
         height: 100px;
@@ -99,36 +103,43 @@ export default {
       }
     }
   }
+
   .content {
     font-weight: 500;
   }
+
   .probject {
     width: 400px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+
     .probject-card {
       position: relative;
       text-align: center;
+
       & p:nth-child(2) {
         font-weight: 600;
       }
     }
   }
 }
+
 .probject-list {
   display: flex;
   justify-content: space-between;
+
   .list {
     width: 60%;
   }
 }
+
 .title {
   font-weight: 500;
   color: $heading-color;
 }
 
-.right-content{
+.right-content {
   width: 39%;
 }
 </style>

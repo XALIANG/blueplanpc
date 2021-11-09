@@ -48,6 +48,6 @@ module.exports = {
                 '@': currentDir('src')
             }
         },
-        // plugins:[createThemeColorReplacerPlugin()]
+        plugins:[createThemeColorReplacerPlugin()]
     },
 }
