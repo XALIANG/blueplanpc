@@ -58,7 +58,10 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "off": 1,
+      "warn": 1
+    }
   },
   "browserslist": [
     "> 1%",

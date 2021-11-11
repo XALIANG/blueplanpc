@@ -11,6 +11,13 @@ export const DEFAULT_CONTENT_WIDTH_TYPE = 'DEFAULT_CONTENT_WIDTH_TYPE';
 export const DEFAULT_MULTI_TAB = 'DEFAULT_MULTI_TAB';
 export const TOGGLE_SET_SIDBAR_HEADER = 'TOGGLE_SET_SIDBAR_HEADER';
 
+// user
+export const SET_USER_STATUS = 'SET_USER_STATUS';
+
+//communication
+export const SET_ONE_USER_RECORD = "SET_ONE_USER_RECORD";
+
+
 export const CONTENT_WIDTH_TYPE = {
   Fluid: 'Fluid',
   Fixed: 'Fixed'

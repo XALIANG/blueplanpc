@@ -1,60 +1,74 @@
 @for $i from 1 through 200 {
-    .m-#{$i} {
-        margin: ($i*1)+px;
-    }
+  .m-#{$i} {
+    margin: ($i*1)+px;
+  }
 
-    .m-t-#{$i} {
-        margin-top: ($i*1)+px;
-    }
+  .m-t-#{$i} {
+    margin-top: ($i*1)+px;
+  }
 
-    .m-b-#{$i} {
-        margin-bottom: ($i*1)+px;
-    }
+  .m-b-#{$i} {
+    margin-bottom: ($i*1)+px;
+  }
 
-    .m-l-#{$i} {
-        margin-left: ($i*1)+px;
-    }
+  .m-l-#{$i} {
+    margin-left: ($i*1)+px;
+  }
 
-    .m-r-#{$i} {
-        margin-right: ($i*1)+px;
-    }
+  .m-r-#{$i} {
+    margin-right: ($i*1)+px;
+  }
 
-    .p-#{$i} {
-        padding: ($i*1)+px;
-    }
+  .p-#{$i} {
+    padding: ($i*1)+px;
+  }
 
-    .p-t-#{$i} {
-        padding-top: ($i*1)+px;
-    }
+  .p-t-#{$i} {
+    padding-top: ($i*1)+px;
+  }
 
-    .p-b-#{$i} {
-        padding-bottom: ($i*1)+px;
-    }
+  .p-b-#{$i} {
+    padding-bottom: ($i*1)+px;
+  }
 
-    .p-l-#{$i} {
-        padding-left: ($i*1)+px;
-    }
+  .p-l-#{$i} {
+    padding-left: ($i*1)+px;
+  }
 
-    .p-r-#{$i} {
-        padding-right: ($i*1)+px;
-    }
+  .p-r-#{$i} {
+    padding-right: ($i*1)+px;
+  }
 
-    .fz-#{$i} {
-        font-size: ($i*1)+px;
-    }
+  .fz-#{$i} {
+    font-size: ($i*1)+px;
+  }
 
 }
 
-.bg{
-    background-color: #fff;
+.bg {
+  background-color: #fff;
 }
 
 // 火柴棍 
 .match {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 1px;
-    height: 56px;
-    background-color: #f0f0f0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 56px;
+  background-color: #f0f0f0;
+}
+
+// 国际手势
+
+.hand {
+  cursor: pointer;
+}
+
+.f {
+  float: left;
+}
+
+.r {
+  float: right;
 }

@@ -10,7 +10,7 @@ const mixin = {
       navTheme: state => state.app.theme,
       primaryColor: state => state.app.color,
       colorWeak: state => state.app.weak,
-      layoutHeader:state => state.app.headerSidebar,
+      layoutHeader: state => state.app.headerSidebar,
       fixedHeader: state => state.app.fixedHeader,
       fixSiderbar: state => state.app.fixSiderbar,
       fixSidebar: state => state.app.fixSiderbar,
@@ -18,19 +18,29 @@ const mixin = {
       autoHideHeader: state => state.app.autoHideHeader,
       sidebarOpened: state => state.app.sidebar,
       multiTab: state => state.app.multiTab,
-      permission_routes:state => state.permission.routes,
-      sidebar:state => state.app.sidebar,
+      permission_routes: state => state.permission.routes,
+      sidebar: state => state.app.sidebar,
     })
   },
   methods: {
-    isTopMenu () {
+    isTopMenu() {
       return this.layoutMode === 'topmenu'
     },
-    isSideMenu () {
+    isSideMenu() {
       return !this.isTopMenu()
     }
   }
 }
+
+
+const mixinUser = {
+  computed: {
+    ...mapState({
+      onlineNum: state => state.communication.onLineTotalUserNum
+    })
+  }
+}
+
 
 const mixinDevice = {
   computed: {
@@ -39,20 +49,21 @@ const mixinDevice = {
     })
   },
   methods: {
-    isMobile () {
+    isMobile() {
       return this.device === DEVICE_TYPE.MOBILE
     },
-    isDesktop () {
+    isDesktop() {
       return this.device === DEVICE_TYPE.DESKTOP
     },
-    isTablet () {
+    isTablet() {
       return this.device === DEVICE_TYPE.TABLET
     }
   }
 }
 
+
 const AppDeviceEnquire = {
-  mounted () {
+  mounted() {
     const { $store } = this
     deviceEnquire(deviceType => {
       switch (deviceType) {
@@ -74,4 +85,4 @@ const AppDeviceEnquire = {
   }
 }
 
-export { mixin, AppDeviceEnquire, mixinDevice }
+export { mixin, AppDeviceEnquire, mixinDevice, mixinUser }

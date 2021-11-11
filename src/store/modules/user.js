@@ -1,12 +1,16 @@
 
 const state = {
-        token: sessionStorage.getItem("token") || "",
-        userForm: JSON.parse(sessionStorage.getItem("userForm")) || {},
-  
+    token: sessionStorage.getItem("token") || "",
+    userForm: JSON.parse(sessionStorage.getItem("userForm")) || {},
+
 
 };
-const mutations = {};
-const actions = {};
+const mutations = {
+   
+};
+const actions = {
+   
+};
 
 export default {
     namespaced: true,

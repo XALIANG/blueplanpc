@@ -49,6 +49,7 @@ const mutations = {
         state.sidebar = type
         Vue.ls.set(SIDEBAR_TYPE, type)
     },
+    // eslint-disable-next-line no-dupe-keys
     CLOSE_SIDEBAR: (state) => {
         Vue.ls.set(SIDEBAR_TYPE, true)
         state.sidebar = false

@@ -1733,10 +1733,10 @@
   "resolved" "https://registry.npmjs.org/ansi-regex/-/ansi-regex-4.1.0.tgz"
   "version" "4.1.0"
 
-"ansi-regex@^5.0.0":
-  "integrity" "sha512-bY6fj56OUQ0hU1KjFNDQuJFezqKdrAyFdIevADiqrWHwSlbmBNMHp5ak2f40Pm8JTFyM2mqxkG6ngkHO11f/lg=="
-  "resolved" "https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.0.tgz"
-  "version" "5.0.0"
+"ansi-regex@^5.0.1":
+  "integrity" "sha1-CCyyyJyf6GWaMRpTvWpNxTAdswQ="
+  "resolved" "https://registry.nlark.com/ansi-regex/download/ansi-regex-5.0.1.tgz?cache=0&sync_timestamp=1631634988487&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fansi-regex%2Fdownload%2Fansi-regex-5.0.1.tgz"
+  "version" "5.0.1"
 
 "ansi-styles@^3.2.0", "ansi-styles@^3.2.1":
   "integrity" "sha512-VT0ZI6kZRdTh8YyJw3SMbYm/u+NqfsAxEpWO0Pf9sq8/e94WxxOpPKx9FR1FlyCtOVDNOQ+8ntlqFxiRc+r5qA=="
@@ -2544,9 +2544,9 @@
     "lodash.uniq" "^4.5.0"
 
 "caniuse-lite@^1.0.0", "caniuse-lite@^1.0.30001109", "caniuse-lite@^1.0.30001208":
-  "integrity" "sha512-O2/SCpuaU3eASWVaesQirZv1MSjUNOvmugaD8zNSJqw6Vv5SGwoOpA9LJs3pNPfM745nxqPvfZY3MQKY4AKHYg=="
-  "resolved" "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001214.tgz"
-  "version" "1.0.30001214"
+  "integrity" "sha512-VfEHpzHEXj6/CxggTwSFoZBBYGQfQv9Cf42KPlO79sWXCD1QNKWKsKzFeWL7QpZHJQYAvocqV6Rty1yJMkqWLQ=="
+  "resolved" "https://registry.npmmirror.com/caniuse-lite/download/caniuse-lite-1.0.30001279.tgz?cache=0&sync_timestamp=1636436971689&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fcaniuse-lite%2Fdownload%2Fcaniuse-lite-1.0.30001279.tgz"
+  "version" "1.0.30001279"
 
 "case-sensitive-paths-webpack-plugin@^2.3.0":
   "integrity" "sha512-roIFONhcxog0JSSWbvVAh3OocukmSgpqOH6YpMkCvav/ySIV3JKg4Dc8vYtQjYi/UxpNE36r/9v+VqTQqgkYmw=="
@@ -3950,7 +3950,7 @@
 
 "eslint@^6.2.0 || ^7.0.0", "eslint@>= 1.6.0 < 7.0.0", "eslint@>= 4.12.1", "eslint@>=1.6.0 <7.0.0", "eslint@>=5.0.0":
   "integrity" "sha1-YiYtZylzn5J1cjgkMC+yJ8jJP/s="
-  "resolved" "https://registry.npmmirror.com/eslint/download/eslint-6.8.0.tgz?cache=0&sync_timestamp=1632520502750&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Feslint%2Fdownload%2Feslint-6.8.0.tgz"
+  "resolved" "https://registry.npmmirror.com/eslint/download/eslint-6.8.0.tgz?cache=0&sync_timestamp=1636156136778&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Feslint%2Fdownload%2Feslint-6.8.0.tgz"
   "version" "6.8.0"
   dependencies:
     "@babel/code-frame" "^7.0.0"
@@ -4391,7 +4391,7 @@
 
 "flatted@^2.0.0":
   "integrity" "sha1-RXWyHivO50NKqb5mL0t7X5wrUTg="
-  "resolved" "https://registry.nlark.com/flatted/download/flatted-2.0.2.tgz"
+  "resolved" "https://registry.npmmirror.com/flatted/download/flatted-2.0.2.tgz?cache=0&sync_timestamp=1636473925233&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fflatted%2Fdownload%2Fflatted-2.0.2.tgz"
   "version" "2.0.2"
 
 "flush-write-stream@^1.0.0":
@@ -4608,7 +4608,7 @@
 
 "globals@^12.1.0":
   "integrity" "sha1-oYgTV2pBsAokqX5/gVkYwuGZJfg="
-  "resolved" "https://registry.nlark.com/globals/download/globals-12.4.0.tgz"
+  "resolved" "https://registry.npmmirror.com/globals/download/globals-12.4.0.tgz"
   "version" "12.4.0"
   dependencies:
     "type-fest" "^0.8.1"
@@ -8651,11 +8651,11 @@
     "ansi-regex" "^4.1.0"
 
 "strip-ansi@^6.0.0":
-  "integrity" "sha512-AuvKTrTfQNYNIctbR1K/YGTR1756GycPsg7b9bdV9Duqur4gv6aKqHXah67Z8ImS7WEz5QVcOtlfW2rZEugt6w=="
-  "resolved" "https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.0.tgz"
-  "version" "6.0.0"
+  "integrity" "sha1-nibGPTD1NEPpSJSVshBdN7Z6hdk="
+  "resolved" "https://registry.npmmirror.com/strip-ansi/download/strip-ansi-6.0.1.tgz?cache=0&sync_timestamp=1632420562057&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fstrip-ansi%2Fdownload%2Fstrip-ansi-6.0.1.tgz"
+  "version" "6.0.1"
   dependencies:
-    "ansi-regex" "^5.0.0"
+    "ansi-regex" "^5.0.1"
 
 "strip-css-comments@^4.1.0":
   "integrity" "sha1-ynmOPmtxkp8LNU4L1y53WbLqF+A="
@@ -8694,7 +8694,9 @@
     "postcss-selector-parser" "^3.0.0"
 
 "supports-color@^5.3.0", "supports-color@^5.4.0":
-  "version" "5.4.0"
+  "integrity" "sha1-4uaaRKyHcveKHsCzW2id9lMO/I8="
+  "resolved" "https://registry.nlark.com/supports-color/download/supports-color-5.5.0.tgz?cache=0&sync_timestamp=1626703414084&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fsupports-color%2Fdownload%2Fsupports-color-5.5.0.tgz"
+  "version" "5.5.0"
   dependencies:
     "has-flag" "^3.0.0"
 
@@ -8745,7 +8747,7 @@
 
 "table@^5.2.3":
   "integrity" "sha1-EpLRlQDOP4YFOwXw6Ofko7shB54="
-  "resolved" "https://registry.npmmirror.com/table/download/table-5.4.6.tgz?cache=0&sync_timestamp=1633019463271&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Ftable%2Fdownload%2Ftable-5.4.6.tgz"
+  "resolved" "https://registry.npmmirror.com/table/download/table-5.4.6.tgz"
   "version" "5.4.6"
   dependencies:
     "ajv" "^6.10.2"
@@ -8989,7 +8991,7 @@
 
 "type-fest@^0.8.1":
   "integrity" "sha1-CeJJ696FHTseSNJ8EFREZn8XuD0="
-  "resolved" "https://registry.nlark.com/type-fest/download/type-fest-0.8.1.tgz"
+  "resolved" "https://registry.npmmirror.com/type-fest/download/type-fest-0.8.1.tgz"
   "version" "0.8.1"
 
 "type-is@~1.6.17", "type-is@~1.6.18":

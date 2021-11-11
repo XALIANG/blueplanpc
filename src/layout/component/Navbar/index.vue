@@ -4,17 +4,22 @@
       <a-dropdown :trigger="['click']">
         <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
           <span class="navbar-head">
-            <a-avatar
-              :src="userForm.headPortrait ? userForm.headPortrait : '../../../assets/image/626.png'"
-              alt="网络错误"
-              shape="square"
-              :size="40"
-              icon="user"
-            />
+            <a-badge count="5">
+              <a-avatar
+                :src="userForm.headPortrait ? userForm.headPortrait : '../../../assets/image/626.png'"
+                alt="网络错误"
+                shape="square"
+                :size="40"
+                icon="user"
+              />
+            </a-badge>
           </span>
           <!-- <a-icon type="down" /> -->
         </a>
         <a-menu slot="overlay">
+          <a-menu-item>
+            <a href="/mypage/communication">我的消息</a>
+          </a-menu-item>
           <a-menu-item>
             <router-link to="/mypage/index">我的主页</router-link>
           </a-menu-item>
@@ -24,12 +29,21 @@
           <a-menu-item>
             <a @click="showDrawer" href="javascript:;">留言</a>
           </a-menu-item>
+
           <a-menu-item>
             <a @click="showSetUp" href="javascript:;">设置</a>
           </a-menu-item>
         </a-menu>
       </a-dropdown>
     </div>
+    <span class="m-r-30 fz-13 person-num">
+      在线人数：
+      <a-badge status="success" />{{onlineNum}}
+    </span>
+    <a-icon class="fz-20 m-r-20" type="search" />
+    <a-icon class="fz-20 m-r-20" type="bell" />
+    <a-icon class="fz-20 m-r-20" type="fullscreen" />
+
     <a-drawer
       width="500"
       title="Basic Drawer"
@@ -47,7 +61,9 @@
 
 <script>
 import { mapGetters } from "vuex";
+import {mixinUser} from "../../../utils/mixin";
 export default {
+  mixins:[mixinUser],
   props: {
     color: {
       type: Boolean,
@@ -63,7 +79,7 @@ export default {
   },
   components: {},
   computed: {
-    ...mapGetters(["sidebarSwitch", "userForm"]),
+    ...mapGetters(["userForm"]),
   },
   mounted() {
   },
@@ -103,7 +119,9 @@ export default {
   float: right;
   padding: 5px 15px;
   overflow: hidden;
-
+  .person-num {
+    font-weight: 600;
+  }
   .hamburger-container {
     line-height: 50px;
     height: 100%;

@@ -25,6 +25,7 @@ import {
     Breadcrumb,
     Drawer,
     Input,
+    Badge,
     Table,
     Avatar,
     Divider,
@@ -36,6 +37,7 @@ import {
     TreeSelect,
     ConfigProvider
 } from 'ant-design-vue';
+Vue.use(Badge);
 Vue.use(Select);
 Vue.use(Col);
 Vue.use(Tag);

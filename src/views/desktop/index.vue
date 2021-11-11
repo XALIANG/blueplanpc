@@ -4,24 +4,19 @@
       <a-col>
         <div>
           <h1 style="color: #fff">
-            <span>{{ timeFix() }}</span
-            >，YOUNAME，<span>{{ welcome() }}</span>
+            <span>{{ timeFix() }}</span>，YOUNAME，
+            <span>{{ welcome() }}</span>
           </h1>
           <p>天气变冷，添加衣物</p>
         </div>
       </a-col>
     </a-row>
     <!-- 状态 -->
-    <a-row
-      type="flex"
-      class="desktop-card m-t-30 p-t-40"
-      justify="space-around"
-      :gutter="24"
-    >
+    <a-row type="flex" class="desktop-card m-t-30 p-t-40" justify="space-around" :gutter="24">
       <a-col>
         <div class="card">
           <span class="fz-15">在线人数</span>
-          <p>6</p>
+          <p>{{ 222 }}</p>
           <div class="match"></div>
         </div>
       </a-col>
@@ -79,6 +74,7 @@
 
 <script>
 import { welcome, timeFix } from "@/utils/index";
+import { mapState } from 'vuex'
 export default {
   data() {
     return {
@@ -100,6 +96,11 @@ export default {
       ],
     };
   },
+  computed: {
+    ...mapState({
+      userNum: state => state.user.onLineTotalUser
+    })
+  }
 };
 </script>
 

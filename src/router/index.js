@@ -117,7 +117,17 @@ export const constatRoutes = [
         title: '我的主页',
         icon: '',
       }
-    }]
+    },
+    {
+      path: 'communication',
+      name: 'LAN微聊',
+      component: () => import('@/views/communication/index'),
+      meta: {
+        title: 'Lan微聊',
+        icon: '',
+      }
+    }
+    ]
 
   },
   {

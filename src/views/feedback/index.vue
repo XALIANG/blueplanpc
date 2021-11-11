@@ -3,10 +3,10 @@
 
     <div class="feedback-content">
         <a-list v-if="data.length" :data-source="data"  item-layout="horizontal" class="comment-list" :header="`${data.length} replies`">
-            <a-list-item slot="renderItem" slot-scope="item, index">
+            <a-list-item slot="renderItem" slot-scope="item">
                 <a-comment :author="item.author" :avatar="item.avatar">
                     <template slot="actions">
-                        <span v-for="action in item.actions">{{ action }}</span>
+                        <span v-for="(action,i) in item.actions" :key="i">{{ action }}</span>
                     </template>
                     <p slot="content">
                         {{ item.content }}

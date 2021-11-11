@@ -50,7 +50,6 @@
       >
         <div class="blueplan-container">
           <App-main />
-          <WebSocket />
         </div>
       </a-layout-content>
     </a-layout>
