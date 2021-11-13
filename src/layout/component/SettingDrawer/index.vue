@@ -382,7 +382,7 @@ export default {
   background: #1890ff;
   width: 48px;
   height: 48px;
-  right: 283px;
+  right: 300px;
   display: flex;
   justify-content: center;
   align-items: center;

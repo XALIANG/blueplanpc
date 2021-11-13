@@ -5,17 +5,19 @@
         <ul>
             <li>2131</li>
             <li>21312132</li>
-        </ul> -->
+        </ul>-->
     </div>
 </template>
 <script>
 import { uuid } from "@/utils/index";
 export default {
     name: "WebSocket",
+    props: ["params"],
     data() {
         return {
-            id: '',
-            message: []
+            uid: "",
+            message: [],
+            mainUser: []
         }
     },
     created() {
@@ -23,16 +25,15 @@ export default {
     mounted() {
     },
     sockets: {
-        connect: function () {
+        connect() {
             Notification['success']({
                 message: '服务器连接成功',
                 description: '测试环境'
             })
             this.$socket.id = uuid(16, 8);
-            this.$socket.emit('public_text_message', JSON.stringify({ status: "进入群聊" }))
-
+            this.$socket.emit("public_text_message");
         },
-        customEmit: function (val) {
+        customEmit(val) {
             console.log('this method was fired by the socket server. eg: io.emit("customEmit", data)')
         },
         // 监听断开连接，函数
@@ -47,16 +48,23 @@ export default {
             console.log("在线人数", res)
             this.$store.dispatch('communication/setUserStatus', res);
         },
-        text1(data) {
-            console.log("msg", data)
+        //群聊
+        currentTextMsg(res) {
+            const currentResMesInfo = JSON.parse(res);
+            
+            // console.log(this.uid, currentResMesInfo.id);
+            if (this.uid !== currentResMesInfo.id) {
+                this.message.push({ position: "left", msg: currentResMesInfo.msg, id: currentResMesInfo.id });
+            }
+            this.message.push({ position: "right", msg: currentResMesInfo.msg, id: currentResMesInfo.id })
+            this.$store.dispatch('communication/setOneUserRecord', this.message);
         },
-        quntui(data) {
-            console.log(data)
-        }
     },
     methods: {
-        clickButton(val) {
-
+        groupChat() {
+            this.uid = uuid(15, 16);
+            this.$socket.emit("public_message", JSON.stringify({ msg: this.params, position: "right", id: this.uid }));
+            this.$emit("onGroupChat", this.message);
         }
     }
 }

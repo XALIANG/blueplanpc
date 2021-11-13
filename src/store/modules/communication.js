@@ -1,7 +1,7 @@
 import { SET_ONE_USER_RECORD, SET_USER_STATUS } from '../mutation-types';
 const state = {
     onLineTotalUserNum: 0,
-    oneUserTextRecord: {}
+    oneUserTextRecord: []
 
 };
 const mutations = {

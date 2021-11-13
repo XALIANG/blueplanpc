@@ -143,12 +143,11 @@ export default {
         };
     },
     mounted() {
-        this.$store.dispatch('communication/setOneUserRecord', { user: this.data[this.listIndex], idx: this.listIndex });
     },
     methods: {
         obtainUserItem(user, idx) {
             this.listIndex = idx;
-            this.$store.dispatch('communication/setOneUserRecord', { user, idx });
+            
         },
     }
 };

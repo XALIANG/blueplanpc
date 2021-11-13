@@ -24,6 +24,7 @@
     "qs": "^6.10.1",
     "socket.io-client": "^4.3.2",
     "vue": "^2.6.11",
+    "vue-awesome-swiper": "^4.1.1",
     "vue-i18n": "^8.24.4",
     "vue-image-crop-upload": "^3.0.3",
     "vue-ls": "^3.2.2",

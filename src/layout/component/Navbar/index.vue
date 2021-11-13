@@ -4,7 +4,7 @@
       <a-dropdown :trigger="['click']">
         <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
           <span class="navbar-head">
-            <a-badge count="5">
+            <a-badge count="99">
               <a-avatar
                 :src="userForm.headPortrait ? userForm.headPortrait : '../../../assets/image/626.png'"
                 alt="网络错误"
@@ -38,7 +38,8 @@
     </div>
     <span class="m-r-30 fz-13 person-num">
       在线人数：
-      <a-badge status="success" />{{onlineNum}}
+      <a-badge status="success" />
+      {{ onlineNum }}
     </span>
     <a-icon class="fz-20 m-r-20" type="search" />
     <a-icon class="fz-20 m-r-20" type="bell" />
@@ -61,13 +62,13 @@
 
 <script>
 import { mapGetters } from "vuex";
-import {mixinUser} from "../../../utils/mixin";
+import { mixinUser } from "../../../utils/mixin";
 export default {
-  mixins:[mixinUser],
+  mixins: [mixinUser],
   props: {
     color: {
-      type: Boolean,
-      default: false,
+      type: String,
+      default: "",
     },
   },
   data() {

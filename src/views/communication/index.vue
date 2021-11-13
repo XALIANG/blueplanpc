@@ -9,7 +9,11 @@
             <!-- message view -->
             <div class="message-view p-10">
                 <UserContent ref="UserContent" />
-                <WebSocket/>
+                <WebSocket
+                    ref="websocket"
+                    @onGroupChat="obtianMessageList"
+                    :params="userParamText"
+                />
             </div>
             <!-- input content -->
             <div class="message-text">
@@ -42,9 +46,10 @@ export default {
         UserList,
         UserContent
     },
-    data(){
+    data() {
         return {
             userParamText: "",
+            mainUser: [],
         }
     },
     computed: {
@@ -52,14 +57,30 @@ export default {
     },
     methods: {
         obtainText() {
-            this.userParamText = ''
+            if (this.userParamText === '') return;
             this.$refs.textarea.$el.addEventListener('keydown', (e) => {
                 if (e.keyCode != 13) {
                     return;
                 } else {
                     e.returnValue = false;
                 }
+            })
+            this.$refs.websocket.groupChat();
+            this.userParamText = "";
+        },
+        arrayUnique2(arr, name) {
+            var hash = {};
+            return arr.reduce(function (item, next) {
+                hash[next[name]] ? '' : hash[next[name]] = true && item.push(next);
+                return item;
+            }, []);
 
+        },
+        obtianMessageList(param) {
+            console.log("聊天记录", param)
+            // 取出相同 ID 属性 过滤 right 
+            this.$nextTick(() => {
+               
             })
         }
     }

@@ -1,7 +1,7 @@
 <template>
     <ul id="content-views">
         <li
-            v-for="(userMsg,i) in message"
+            v-for="(userMsg,i) in userMessageData"
             class="text-contaiter left-text m-b-10"
             :key="i"
             :class="{ 'right-text': userMsg.position === 'right' }"
@@ -12,83 +12,13 @@
 </template>
 <script>
 import { mapState } from 'vuex';
+import { mixinUser } from '../../../utils/mixin';
 export default {
+    mixins: [mixinUser],
     data() {
         return {
-            message: [
-                {
-                    msg: "在？",
-                    position: "left"
-                },
-                {
-                    msg: "上号？",
-                    position: "left"
-                },
-                {
-                    msg: "好的",
-                    position: "right"
-                },
-                {
-                    msg: "好的",
-                    position: "right"
-                },
-                {
-                    msg: "好的",
-                    position: "right"
-                }, {
-                    msg: "好的",
-                    position: "left"
-                }, {
-                    msg: "上号？",
-                    position: "left"
-                },
-                {
-                    msg: "好的",
-                    position: "right"
-                }, {
-                    msg: "上号？",
-                    position: "left"
-                },
-                {
-                    msg: "好的",
-                    position: "left"
-                }, {
-                    msg: "上号？",
-                    position: "left"
-                },
-                {
-                    msg: "好的",
-                    position: "left"
-                }, {
-                    msg: "上号？",
-                    position: "left"
-                },
-                {
-                    msg: "好的",
-                    position: "left"
-                }, {
-                    msg: "上号？",
-                    position: "left"
-                },
-                {
-                    msg: "好的",
-                    position: "left"
-                }, {
-                    msg: "上号？",
-                    position: "left"
-                },
-                {
-                    msg: "好的",
-                    position: "left"
-                },
-
-            ]
+            message: []
         }
-    },
-    computed: {
-        ...mapState({
-            userMessageData: state => state.communication.oneUserTextRecord
-        })
     },
     mounted() {
 

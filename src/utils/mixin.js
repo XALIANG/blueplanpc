@@ -36,7 +36,8 @@ const mixin = {
 const mixinUser = {
   computed: {
     ...mapState({
-      onlineNum: state => state.communication.onLineTotalUserNum
+      onlineNum: state => state.communication.onLineTotalUserNum,
+      userMessageData: state => state.communication.oneUserTextRecord
     })
   }
 }
