@@ -5,13 +5,7 @@
         <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
           <span class="navbar-head">
             <a-badge count="99">
-              <a-avatar
-                :src="userForm.headPortrait ? userForm.headPortrait : '../../../assets/image/626.png'"
-                alt="网络错误"
-                shape="square"
-                :size="40"
-                icon="user"
-              />
+              <a-avatar :src="userForm.headPortrait ? userForm.headPortrait : '../../../assets/image/626.png'" alt="网络错误" shape="square" :size="40" icon="user" />
             </a-badge>
           </span>
           <!-- <a-icon type="down" /> -->
@@ -45,14 +39,7 @@
     <a-icon class="fz-20 m-r-20" type="bell" />
     <a-icon class="fz-20 m-r-20" type="fullscreen" />
 
-    <a-drawer
-      width="500"
-      title="Basic Drawer"
-      :placement="placement"
-      :closable="false"
-      :visible="visible"
-      @close="onClose"
-    >
+    <a-drawer width="500" title="Basic Drawer" :placement="placement" :closable="false" :visible="visible" @close="onClose">
       <p>哇...</p>
       <p>辛苦啦...</p>
       <p>加油...</p>

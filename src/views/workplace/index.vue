@@ -75,13 +75,11 @@
 </template>
 
 <script>
-import {
-  CardList
-} from "@/components/index";
+import { CardList } from '@/components/index';
 export default {
   components: {
-    CardList,
-  },
+    CardList
+  }
 };
 </script>
 

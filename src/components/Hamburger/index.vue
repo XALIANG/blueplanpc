@@ -1,10 +1,6 @@
 <template>
   <div class="hamburger">
-    <a-icon
-      style="font-size: 17px; color: #000"
-      :type="isActive ? 'menu-fold' : 'menu-unfold'"
-      @click="toggleCollapsed"
-    />
+    <a-icon style="font-size: 17px; color: #000" :type="isActive ? 'menu-fold' : 'menu-unfold'" @click="toggleCollapsed" />
   </div>
 </template>
 

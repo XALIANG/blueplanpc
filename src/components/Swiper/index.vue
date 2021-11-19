@@ -15,13 +15,9 @@
     </div>
 </template>
 <script>
-import "swiper/css/swiper.css";
-import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
 export default {
 
     components: {
-        Swiper,
-        SwiperSlide,
     },
     props: {
         list: {

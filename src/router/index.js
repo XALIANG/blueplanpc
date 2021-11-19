@@ -58,6 +58,29 @@ export const constatRoutes = [
 
   },
   {
+    path: '/form',
+    component: Layout,
+    name: '表单面板',
+    meta: { title: '表单面板', type: 'container' },
+    redirect: '/form/formpanel',
+    children: [{
+      path: 'formpanel',
+      name: '表单设计',
+      component: () => import('@/views/form/index'),
+      meta: {
+        title: '表单设计', type: 'container'
+      }
+    }, {
+      path: 'baseform',
+      name: '基础表单',
+      // component: () => import('@/views/form/index'),
+      meta: {
+        title: '基础表单', type: 'container'
+      }
+    }]
+
+  },
+  {
     path: '/permission',
     component: Layout,
     name: '系统管理',

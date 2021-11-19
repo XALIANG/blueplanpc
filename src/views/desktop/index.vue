@@ -49,10 +49,10 @@
       </a-col>
     </a-row>
     <!-- 展示图 -->
-    <a-row class="swiper bg m-t-30" :gutter="20">
+    <!-- <a-row class="swiper bg m-t-30" :gutter="20">
       <a-col>
         <Swiper :list="photo" />
-      </a-col>
+      </a-col> -->
     </a-row>
     <!-- 动态列表 -->
     <a-row class="desktop-list m-t-30" :gutter="20">
@@ -61,14 +61,9 @@
         <a-divider />
         <a-list item-layout="horizontal" :data-source="data">
           <a-list-item slot="renderItem" slot-scope="item">
-            <a-list-item-meta
-              description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-            >
+            <a-list-item-meta description="Ant Design, a design language for background applications, is refined by Ant UED Team">
               <a slot="title" href="https://www.antdv.com/">{{ item.title }}</a>
-              <a-avatar
-                slot="avatar"
-                src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-              />
+              <a-avatar slot="avatar" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
             </a-list-item-meta>
           </a-list-item>
         </a-list>
