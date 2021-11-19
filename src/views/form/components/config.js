@@ -77,7 +77,7 @@ const configList = [
         size: 'mini',
         defaultValue: '',
         disabled: false,
-        labelWidth: '80px',
+         labelWidth: '80px',
         option: [
             {
                 label: '选择一',

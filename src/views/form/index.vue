@@ -1,15 +1,33 @@
 <template>
   <div id="form-container">
     <a-layout theme="light">
-      <a-layout-sider class="left_mode" theme="light">
-        <!-- 左侧组件类型面板 -->
-        <Draggable :formModel="formModel.formList" chosenClass="chosen" forceFallback="true" group="people" animation="1000" :move="moveCommand" @start="onStart" @end="onEnd">
-          <div class="dr-model-item" v-for="(item, i) in formModel.formList" :key="i">{{ item.name }}</div>
-        </Draggable>
+      <a-layout-sider theme="light">
+        <div class="left_mode">
+          <!-- 左侧组件类型面板 -->
+          <Draggable
+            v-model="formModel.formList"
+            chosenClass="chosen"
+            forceFallback="true"
+            :options="{ group: { name: 'site', pull: 'clone' }, sort: true }"
+            animation="1000"
+            @add="addCommand"
+            :move="moveCommand"
+            @start="onStart"
+            @end="onEnd"
+          >
+            <div
+              class="dr-model-item"
+              v-for="(item, i) in formModel.formList"
+              :key="i"
+            >{{ item.name }}</div>
+          </Draggable>
+        </div>
       </a-layout-sider>
       <!-- 中间视图面板 -->
       <a-layout-content>
-        <Container />
+        <div class="content">
+          <Container :list="list" />
+        </div>
       </a-layout-content>
       <!-- 右侧配置项 -->
       <a-layout-sider theme="light">Sider</a-layout-sider>
@@ -22,29 +40,44 @@ import Draggable from 'vuedraggable';
 import Container from './components/container/index';
 import FormConmponents from './components/config';
 export default {
+  name: "form",
   components: {
     Draggable,
     Container
   },
   data() {
     return {
-      formModel: ''
+      formModel: '',
+      selector: "",
+      list: []
     };
+  },
+  watch: {
+    list(val) {
+      console.log("val", val)
+    },
+    selector(val) {
+      console.log("val", val)
+      // this.$emit("activeChange", val)
+    }
   },
   created() {
     this.formModel = new FormConmponents();
   },
   methods: {
+    addCommand(e) {
+      console.log("拖拽e哦", e)
+    },
     moveCommand(e) {
       console.log(e);
     },
     //开始拖拽事件
     onStart(e) {
-     console.log(e,"开始拖拽")
+      console.log(e, "开始拖拽")
     },
     //拖拽结束事件
     onEnd(e) {
-     console.log(e,"结束拖拽")
+      console.log(e, "结束拖拽")
     }
   }
 };
@@ -54,8 +87,10 @@ export default {
 #form-container {
   height: 100%;
   overflow: hidden;
+  .content,
   .left_mode {
-    height: 100%;
+    height: 800px;
+    overflow: hidden;
   }
   .dr-model-item {
     width: 90px;
