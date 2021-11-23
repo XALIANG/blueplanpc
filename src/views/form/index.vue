@@ -4,33 +4,23 @@
       <a-layout-sider theme="light">
         <div class="left_mode">
           <!-- 左侧组件类型面板 -->
-          <Draggable
-            v-model="formModel.formList"
-            chosenClass="chosen"
-            forceFallback="true"
-            :options="{ group: { name: 'site', pull: 'clone' }, sort: true }"
-            animation="1000"
-            @add="addCommand"
-            :move="moveCommand"
-            @start="onStart"
-            @end="onEnd"
-          >
-            <div
-              class="dr-model-item"
-              v-for="(item, i) in formModel.formList"
-              :key="i"
-            >{{ item.name }}</div>
+          <Draggable v-model="formModel.formList" chosenClass="chosen" forceFallback="true" :options="{ group: { name: 'site', pull: 'clone' ,put:false}, sort: false }" animation="1000" @add="addCommand" :move="moveCommand" @start="onStart" @end="onEnd">
+            <div class="dr-model-item" v-for="(item, i) in formModel.formList" :key="i">{{ item.name }}</div>
           </Draggable>
         </div>
       </a-layout-sider>
       <!-- 中间视图面板 -->
-      <a-layout-content>
+      <a-layout-content  class="dr-viewer">
         <div class="content">
-          <Container :list="list" />
+          <a-form-model :label-col="{ span: 1 }" :wrapper-col="{ span: 14 }">
+            <Container root :list="list" />
+          </a-form-model>
         </div>
       </a-layout-content>
       <!-- 右侧配置项 -->
-      <a-layout-sider theme="light">Sider</a-layout-sider>
+      <a-layout-sider width="300" theme="light">
+        <ConfigItem />
+      </a-layout-sider>
     </a-layout>
   </div>
 </template>
@@ -39,11 +29,13 @@
 import Draggable from 'vuedraggable';
 import Container from './components/container/index';
 import FormConmponents from './components/config';
+import ConfigItem from './components/ConfigurationItem/index';
 export default {
   name: "form",
   components: {
     Draggable,
-    Container
+    Container,
+    ConfigItem
   },
   data() {
     return {
@@ -86,10 +78,11 @@ export default {
 <style lang="scss" scoped>
 #form-container {
   height: 100%;
-  overflow: hidden;
+  font-size: 12px;
+
   .content,
   .left_mode {
-    height: 800px;
+    height: 750px;
     overflow: hidden;
   }
   .dr-model-item {
@@ -102,4 +95,6 @@ export default {
     margin: 4px;
   }
 }
+
+
 </style>

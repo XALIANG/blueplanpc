@@ -34,6 +34,7 @@ import {
     Tree,
     Tooltip,
     Comment,
+    DatePicker,
     TreeSelect,
     ConfigProvider
 } from 'ant-design-vue';
@@ -41,6 +42,7 @@ Vue.use(Badge);
 Vue.use(Select);
 Vue.use(Col);
 Vue.use(Tag);
+Vue.use(DatePicker);
 Vue.use(Row);
 Vue.use(Button);
 Vue.use(Menu);

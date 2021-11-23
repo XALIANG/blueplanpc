@@ -72,3 +72,64 @@
 .r {
   float: right;
 }
+
+
+/*视图面板样式*/
+.dr-viewer {
+  height: 100%;
+  overflow: auto;
+  form {
+    height: 100%;
+  }
+}
+
+/*蒙版*/
+.mask {
+  position: relative;
+}
+
+.mask::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 14px;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+
+/*空白时显示拖拽提示*/
+.dr-empty::before {
+  content: '请拖入组件';
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  font-size: 25px;
+  color: #e5e5e5;
+  z-index: -1;
+}
+
+.dr-area {
+  min-height: 25px;
+  outline: 1px dashed #95a3b7;
+  width: 100%;
+  > .a-col {
+    padding: 4px 0;
+    > section {
+      min-height: 25px;
+      outline: 2px dashed #95a3b7;
+      height: 100%;
+    }
+  }
+  > div > .a-form-item {
+    margin-bottom: 14px;
+    width: calc(100% - 10px);
+    > .a-form-item__label, >.a-form-item__content {
+      line-height: 20px;
+    }
+  }
+}
+
+

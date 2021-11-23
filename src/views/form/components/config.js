@@ -7,13 +7,16 @@ const configList = [
         drag: [
             {
                 span: 8,
+                order: 4,
                 list: []
             },
             {
+                order: 3,
                 span: 8,
                 list: []
             },
             {
+                order: 4,
                 span: 8,
                 list: []
             }
@@ -24,7 +27,7 @@ const configList = [
         name: '输入框',
         size: 'mini',
         width: '200px',
-        defaultdefaultValue: '',
+        defaultValue: '',
         disabled: false,
         labelWidth: '80px',
         placeholder: '请输入'
@@ -32,8 +35,9 @@ const configList = [
         type: 'textarea',
         name: '文本域',
         size: 'mini',
+
         width: '200px',
-        defaultdefaultValue: '',
+        defaultValue: '',
         disabled: false,
         labelWidth: '80px',
         placeholder: '请输入文本'
@@ -62,6 +66,7 @@ const configList = [
         width: '200px',
         defaultValue: '',
         disabled: false,
+        dateType: "date",
         labelWidth: '80px',
         placeholder: '请选择日期'
     }, {
@@ -77,7 +82,7 @@ const configList = [
         size: 'mini',
         defaultValue: '',
         disabled: false,
-         labelWidth: '80px',
+        labelWidth: '80px',
         option: [
             {
                 label: '选择一',
