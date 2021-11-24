@@ -25,11 +25,11 @@ const configList = [
     {
         type: 'input',
         name: '输入框',
-        size: 'mini',
-        width: '200px',
+        size: 'default',
+        width: '200',
         defaultValue: '',
         disabled: false,
-        labelWidth: '80px',
+        labelWidth: '80',
         placeholder: '请输入'
     }, {
         type: 'textarea',
@@ -115,9 +115,45 @@ const configList = [
     }
 ];
 
+import encoder from "../encoder";
 class FormConmponents {
-    constructor(list = []) {
+    constructor(list = [], baseMap = {}) {
         this.formList = configList;
+        if (list.length >= 0) {
+            list.forEach(config => this.put(config));
+        }
+        this._encoder = new encoder(baseMap);
+    }
+    put(config) {
+        const index = this.__fn_search__(config.type)
+        if (index < 0) {
+            this.formList.push(config)
+        } else {
+            this.formList.splice(index, 1, config)
+        }
+    }
+
+    del(...types) {
+        types.forEach(type => {
+            const index = this.__fn_search__(type)
+            if (index >= 0) {
+                this.formList.splice(index, 1)
+            }
+        })
+    }
+
+    build(data) {
+        return this.__encoder__.build(data)
+    }
+
+    __fn_search__(type) {
+        return !type ? -1 : this.formList.findIndex(config => {
+            return type === config.type
+        })
+    }
+
+    get list() {
+        return this.formList
     }
 }
 

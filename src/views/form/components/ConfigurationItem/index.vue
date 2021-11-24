@@ -1,34 +1,77 @@
 <template>
   <div class="config-item">
-    <a-tabs default-active-key="1" @change="callback">
+    <a-tabs class="tabs" default-active-key="1" @change="callback">
       <a-tab-pane key="1" tab="数据结构">
-        Content of Tab Pane 1
+        <a-layout>
+          <div style="overflow: auto; width: 100%">
+            <pre class="fz-13" style="font-family: 'Courier New', serif; padding: 5px">
+                  {{ json }}
+              </pre
+            >
+          </div>
+        </a-layout>
       </a-tab-pane>
       <a-tab-pane key="2" tab="配置项" force-render>
-        Content of Tab Pane 2
+        <Property v-if="selector" :data.sync="selector" />
       </a-tab-pane>
       <a-tab-pane key="3" tab="代码生成">
-        Content of Tab Pane 3
+        <div class="flex">
+          <a-button @click="generator">生成代码</a-button>
+          <a-button>预览</a-button>
+        </div>
       </a-tab-pane>
     </a-tabs>
   </div>
 </template>
 <script>
+import Property from '../property/index';
+import formatter from 'vue-beautify';
+import FormConmponents from '../config';
+
 export default {
-  name: "configItem",
+  name: 'configItem',
+  components: { Property, formatter },
+  props: {
+    list: Array,
+    selector: Object
+  },
   data() {
-    return {};
+    return {
+      template: undefined,
+      modeler: {}
+    };
+  },
+  created() {
+    this.modeler = new FormConmponents();
+  },
+  computed: {
+    json() {
+      return JSON.stringify(this.list, null, 2);
+    }
   },
   methods: {
     callback(key) {
       console.log(key);
     },
-  },
+    handleCode() {
+      const buildMap = this.modeler._encoder.build(this.list);
+      const dataStr = JSON.stringify(buildMap.data()).replace(/"([^"]+)":/g, '$1:');
+      const code = `<template>${buildMap.template}</template><script>export default { data() { return ${dataStr} }}${'</'}script><style></style>`;
+      return formatter(code);
+    },
+    generator() {
+      this.template = this.handleCode();
+      this.$emit('onHandCodeTenplate', this.template);
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-.config-item{
-    padding: 10px;
+.config-item {
+  width: 100%;
+  padding: 5px;
+  height: 750px;
+  overflow: auto;
 }
 </style>

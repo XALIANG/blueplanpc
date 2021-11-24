@@ -10,14 +10,16 @@ import VueStorage from 'vue-ls';
 import './plugins/antdesign';
 import './permission';
 import i18n from './lang';// i18n
-import bootstrap from './core/bootstrap'
+import bootstrap from './core/bootstrap';
 import * as filters from './filters';
-import WbeSocket from "./components/Socket/index"
+import WbeSocket from "./components/Socket/index";
 import { uuid } from "./utils/index";
+import highlight from '@/plugins/highlight';
 Vue.config.productionTip = false;
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key]);
 });
+Vue.use(highlight)  
 Vue.use(VueStorage, config.storageOptions)
 // Vue.use(new Socketio({
 //   debug: false,

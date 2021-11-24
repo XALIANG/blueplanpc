@@ -74,10 +74,17 @@
 }
 
 
+.flex {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
 /*视图面板样式*/
 .dr-viewer {
   height: 100%;
   overflow: auto;
+
   form {
     height: 100%;
   }
@@ -115,21 +122,98 @@
   min-height: 25px;
   outline: 1px dashed #95a3b7;
   width: 100%;
-  > .a-col {
+
+  >.a-col {
     padding: 4px 0;
-    > section {
+
+    >section {
       min-height: 25px;
       outline: 2px dashed #95a3b7;
       height: 100%;
     }
   }
-  > div > .a-form-item {
+
+  >div>.a-form-item {
     margin-bottom: 14px;
     width: calc(100% - 10px);
-    > .a-form-item__label, >.a-form-item__content {
+
+    >.a-form-item__label,
+    >.a-form-item__content {
       line-height: 20px;
     }
   }
 }
 
 
+/*激活域*/
+.dr-active {
+  outline: 1px solid #0d95e8;
+  border: 1px solid #0d95e8;
+  position: relative;
+
+  >.a-icon-rank,
+  >.a-icon-document-copy,
+  >.delete-icon {
+    z-index: 100;
+    color: white;
+    background-color: #0d95e8;
+    position: absolute;
+    font-size: 14px;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+  }
+
+  >.a-icon-rank {
+    cursor: move;
+    display: block;
+    left: -2px;
+    top: -2px;
+  }
+
+  >.a-icon-document-copy {
+    cursor: pointer;
+    display: block;
+    right: 14px;
+    top: -2px;
+  }
+
+  >.delete-icon {
+    cursor: pointer;
+    display: block;
+    right: -2px;
+    top: -2px;
+  }
+}
+
+
+// 配置项
+.a-param_item {
+  height: 100%;
+  padding-top: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow: auto;
+  .a-input {
+    width: 170px;
+  }
+  .dr-param_item_col {
+    width: 100px;
+  }
+  .dr-param_item_gutter {
+    width: 80px;
+    margin-right: 8px;
+  }
+  .a-button {
+    margin-left: 2px;
+  }
+  .dr-param_option-key {
+    width: 150px;
+    margin-left: 10px;
+  }
+  .dr-param_option-value {
+    width: 70px;
+    margin-left: 10px;
+  }
+}
