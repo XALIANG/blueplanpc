@@ -47,7 +47,7 @@
           <a-button type="primary" @click="data.drag.splice(data.drag.length - 1, 0, { span: 8, list: [] })">添加列</a-button>
         </a-form-model-item>
         <a-form-model-item v-for="(item, index) in data.drag" :label="'列' + (index + 1)" :key="index">
-          <a-input type="number" class="" v-model.number="item.span" />
+          <a-input type="number" class="dr-param_item_col" v-model.number="item.span" />
           <a-button @click="data.drag.splice(index, 1)">删除</a-button>
         </a-form-model-item>
       </div>
@@ -68,6 +68,40 @@
           <a-button type="primary" @click="data.option.splice(data.option.length + 1, 0, { label: '选项' + (data.option.length + 1), value: `${data.option.length + 1}` })">添加元素</a-button>
         </a-form-model-item>
       </div>
+
+      <!-- ===== 其他配置 ===== -->
+      <div v-if="data.type === 'table'">
+        <a-divider orientation="left">表格</a-divider>
+        <a-form-model-item label="选择列">
+          <a-select style="width:200px;" v-model="index" placeholder="size" @change="change(data.column)">
+            <a-select-option v-for="(table, index) in data.column" :key="index" :value="index">{{ table.label }}</a-select-option>
+          </a-select>
+          <a-button @click="reset">清除</a-button>
+        </a-form-model-item>
+
+        <div class="table_item_param">
+          <a-form-model-item label="固定">
+            <a-select :allowClear="true" style="width:200px;" v-model="column.fixed" placeholder="请选择">
+              <a-select-option value="left">Left</a-select-option>
+              <a-select-option value="right">Right</a-select-option>
+            </a-select>
+          </a-form-model-item>
+
+          <a-form-model-item label="列名">
+            <a-input style="width:200px;" v-model="column.label" />
+          </a-form-model-item>
+          <a-form-model-item label="宽度">
+            <a-input style="width:200px;" v-model="column.width" />
+          </a-form-model-item>
+          <a-form-model-item label="字段名">
+            <a-input style="width: 200px" v-model="column.prop" />
+            <a-button v-if="index !== ''" type="info" @click="del(data.column)">删除</a-button>
+          </a-form-model-item>
+        </div>
+        <a-form-model-item style="float: right" v-if="index === ''">
+          <a-button type="primary" @click="add(data.column)">添加</a-button>
+        </a-form-model-item>
+      </div>
     </a-layout>
   </div>
 </template>
@@ -79,11 +113,57 @@ export default {
         return true;
       }
     }
+  },
+  data() {
+    return {
+      index: '',
+      column: {}
+    };
+  },
+  methods: {
+    activeChange() {
+      this.index = '';
+      this.column = {};
+    },
+    reset() {
+      this.index = '';
+      this.column = {};
+    },
+    change(val) {
+      if (this.index === '') {
+        this.column = {};
+      } else {
+        this.column = val[this.index];
+      }
+    },
+    del(val) {
+      if (this.index !== '') {
+        val.splice(this.index, 1);
+        this.index = '';
+      }
+    },
+    add(val) {
+      console.log(this.column, val[val.length - 1]);
+      const data = {
+        fixed: this.column.field || '',
+        label: this.column.label || '',
+        width: this.column.width || '',
+        prop: this.column.prop || ''
+      };
+      val.splice(val.length, 0, data);
+      this.column = {};
+    }
   }
 };
 </script>
 <style lang="scss" scoped>
 .property {
   height: 100%;
+}
+.table_item_param {
+  width: 100%;
+  border: 1px solid silver;
+  margin-bottom: 5px;
+  padding: 10px;
 }
 </style>

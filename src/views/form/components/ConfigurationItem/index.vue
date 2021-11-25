@@ -17,7 +17,7 @@
       <a-tab-pane key="3" tab="代码生成">
         <div class="flex">
           <a-button @click="generator">生成代码</a-button>
-          <a-button>预览</a-button>
+          <a-button @click="previewer">预览</a-button>
         </div>
       </a-tab-pane>
     </a-tabs>
@@ -27,6 +27,7 @@
 import Property from '../property/index';
 import formatter from 'vue-beautify';
 import FormConmponents from '../config';
+import table from '../../table';
 
 export default {
   name: 'configItem',
@@ -41,8 +42,14 @@ export default {
       modeler: {}
     };
   },
+  watch: {
+    selector(val) {
+      this.$emit('activeChange', val);
+    }
+  },
   created() {
-    this.modeler = new FormConmponents();
+    this.modeler = new FormConmponents(table.button, table.build);
+    console.log(this.modeler);
   },
   computed: {
     json() {
@@ -62,6 +69,9 @@ export default {
     generator() {
       this.template = this.handleCode();
       this.$emit('onHandCodeTenplate', this.template);
+    },
+    previewer() {
+      this.$emit('onHandViewComponent', this.modeler._encoder.build(this.list));
     }
   }
 };

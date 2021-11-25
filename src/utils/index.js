@@ -95,7 +95,7 @@ export class OUtil {
 export function exportFile(name, data) {
     const urlKit = window.URL || window.webkitURL || window
     const blob = new Blob([data])
-    const link = document.createElementNS("", "a")
+    const link = document.createElementNS("http://www.w3.org/1999/xhtml", "a")
     link.href = urlKit.createObjectURL(blob)
     link.download = name
     const event = document.createEvent("MouseEvents")

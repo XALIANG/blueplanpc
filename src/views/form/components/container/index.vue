@@ -1,6 +1,6 @@
 <template>
   <a-layout :class="{ 'dr-container': true, 'dr-empty': root && list.length === 0 }">
-    <Draggable v-model="list" tag="div" ghostClass="dr-placeholder" handle=".dr-mover" :list="list" @add="addCommand" group="site" animation="300">
+    <Draggable :move="moveCommand" v-model="list" tag="div" ghostClass="dr-placeholder" :list="list" @add="addCommand" group="site" animation="300" @start="onStart" @end="onEnd">
       <template class="t" v-for="(item, index) in list">
         <!-- 栅格布局 -->
         <a-layout v-if="item.type === 'layout'" :key="item.key">
@@ -32,8 +32,8 @@
           >
             <div style="overflow: auto">
               <a-icon @click.stop="closeCommand(index)" class="delete-icon" type="delete" />
-              <a-form-model-item :label-width="item.labelWidth + 'px'" :size="item.size" :label="item.name">
-                <a-input :size="item.size" :style="{ width: item.width + 'px' }" :disabled="item.disabled" :placeholder="item.placeholder" />
+              <a-form-model-item :label-width="item.labelWidth" :size="item.size" :label="item.name">
+                <a-input :size="item.size" :style="{ width: item.width }" :disabled="item.disabled" :placeholder="item.placeholder" />
               </a-form-model-item>
             </div>
           </div>
@@ -164,6 +164,15 @@
             </div>
           </div>
         </div>
+        <!-- 自定义组件 -->
+        <div v-else-if="map[item.type]" :key="item.key" style="margin: 2px">
+          <div :class="{ 'dr-area mask': true, 'dr-active': localSelector && localSelector.key === item.key }" @click.stop="selectCommand(index)">
+            <a-icon @click.stop="closeCommand(index)" class="delete-icon" type="delete" />
+            <div style="overflow: auto">
+              <component v-bind:is="map[item.type]" :item="item" />
+            </div>
+          </div>
+        </div>
       </template>
     </Draggable>
   </a-layout>
@@ -229,9 +238,23 @@ export default {
     closeCommand(index) {
       this.list.splice(index, 1);
     },
+    moveCommand(e) {
+      // 目标是容器不可拖入
+      // console.log('来源', e.draggedContext.element.type)
+      if (e.relatedContext.element && e.relatedContext.element.type === 'container') {
+        return false;
+      }
+
+      // 布局容器不允许容器停靠
+      if (e.draggedContext.element.type === 'container' && e.relatedContext.element) {
+        return false;
+      }
+    },
     selectCommand(index) {
       this.localSelector = this.list[index];
-    }
+    },
+    onStart() {},
+    onEnd() {}
   }
 };
 </script>

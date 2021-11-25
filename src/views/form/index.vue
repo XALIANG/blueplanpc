@@ -13,16 +13,18 @@
       <a-layout-content class="dr-viewer">
         <div class="content">
           <a-form-model :label-col="{ span: 1 }" :wrapper-col="{ span: 14 }">
-            <Container :selector.sync="selector" root :list="list" />
+            <Container :selector.sync="selector" root :list="list" :map="viewer" />
           </a-form-model>
         </div>
       </a-layout-content>
       <!-- 右侧配置项 -->
       <a-layout-sider width="300" theme="light">
-        <ConfigItem :list="list" @onHandCodeTenplate="openPreviewBox" :selector.sync="selector" />
+        <ConfigItem :list="list" @onHandCodeTenplate="openPreviewBox" @onHandViewComponent="openPreview" :selector.sync="selector" />
       </a-layout-sider>
       <!-- 预览代码 -->
-      <Previewbox ref="Previewbox" :title="'代码展示'" />
+      <Previewbox :showType="type" ref="Previewbox" :title="'代码展示'" />
+      <!-- 预览组件 -->
+      <Previewbox :showType="type" ref="viewComponents" :title="'预览组件'" />
     </a-layout>
   </div>
 </template>
@@ -33,6 +35,7 @@ import { Previewbox } from '../../components/index';
 import Container from './components/container/index';
 import FormConmponents from './components/config';
 import ConfigItem from './components/ConfigurationItem/index';
+import table from './table';
 export default {
   name: 'form',
   components: {
@@ -45,21 +48,29 @@ export default {
     return {
       formModel: '',
       selector: undefined,
-      list: []
+      list: [],
+      viewer: table.viewer,
+      type: ''
     };
   },
   watch: {
     selector(val) {
       console.log('val', val);
-      this.$emit('activeChange', val);
+     
     }
   },
   created() {
-    this.formModel = new FormConmponents();
+    this.formModel = new FormConmponents(table.button, table.build);
+    console.log(this.formModel);
   },
   methods: {
     openPreviewBox(template) {
+      this.type = 'view_code';
       this.$refs.Previewbox.openSetPreview(template);
+    },
+    openPreview(res) {
+      this.type = 'view_component';
+      this.$refs.viewComponents.obtainComponentTemplate(res);
     },
     addCommand(e) {
       console.log('拖拽e哦', e);

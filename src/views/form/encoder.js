@@ -64,7 +64,7 @@ map.layout = layout
  */
 function input(data, _bind_) {
     let bind = fnBind(data, _bind_)
-    return `<a-form-model-item size='${data.size}' label='${data.name}'><el-input ${bind ? 'v-model="' + pre + data.value + '"' : ''} style='width: ${data.width}' id='${data.key}' ${data.disabled ? 'disabled' : ''} placeholder='${data.placeholder}'/></a-form-model-item>`
+    return `<a-form-model-item size='${data.size}' label='${data.name}'><a-input ${bind ? 'v-model="' + pre + data.value + '"' : ''} style='width: ${data.width}' id='${data.key}' ${data.disabled ? 'disabled' : ''} placeholder='${data.placeholder}'/></a-form-model-item>`
 }
 map.input = input
 
@@ -89,7 +89,7 @@ map.select = select
  */
 function date(data, _bind_) {
     let bind = fnBind(data, _bind_)
-    return `<a-form-model-item size='${data.size}' label='${data.name}'><el-date-picker ${bind ? 'v-model="' + pre + data.value + '"' : ''} style='width: ${data.width}' id='${data.key}' ${data.disabled ? 'disabled' : ''} type="date" placeholder='${data.placeholder}'/></a-form-model-item>`
+    return `<a-form-model-item size='${data.size}' label='${data.name}'><a-date-picker ${bind ? 'v-model="' + pre + data.value + '"' : ''} style='width: ${data.width}' id='${data.key}' ${data.disabled ? 'disabled' : ''} type="date" placeholder='${data.placeholder}'/></a-form-model-item>`
 }
 map.date = date
 

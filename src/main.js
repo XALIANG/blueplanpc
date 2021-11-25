@@ -19,7 +19,7 @@ Vue.config.productionTip = false;
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key]);
 });
-Vue.use(highlight)  
+Vue.use(highlight);
 Vue.use(VueStorage, config.storageOptions)
 // Vue.use(new Socketio({
 //   debug: false,

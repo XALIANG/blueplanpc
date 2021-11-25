@@ -26,10 +26,10 @@ const configList = [
         type: 'input',
         name: '输入框',
         size: 'default',
-        width: '200',
+        width: '200px',
         defaultValue: '',
         disabled: false,
-        labelWidth: '80',
+        labelWidth: '80px',
         placeholder: '请输入'
     }, {
         type: 'textarea',
@@ -145,7 +145,7 @@ class FormConmponents {
     build(data) {
         return this.__encoder__.build(data)
     }
-
+    // 去重操作
     __fn_search__(type) {
         return !type ? -1 : this.formList.findIndex(config => {
             return type === config.type
