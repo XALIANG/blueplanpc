@@ -14,10 +14,28 @@
             <a-row class="row" :gutter="item.gutter" type="flex" style="margin: 2px">
               <a-icon @click.stop="closeCommand(index)" class="delete-icon" type="delete" />
               <a-col v-for="(drg, i) in item.drag" :key="i" :span="drg.span" :order="item.order">
-                <!-- <container :map="map" :data="drg.list" /> -->
+                <container :selector.sync="localSelector" :map="map" :data="drg.list" />
               </a-col>
             </a-row>
           </div>
+        </a-layout>
+
+        <a-layout v-else-if="item.type === 'layout'" :key="item.key">
+          <a-row
+            @click="closeCommand(index)"
+            :class="{
+              'dr-area': true,
+              'dr-active': localSelector && localSelector.key === item.key
+            }"
+            style="margin: 2px"
+            :gutter="item.gutter"
+            type="flex"
+            @click.native.stop="selectCommand(index)"
+          >
+            <a-col v-for="(it, index) in item.drag" :key="index" :span="it.span">
+              <container :map="map" :selector.sync="localSelector" :data="it.list" />
+            </a-col>
+          </a-row>
         </a-layout>
 
         <!-- 输入框 -->
@@ -293,6 +311,16 @@ export default {
     border: 1px solid #95a3b7;
     min-height: 25px;
     outline: 1px dashed #95a3b7;
+  }
+}
+
+.dr-placeholder {
+  background-color: slateblue;
+  height: 3px;
+  max-height: 3px;
+  font-size: 0;
+  > * {
+    display: none;
   }
 }
 </style>
