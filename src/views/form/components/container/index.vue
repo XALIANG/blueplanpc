@@ -14,7 +14,7 @@
             <a-row class="row" :gutter="item.gutter" type="flex" style="margin: 2px">
               <a-icon @click.stop="closeCommand(index)" class="delete-icon" type="delete" />
               <a-col v-for="(drg, i) in item.drag" :key="i" :span="drg.span" :order="item.order">
-                <container :selector.sync="localSelector" :map="map" :data="drg.list" />
+                <container :selector.sync="localSelector" :map="map" :list="drg.list" />
               </a-col>
             </a-row>
           </div>

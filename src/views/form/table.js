@@ -66,15 +66,15 @@ export default {
             return `<el-link type="primary">${data.name}</el-link>`
         },
         table: function (data, _bind_, _fn_bind_) {
-            const item = function(list) {
+            const item = function (list) {
                 let html = ''
                 list.forEach(item => {
-                    html += `<a-table-column ${item.prop ? ":prop='" + item.prop + "'":""} fixed="${item.fixed}" label="${item.label}" width="${item.width}" />`
+                    html += `<a-table-column ${item.prop ? ":prop='" + item.prop + "'" : ""} fixed="${item.fixed}" label="${item.label}" width="${item.width}" />`
                 })
                 return html
             }
             let bind = _fn_bind_(data, _bind_, () => [])
-            return `<a-table size="${data.size}" border ${bind?':data="data.' + data.value + '"' : ''} style="width: ${data.width}">${item(data.column)}</a-table>`
+            return `<a-table size="${data.size}" border ${bind ? ':data="data.' + data.value + '"' : ''} style="width: ${data.width}">${item(data.column)}</a-table>`
         }
     }
 }

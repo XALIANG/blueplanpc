@@ -143,7 +143,7 @@ class FormConmponents {
     }
 
     build(data) {
-        return this.__encoder__.build(data)
+        return this._encoder.build(data)
     }
     // 去重操作
     __fn_search__(type) {

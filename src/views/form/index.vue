@@ -56,11 +56,10 @@ export default {
   watch: {
     selector(val) {
       console.log('val', val);
-     
     }
   },
   created() {
-    this.formModel = new FormConmponents(table.button, table.build);
+    this.formModel = new FormConmponents();
     console.log(this.formModel);
   },
   methods: {

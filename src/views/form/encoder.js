@@ -145,9 +145,22 @@ function textarea(data, _bind_) {
     let bind = fnBind(data, _bind_)
     return `<a-form-model-item size='${data.size}' label='${data.name}'><a-input resize='none' id='${data.key}' ${bind ? 'v-model="' + pre + data.value + '"' : ''} style='width: ${data.width}' type="textarea" placeholder='${data.placeholder}'/></a-form-model-item>`
 }
+
 map.textarea = textarea
 
 
+function table(data, _bind_, _fn_bind_) {
+    const item = function (list) {
+        let html = ''
+        list.forEach(item => {
+            html += `<a-table-column ${item.prop ? ":prop='" + item.prop + "'" : ""} fixed="${item.fixed}" label="${item.label}" width="${item.width}" />`
+        })
+        return html
+    }
+    let bind = _fn_bind_(data, _bind_, () => [])
+    return `<a-table size="${data.size}" border ${bind ? ':data="data.' + data.value + '"' : ''} style="width: ${data.width}">${item(data.column)}</a-table>`
+}
+map.table = table
 
 class encoder {
     constructor(map = {}) {
