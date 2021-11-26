@@ -6,10 +6,16 @@ const state = {
 
 };
 const mutations = {
-   
+
+    SET_USER_INFO: (state, user) => {
+        state.userForm = user;
+    }
+
 };
 const actions = {
-   
+    setUserInfo({ commit }, user) {
+        commit('SET_USER_INFO', user);
+    }
 };
 
 export default {

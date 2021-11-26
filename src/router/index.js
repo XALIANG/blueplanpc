@@ -22,12 +22,18 @@ export const constatRoutes = [
   {
     path: '/register',
     component: () => import('@/views/userRegister/index'),
-    hidden: true
+    hidden: true,
+    meta: {
+      title: '注册',
+    }
   },
   {
     path: '/login',
     component: () => import('@/views/userLogin/index'),
-    hidden: true
+    hidden: true,
+    meta: {
+      title: '登录',
+    }
   },
   {
     path: '/',
@@ -53,6 +59,22 @@ export const constatRoutes = [
       component: () => import('@/views/workplace/index'),
       meta: {
         title: '工作计划', type: 'laptop'
+      }
+    }]
+
+  },
+  {
+    path: '/flowchart',
+    component: Layout,
+    name: '工作',
+    meta: { title: '工作', type: 'settings' },
+    redirect: '/process/flowchart',
+    children: [{
+      path: 'flowchart',
+      name: '想象空间',
+      component: () => import('@/views/flowchart/index'),
+      meta: {
+        title: '想象空间', type: 'sketch'
       }
     }]
 
