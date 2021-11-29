@@ -10,11 +10,11 @@
         <!-- avatar -->
         <div class="avatar">
           <div class="m-r-20">
-            <img src="../../assets/image/626.png" />
+            <img :src="userForm.headPortrait" />
           </div>
           <div class="content">
-            <p class="fz-20">早安，YOUNAME ，祝你开心每一天！</p>
-            <p>字节跳动－某某某事业群－某某平台部－某某技术部－LL</p>
+            <p class="fz-20">早安，{{userForm.userName}} ，祝你开心每一天！</p>
+            <p>字节跳动－某某某事业群－某某平台部－某某技术部－Gavin</p>
           </div>
         </div>
         <div class="probject">
@@ -76,9 +76,13 @@
 
 <script>
 import { CardList } from '@/components/index';
+import { mapGetters } from 'vuex';
 export default {
   components: {
     CardList
+  },
+  computed: {
+    ...mapGetters(['userForm'])
   }
 };
 </script>

@@ -23,10 +23,6 @@
           <a-menu-item>
             <a @click="showDrawer" href="javascript:;">留言</a>
           </a-menu-item>
-
-          <a-menu-item>
-            <a @click="showSetUp" href="javascript:;">设置</a>
-          </a-menu-item>
         </a-menu>
       </a-dropdown>
     </div>
@@ -48,37 +44,36 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import { mixinUser } from "../../../utils/mixin";
+import { mapGetters } from 'vuex';
+import { mixinUser } from '../../../utils/mixin';
 export default {
   mixins: [mixinUser],
   props: {
     color: {
       type: String,
-      default: "",
-    },
+      default: ''
+    }
   },
   data() {
     return {
       visible: false,
-      placement: "right",
-      setUp: false,
+      placement: 'right',
+      setUp: false
     };
   },
   components: {},
   computed: {
-    ...mapGetters(["userForm"]),
+    ...mapGetters(['userForm'])
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
     loginOut() {
-      sessionStorage.removeItem("token");
-      sessionStorage.removeItem("userForm");
-      this.$router.push("/login");
+      sessionStorage.removeItem('token');
+      sessionStorage.removeItem('userForm');
+      this.$router.push('/login');
     },
     cllapsed() {
-      this.$store.dispatch("app/toggleSideBar");
+      this.$store.dispatch('app/toggleSideBar');
     },
     showDrawer() {
       this.visible = true;
@@ -94,9 +89,9 @@ export default {
       this.placement = e.target.value;
     },
     onchangeSetUpDrak(checked) {
-      this.$store.dispatch("app/openDark", checked);
-    },
-  },
+      this.$store.dispatch('app/openDark', checked);
+    }
+  }
 };
 </script>
 
