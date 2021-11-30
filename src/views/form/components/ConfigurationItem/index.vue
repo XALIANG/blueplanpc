@@ -71,7 +71,7 @@ export default {
       this.$emit('onHandCodeTenplate', this.template);
     },
     previewer() {
-      this.$emit('onHandViewComponent', this.modeler._encoder.build(this.list));
+      this.$emit('onHandViewComponent', this.list);
     }
   }
 };

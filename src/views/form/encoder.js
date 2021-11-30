@@ -184,7 +184,7 @@ class encoder {
         }
         const local = {}
         return {
-            template: `<a-layout><a-form-model style='width: 100%' :model='${pre.substr(0, pre.length - 1)}' label-width='80px'>${fnBuild(data, local, fnBind, fnBuild)}</a-form-model></a-layout>`,
+            template: `<a-layout><a-form-model style='width: 100%' :model='${pre.substr(0, pre.length - 1)}' :label-col="{ span: 4 }" :wrapper-col="{ span: 14 }">${fnBuild(data, local, fnBind, fnBuild)}</a-form-model></a-layout>`,
             data() {
                 return {
                     data: local

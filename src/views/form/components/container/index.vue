@@ -2,52 +2,31 @@
   <a-layout :class="{ 'dr-container': true, 'dr-empty': root && list.length === 0 }">
     <Draggable :move="moveCommand" v-model="list" tag="div" ghostClass="dr-placeholder" :list="list" @add="addCommand" group="site" animation="300" @start="onStart" @end="onEnd">
       <template class="t" v-for="(item, index) in list">
+        <!-- 容器 -->
+        <div v-if="item.type === 'container'" :key="item.key" style="margin: 2px; height: calc(100% - 5px)">
+          <div :class="{ 'dr-area': true, 'dr-active': localSelector && localSelector.key === item.key }" style="height: 100%" @click.stop="selectCommand(index)">
+            <i class="el-icon-close" @click="closeCommand(index)" />
+            <a-layout style="height: 100%; padding: 4px">
+              <container :map="map" :selector.sync="localSelector" :list="item.drag" />
+            </a-layout>
+          </div>
+        </div>
+
         <!-- 栅格布局 -->
-        <a-layout v-if="item.type === 'layout'" :key="item.key">
-          <div
-            :class="{
-              'dr-area': true,
-              'dr-active': localSelector && localSelector.key === item.key
-            }"
-            @click.stop="selectCommand(index)"
-          >
-            <a-row class="row" :gutter="item.gutter" type="flex" style="margin: 2px">
+        <div v-else-if="item.type === 'layout'" :key="item.key">
+          <div @click.stop="selectCommand(index)">
+            <a-row :class="{ 'dr-area': true, 'dr-active': localSelector && localSelector.key === item.key }" style="margin: 2px" type="flex">
               <a-icon @click.stop="closeCommand(index)" class="delete-icon" type="delete" />
               <a-col v-for="(drg, i) in item.drag" :key="i" :span="drg.span" :order="item.order">
                 <container :selector.sync="localSelector" :map="map" :list="drg.list" />
               </a-col>
             </a-row>
           </div>
-        </a-layout>
-
-        <a-layout v-else-if="item.type === 'layout'" :key="item.key">
-          <a-row
-            @click="closeCommand(index)"
-            :class="{
-              'dr-area': true,
-              'dr-active': localSelector && localSelector.key === item.key
-            }"
-            style="margin: 2px"
-            :gutter="item.gutter"
-            type="flex"
-            @click.native.stop="selectCommand(index)"
-          >
-            <a-col v-for="(it, index) in item.drag" :key="index" :span="it.span">
-              <container :map="map" :selector.sync="localSelector" :data="it.list" />
-            </a-col>
-          </a-row>
-        </a-layout>
+        </div>
 
         <!-- 输入框 -->
         <div v-else-if="item.type === 'input'" :key="item.key" style="margin: 2px">
-          <div
-            @click.stop="selectCommand(index)"
-            :class="{
-              'dr-area': true,
-              'dr-active': localSelector && localSelector.key === item.key
-            }"
-            style="height: 100%"
-          >
+          <div @click.stop="selectCommand(index)" :class="{ 'dr-area': true, 'dr-active': localSelector && localSelector.key === item.key }" style="height: 100%">
             <div style="overflow: auto">
               <a-icon @click.stop="closeCommand(index)" class="delete-icon" type="delete" />
               <a-form-model-item :label-width="item.labelWidth" :size="item.size" :label="item.name">
@@ -58,16 +37,8 @@
         </div>
 
         <!-- 开关 -->
-        <div v-else-if="item.type === 'switch'" :key="(item, key)" style="margin: 2px">
-          <div
-            :class="{
-              'dr-area': true,
-              'dr-active': localSelector && localSelector.key === item.key
-            }"
-            @click.stop="selectCommand(index)"
-            class="dr-area"
-            style="height: 100%"
-          >
+        <div v-else-if="item.type === 'switch'" :key="item.key" style="margin: 2px">
+          <div :class="{ 'dr-area': true, 'dr-active': localSelector && localSelector.key === item.key }" @click.stop="selectCommand(index)" class="dr-area" style="height: 100%">
             <div style="overflow: auto">
               <a-icon @click.stop="closeCommand(index)" class="delete-icon" type="delete" />
               <a-form-model-item :label-width="item.labelWidth" :size="item.size" :label="item.name">
@@ -79,15 +50,7 @@
 
         <!-- 选择框 -->
         <div v-else-if="item.type === 'select'" :key="item.key" style="margin: 2px">
-          <div
-            :class="{
-              'dr-area': true,
-              'dr-active': localSelector && localSelector.key === item.key
-            }"
-            @click.stop="selectCommand(index)"
-            class="dr-area"
-            style="height: 100%"
-          >
+          <div :class="{ 'dr-area': true, 'dr-active': localSelector && localSelector.key === item.key }" @click.stop="selectCommand(index)" class="dr-area" style="height: 100%">
             <div style="overflow: auto">
               <a-icon @click.stop="closeCommand(index)" class="delete-icon" type="delete" />
               <a-form-model-item :label-width="item.labelWidth" :size="item.size" :label="item.name">
@@ -101,15 +64,7 @@
 
         <!-- 单选 -->
         <div v-else-if="item.type === 'radio'" :key="item.key" style="margin: 2px">
-          <div
-            :class="{
-              'dr-area': true,
-              'dr-active': localSelector && localSelector.key === item.key
-            }"
-            @click.stop="selectCommand(index)"
-            class="dr-area"
-            style="height: 100%"
-          >
+          <div :class="{ 'dr-area': true, 'dr-active': localSelector && localSelector.key === item.key }" @click.stop="selectCommand(index)" class="dr-area" style="height: 100%">
             <div style="overflow: auto">
               <a-icon @click.stop="closeCommand(index)" class="delete-icon" type="delete" />
               <a-form-model-item :label-width="item.labelWidth" :size="item.size" :label="item.name">
@@ -123,15 +78,7 @@
 
         <!-- 多选 -->
         <div v-else-if="item.type === 'checkbox'" :key="item.key" style="margin: 2px">
-          <div
-            :class="{
-              'dr-area': true,
-              'dr-active': localSelector && localSelector.key === item.key
-            }"
-            @click.stop="selectCommand(index)"
-            class="dr-area"
-            style="height: 100%"
-          >
+          <div :class="{ 'dr-area': true, 'dr-active': localSelector && localSelector.key === item.key }" @click.stop="selectCommand(index)" class="dr-area" style="height: 100%">
             <div style="overflow: auto">
               <a-icon @click.stop="closeCommand(index)" class="delete-icon" type="delete" />
               <a-form-model-item :label-width="item.labelWidth" :size="item.size" :label="item.name">
@@ -145,15 +92,7 @@
 
         <!-- 文本域 -->
         <div v-else-if="item.type === 'textarea'" style="margin: 2px" :key="item.key">
-          <div
-            :class="{
-              'dr-area': true,
-              'dr-active': localSelector && localSelector.key === item.key
-            }"
-            @click.stop="selectCommand(index)"
-            class="dr-area"
-            style="height: 100%"
-          >
+          <div :class="{ 'dr-area': true, 'dr-active': localSelector && localSelector.key === item.key }" @click.stop="selectCommand(index)" class="dr-area" style="height: 100%">
             <div style="overflow: auto">
               <a-icon @click.stop="closeCommand(index)" class="delete-icon" type="delete" />
               <a-form-model-item :label-width="item.labelWidth" :size="item.size" :label="item.name">
@@ -164,15 +103,7 @@
         </div>
 
         <!-- 日期 -->
-        <div
-          :class="{
-            'dr-area': true,
-            'dr-active': localSelector && localSelector.key === item.key
-          }"
-          v-else-if="item.type === 'date'"
-          :key="index"
-          style="margin: 2px"
-        >
+        <div :class="{ 'dr-area': true, 'dr-active': localSelector && localSelector.key === item.key }" v-else-if="item.type === 'date'" :key="index" style="margin: 2px">
           <div @click.stop="selectCommand(index)" class="dr-area" style="height: 100%">
             <div style="overflow: auto">
               <a-icon @click.stop="closeCommand(index)" class="delete-icon" type="delete" />

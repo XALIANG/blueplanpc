@@ -1,4 +1,4 @@
-<template>
+d<template>
   <div id="form-container">
     <a-layout theme="light">
       <a-layout-sider theme="light">
@@ -12,8 +12,10 @@
       <!-- 中间视图面板 -->
       <a-layout-content class="dr-viewer">
         <div class="content">
-          <a-form-model :label-col="{ span: 1 }" :wrapper-col="{ span: 14 }">
-            <Container :selector.sync="selector" root :list="list" :map="viewer" />
+          <a-form-model :label-col="{ span: 2 }" :wrapper-col="{ span: 14 }">
+            <!-- 数据模型 -->
+            <Container :selector.sync="selector" root :list="list" :map="viewer" style="height: calc(100% - 5px);" />
+            <!-- 样式布局 -->
           </a-form-model>
         </div>
       </a-layout-content>
@@ -24,12 +26,19 @@
       <!-- 预览代码 -->
       <Previewbox :showType="type" ref="Previewbox" :title="'代码展示'" />
       <!-- 预览组件 -->
-      <Previewbox :showType="type" ref="viewComponents" :title="'预览组件'" />
+      <a-modal width="1000px" id="preview_dialog" class="preview_dialog" title="预览展示" :visible="previewVisible">
+        <div id="preview"></div>
+        <div slot="footer" class="dialog-footer">
+          <a-button size="small" @click="previewVisible = false">关闭</a-button>
+          <a-button size="small" type="primary" @click="metadata">获取数据</a-button>
+        </div>
+      </a-modal>
     </a-layout>
   </div>
 </template>
 
 <script>
+import Vue from 'vue';
 import Draggable from 'vuedraggable';
 import { Previewbox } from '../../components/index';
 import Container from './components/container/index';
@@ -48,10 +57,22 @@ export default {
     return {
       formModel: '',
       selector: undefined,
+      previewVisible: false,
       list: [],
       viewer: table.viewer,
-      type: ''
+      type: '',
+      html: ''
     };
+  },
+  filters: {
+    unescape: function(html) {
+      return html
+        .replace(html ? /&(?!#?\w+;)/g : /&/g, '&amp;')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'");
+    }
   },
   watch: {
     selector(val) {
@@ -59,8 +80,7 @@ export default {
     }
   },
   created() {
-    this.formModel = new FormConmponents();
-    console.log(this.formModel);
+    this.formModel = new FormConmponents(table.button, table.build);
   },
   methods: {
     openPreviewBox(template) {
@@ -68,8 +88,18 @@ export default {
       this.$refs.Previewbox.openSetPreview(template);
     },
     openPreview(res) {
-      this.type = 'view_component';
-      this.$refs.viewComponents.obtainComponentTemplate(res);
+      this.previewVisible = true;
+      const { template: templateJson } = res;
+      const self = this;
+      Vue.nextTick(function() {
+        const body = document.querySelector('.ant-modal-body');
+        const children = body.querySelector('#preview');
+        if (!children) {
+          children.innerHTML = templateJson;
+        }
+        const _Vue_ = Vue.extend(self.formModel.build(res));
+        new _Vue_().$mount('.ant-modal-body');
+      });
     },
     addCommand(e) {
       console.log('拖拽e哦', e);
@@ -84,7 +114,9 @@ export default {
     //拖拽结束事件
     onEnd(e) {
       console.log(e, '结束拖拽');
-    }
+    },
+    //获取数据
+    metadata() {}
   }
 };
 </script>

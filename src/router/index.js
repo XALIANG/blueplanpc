@@ -134,6 +134,14 @@ export const constatRoutes = [
           title: '模板列表',
           type: 'templatelist'
         }
+      },
+      {
+        path: '/test',
+        component: () => import('@/views/test/index'),
+        hidden: true,
+        meta: {
+          title: '表单测试'
+        }
       }
     ]
   },
