@@ -32,6 +32,7 @@ import {
     Switch,
     Modal,
     Tree,
+    Alert,
     Tooltip,
     Comment,
     DatePicker,
@@ -42,6 +43,7 @@ Vue.use(Badge);
 Vue.use(Select);
 Vue.use(Col);
 Vue.use(Tag);
+Vue.use(Alert);
 Vue.use(DatePicker);
 Vue.use(Row);
 Vue.use(Button);

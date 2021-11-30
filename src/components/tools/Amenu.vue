@@ -1,14 +1,6 @@
 <template>
-  <div
-    class="layout-menu"
-   
-  >
-    <a-menu
-      :theme="theme"
-      mode="horizontal"
-      :default-selected-keys="['1']"
-      :style="{ lineHeight: '64px' }"
-    >
+  <div class="layout-menu">
+    <a-menu :theme="theme" mode="horizontal" :default-selected-keys="['1']" :style="{ lineHeight: '64px' }">
       <a-menu-item v-for="(item, i) in route" :key="i">
         <span v-if="!item.hidden">{{ item.name }}</span>
       </a-menu-item>
@@ -21,16 +13,14 @@ export default {
   props: {
     route: {
       type: Array,
-      required: true,
+      required: true
     },
     theme: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
-  mounted() {
-    console.log(this.route);
-  },
+  mounted() {}
 };
 </script>
 
