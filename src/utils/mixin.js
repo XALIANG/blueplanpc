@@ -3,7 +3,7 @@ import { deviceEnquire, DEVICE_TYPE } from '@/utils/device'
 import { mapState } from 'vuex'
 // const mixinsComputed = Vue.config.optionMergeStrategies.computed
 // const mixinsMethods = Vue.config.optionMergeStrategies.methods
-const mixin = {
+const mixin = { 
   computed: {
     ...mapState({
       layoutMode: state => state.app.layout,

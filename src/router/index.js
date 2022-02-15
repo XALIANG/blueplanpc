@@ -43,6 +43,20 @@ export const constatRoutes = [
     }
   },
   {
+    path: '/film',
+    component: () => import('@/views/film/index'),
+    meta: {
+      title: '在线资源'
+    }
+  },
+  {
+    path: '/shortVideo',
+    component: () => import('@/views/film/shortVideo/index'),
+    meta: {
+      title: '在线资源'
+    }
+  },
+  {
     path: '/',
     component: Layout,
     redirect: '/index',
@@ -101,29 +115,11 @@ export const constatRoutes = [
     children: [
       {
         path: 'formpanel',
-        name: '表单设计',
+        name: '表单布局设计',
         component: () => import('@/views/form/index'),
         meta: {
-          title: '表单设计',
+          title: '表单布局设计',
           type: 'container'
-        }
-      },
-      {
-        path: 'layoutsetting',
-        name: '布局设计',
-        // component: () => import('@/views/form/index'),
-        meta: {
-          title: '布局设计',
-          type: 'layoutsetting'
-        }
-      },
-      {
-        path: 'baseform',
-        name: '基础表单',
-        // component: () => import('@/views/form/index'),
-        meta: {
-          title: '基础表单',
-          type: 'baseform'
         }
       },
       {

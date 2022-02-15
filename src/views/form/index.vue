@@ -1,4 +1,4 @@
-d<template>
+<template>
   <div id="form-container">
     <a-layout theme="light">
       <a-layout-sider theme="light">

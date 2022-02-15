@@ -18,22 +18,21 @@
       <!-- button components -->
       <!--  -->
       <a-table size="middle" :pagination="pagination" :data-source="data">
-        <a-table-column key="uid" title="序号" data-index="uid" />
-        <a-table-column key="name" title="账号" data-index="name" />co
+        <a-table-column key="uid" title="序号" data-index="index" />
+        <a-table-column key="name" title="账号" data-index="userName" />
         <a-table-column key="createTime" title="注册时间" data-index="createTime" />
-        <a-table-column key="address" title="金币" data-index="address" />
-        <a-table-column key="tags" title="状态" :width="130" data-index="tags" align="center">
+        <a-table-column key="address" title="金币" data-index="userMoney" />
+        <a-table-column key="tags" title="状态" :width="130" data-index="userStatus" align="center">
           <template slot-scope="tags">
             <span>
-              <a-tag v-for="(tag, index) in tags" :key="index" :color="tag.state === 1 ? 'green' : 'red'">{{ tag.state === 1 ? tag.title : tag.title }}</a-tag>
+              <a-tag v-for="(tag, index) in tags" :key="index" :color="tag.state === '1' ? 'green' : 'red'">{{ tag.state === 1 ? tag.title : tag.title }}</a-tag>
             </span>
           </template>
         </a-table-column>
         <a-table-column key="action" title="操作" align="center">
           <template slot-scope="text, record">
-            <span>
-              <a-button @click="showModal(text, record)" size="small">编辑</a-button>
-            </span>
+            <a-button class="m-r-10" @click="showModal(text, record)" size="small">编辑</a-button>
+            <a-button type="danger" @click="showModal(text, record)" size="small">注销</a-button>
           </template>
         </a-table-column>
       </a-table>
@@ -134,62 +133,73 @@ const treeData = [
   }
 ];
 
+const account = [
+  {
+    tags: [
+      {
+        state: 1,
+        color: 'red',
+        title: '离线'
+      }
+    ]
+  },
+  {
+    tags: [
+      {
+        state: 1,
+        color: 'red',
+        title: '离线'
+      }
+    ]
+  },
+  {
+    tags: [
+      {
+        state: 1,
+        color: 'red',
+        title: '离线'
+      }
+    ]
+  },
+  {
+    tags: [
+      {
+        state: 1,
+        color: 'red',
+        title: '离线'
+      }
+    ]
+  }
+];
+
 const data = [
   {
     key: '1',
     name: 'John Brown',
     address: 'New',
     createTime: '2021',
-    uid: 123456700,
-    tags: [
-      {
-        state: 1,
-        color: 'red',
-        title: '离线'
-      }
-    ]
+    uid: 123456700
   },
   {
     key: '2',
     name: 'Jim Green',
     uid: 123456700,
     createTime: '2021',
-    address: 'London',
-    tags: [
-      {
-        state: 0,
-        color: 'green',
-        title: '离线'
-      }
-    ]
+    address: 'London'
   },
   {
     key: '3',
     name: 'Joe Black',
     createTime: '2021',
     uid: 123456700,
-    address: 'Sidney',
-    tags: [
-      {
-        state: 0,
-        color: 'red',
-        title: '离线'
-      }
-    ]
+    address: 'Sidney'
   },
   {
     key: '4',
     name: 'Joe Black',
     createTime: '2021',
     uid: 123456700,
-    address: 'Sidney',
-    tags: [
-      {
-        state: 1,
-        color: 'green',
-        title: '在线'
-      }
-    ]
+    address: 'Sidney'
   }
 ];
 import { userList } from '../../apis/user';
@@ -244,6 +254,7 @@ export default {
       }
     };
     return {
+      account,
       treeData,
       expandedKeys: ['0-0-0', '0-0-1'],
       autoExpandParent: true,
@@ -297,12 +308,18 @@ export default {
       console.log('onCheck', val);
     }
   },
-  mounted() {
-    userList({ page: 1, limit: 10 }).then((res) => {
-      console.log(res);
-    });
+  created() {
+    this.obtainUserList();
   },
   methods: {
+    async obtainUserList() {
+      const { code, data, pageNum, count } = await userList({ page: 1, limit: 10 });
+      this.data = data;
+      this.pagination.page = pageNum;
+      this.pagination.total = count;
+
+      console.log(this.data);
+    },
     handleSubmit(e) {
       console.log(this.formInline);
     },
@@ -334,8 +351,6 @@ export default {
     },
     onExpand(expandedKeys) {
       console.log('onExpand', expandedKeys);
-      // if not set autoExpandParent to false, if children expanded, parent can not collapse.
-      // or, you can remove all expanded children keys.
       this.expandedKeys = expandedKeys;
       this.autoExpandParent = false;
     },

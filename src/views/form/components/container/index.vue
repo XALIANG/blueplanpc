@@ -101,7 +101,8 @@
             </div>
           </div>
         </div>
-
+       
+  
         <!-- 日期 -->
         <div :class="{ 'dr-area': true, 'dr-active': localSelector && localSelector.key === item.key }" v-else-if="item.type === 'date'" :key="index" style="margin: 2px">
           <div @click.stop="selectCommand(index)" class="dr-area" style="height: 100%">
@@ -113,6 +114,7 @@
             </div>
           </div>
         </div>
+    
         <!-- 自定义组件 -->
         <div v-else-if="map[item.type]" :key="item.key" style="margin: 2px">
           <div :class="{ 'dr-area mask': true, 'dr-active': localSelector && localSelector.key === item.key }" @click.stop="selectCommand(index)">
@@ -122,6 +124,16 @@
             </div>
           </div>
         </div>
+
+         <!-- 元素 -->
+        <div v-else-if="item.type === 'div'" style="margin: 2px" :key="item.key">
+          <div :class="{ 'dr-area': true, 'dr-active': localSelector && localSelector.key === item.key }" @click.stop="selectCommand(index)" class="dr-area" style="height: 100%">
+             <!-- <div>
+
+             </div> -->
+          </div>
+        </div>
+      
       </template>
     </Draggable>
   </a-layout>

@@ -5,14 +5,14 @@
         <div class="probject-item">
           <div class="item-image-title m-b-5">
             <span class="m-r-10 fz-20"><a-icon type="qq" /></span>
-            <span class="fz-12">京东</span>
+            <span class="fz-12">在线资源</span>
           </div>
           <div class="item-describe fz-14 m-b-20">
-            有时候，往往不尽人意，却也要尽人如意
+            <a href="/film">有时候，往往不尽人意，却也要尽人如意</a>
           </div>
           <div class="item-text">
             <p class="fz-12">站长独打</p>
-            <p class="fz-12">13个小时前</p>
+            <p class="fz-12">1个小时前</p>
           </div>
         </div>
       </a-card-grid>

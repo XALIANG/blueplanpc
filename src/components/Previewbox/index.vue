@@ -6,13 +6,9 @@
       </div>
       <template slot="footer">
         <a-button key="copy" ref="copy" @click="copyCode"> 复制 </a-button>
-        <a-button key="submit" @cancel="closePreview"> 取消 </a-button>
+        <a-button key="submit" @click="closePreview"> 取消 </a-button>
         <a-button key="export" @click="exportTemplate"> 导出 </a-button>
       </template>
-    </a-modal>
-    <!-- 预览组件 -->
-    <a-modal id="preview_modal" v-if="showType === enums.PREVIEW_CODE_VIEW" width="1000px" :title="title" :visible="visible" :confirm-loading="confirmLoading" @ok="handleOk" @cancel="closePreview">
-      <div id="component-view"></div>
     </a-modal>
   </div>
 </template>
@@ -43,7 +39,6 @@ export default {
   destroy() {},
   methods: {
     closePreview() {
-      this.visible = !this.visible;
       this.visible = false;
     },
     openSetPreview(params) {

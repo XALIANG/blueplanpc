@@ -60,8 +60,7 @@ export default {
       console.log(key);
     },
     handleCode() {
-      const buildMap = this.modeler.build(this.list);
-      console.log(this.modeler);
+      const buildMap = this.modeler.build(this.list, 'SET_FORM_SETTING');
       const dataStr = JSON.stringify(buildMap.data()).replace(/"([^"]+)":/g, '$1:');
       const code = `<template>${buildMap.template}</template><script>export default { data() { return ${dataStr} }}${'</'}script><style></style>`;
       return formatter(code);
