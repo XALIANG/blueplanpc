@@ -53,7 +53,14 @@ export const constatRoutes = [
     path: '/shortVideo',
     component: () => import('@/views/film/shortVideo/index'),
     meta: {
-      title: '在线资源'
+      title: '短视频'
+    }
+  },
+  {
+    path: '/Movie',
+    component: () => import('@/views/film/Movie/index'),
+    meta: {
+      title: '电影中心'
     }
   },
   {

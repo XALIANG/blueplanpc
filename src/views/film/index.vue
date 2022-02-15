@@ -47,7 +47,7 @@ export default {
       fontList: [
         { title: '搜索', a: '/film' },
         { title: '首页', a: '/film' },
-        { title: '电影中心', a: '/film' },
+        { title: '电影中心', a: '/Movie' },
         { title: '短视频', a: '/shortVideo' },
         { title: '热点中心', a: '/film' },
         { title: '关于我们', a: '/film' },
@@ -74,7 +74,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.film {
+#film {
   position: relative;
   left: 0;
   top: 0;
@@ -82,6 +82,7 @@ export default {
   bottom: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden;
   .middle {
     position: absolute;
     left: 0;
@@ -94,6 +95,7 @@ export default {
 }
 .my-video {
   width: 100%;
+  overflow: hidden;
 }
 .logo {
   color: #fff;
