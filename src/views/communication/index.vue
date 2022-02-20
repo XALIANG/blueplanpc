@@ -9,11 +9,11 @@
       <!-- message view -->
       <div class="message-view p-10">
         <UserContent ref="UserContent" />
-        <!-- <WebSocket
+        <WebSocket
                     ref="websocket"
                     @onGroupChat="obtianMessageList"
                     :params="userParamText"
-                /> -->
+                />
       </div>
       <!-- input content -->
       <div class="message-text">

@@ -88,6 +88,7 @@ export default {
       this.$refs.Previewbox.openSetPreview(template);
     },
     openPreview(res) {
+      return;
       this.previewVisible = true;
       const { template: templateJson } = res;
       const self = this;

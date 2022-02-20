@@ -23,11 +23,11 @@ Object.keys(filters).forEach((key) => {
 Vue.use(highlight);
 Vue.use(VueStorage, config.storageOptions);
 
-// Vue.use(new Socketio({
-//   debug: false,
-//   connection: `localhost:9090?userId=${uuid(8, 16)}`
-// }))
-// Vue.use(WbeSocket)
+Vue.use(new Socketio({
+  debug: false,
+  connection: `192.168.3.11:9090?userId=${uuid(8, 16)}`
+}))
+Vue.use(WbeSocket)
 new Vue({
   router,
   store,
