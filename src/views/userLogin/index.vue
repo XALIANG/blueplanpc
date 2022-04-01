@@ -19,7 +19,7 @@
                 </a-form-model-item>
                 <a-form-model-item prop="code">
                   <a-input class="code-1" v-model="formInline.code" type="text " size="small" placeholder="验证码" @keyup.enter.native="login('ruleLogin')"> </a-input>
-                  <span class="code-image" @click="obtainCode"><img ref="image" src="http://192.168.3.11:9999/conviction/blue/code" alt=""/></span>
+                  <span class="code-image" @click="obtainCode"><img ref="image" :src="`${currentUrl}/blue/code`" alt=""/></span>
                 </a-form-model-item>
               </a-form-model>
             </a-tab-pane>
@@ -70,6 +70,7 @@ export default {
       callback();
     };
     return {
+      currentUrl: process.env.VUE_APP_BASE_API,
       iconLoading: false,
       errorMsg: [],
       serviceCode: '',
@@ -114,7 +115,7 @@ export default {
   },
   methods: {
     obtainCode() {
-      this.$refs.image.src = `http://192.168.3.11:9999/conviction/blue/code?ts=${new Date().getTime()}`;
+      this.$refs.image.src = `${this.currentUrl}/blue/code?ts=${new Date().getTime()}`;
     },
     callback(key) {
       console.log(key);

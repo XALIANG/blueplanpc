@@ -4,7 +4,7 @@
       <video
         muted="muted"
         loop="loop"
-        src="https://v1.kwaicdn.com/upic/2021/08/07/13/BMjAyMTA4MDcxMzI4NDVfMjAxOTk0NDk1NF81NDc1NDcyMDgwMl8yXzM=_b_Bd51abe55c16f22b0947d4c14ce20f455.mp4?pkey=AAWiYc3YwBh116kdhY30XlhjgTBLU2snj0rRQSmh50KRGspFFiFfUCxuiRkXmY7PbOFlq8sD4DSFL6gBeH5S09u7lDe-u_-rx5vJOZxKlUxsGbwvXS0vhVXBYkMhgY_aEGM&tag=1-1644808164-xpcwebsearch-0-mjlabncyz5-ec161c4f5bff2a94&clientCacheKey=3x3gqnqpuqepyba_b.mp4&tt=b&di=6e1201a7&bp=10004"
+        src="https://v1.kwaicdn.com/upic/2022/03/21/03/BMjAyMjAzMjEwMzQxMjVfMjg0OTA1MDY2XzcwMTE2Mzg2MDgzXzBfMw==_b_B921a7e24c5f8f46eb6f48a2c8e88ac55.mp4?pkey=AAUGYM0uPJ8glJgfxGfEtR055GILVD2FxO9TISNeYybWj9HeOA7l_8Fsc4DEBydEbLk9qr-0BMIr98CEZ3Et-nToAF2wNpy5d-aAOTuYDEE0LTPVT4oyKNz0EGzglV8RUC4&tag=1-1648721259-xpcwebbrilliant-0-alnebb17el-8bb5f5a8afa3a72c&clientCacheKey=3x23t384xaeirtm_b.mp4&tt=b&di=dddad306&bp=14944"
         preload="auto"
         class="my-video"
       ></video>
