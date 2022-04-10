@@ -32,7 +32,7 @@ const data = [
         headerUrl: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fqqpublic.qpic.cn%2Fqq_public%2F0%2F0-988065815-FAD7372C2690B24BA0430F88CBC548C7%2F0%3Ffmt%3Djpg%26size%3D24%26h%3D416%26w%3D640%26ppv%3D1.jpg&refer=http%3A%2F%2Fqqpublic.qpic.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1639123964&t=a550e5ab7239a266328ffd7051a6942b",
         userTextRecord: [],
     },
-    {
+    { 
         title: '古天乐',
         textInfo: "明天有个学校要捐",
         id: 2,

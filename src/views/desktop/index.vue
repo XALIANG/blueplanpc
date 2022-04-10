@@ -102,6 +102,9 @@ export default {
         { src: require("../../assets/image/src=http___up.deskcity.org_pic_source_04_48_3d_04483d828da2bf20abca86086d256f84.jpg&refer=http___up.deskcity.jpg") }]
     };
   },
+  mounted(){
+    
+  },
   computed: {
     ...mapState({
       userNum: state => state.user.onLineTotalUser

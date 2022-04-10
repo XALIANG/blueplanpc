@@ -5,7 +5,7 @@
         <!-- 广告轮播 -->
         <div class="thumb-example">
           <!-- swiper1 -->
-          <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop">
+          <!-- <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop">
             <swiper-slide class="slide-1"> </swiper-slide>
             <swiper-slide class="slide-2"> </swiper-slide>
             <swiper-slide class="slide-3"> </swiper-slide>
@@ -13,15 +13,15 @@
             <swiper-slide class="slide-5"> </swiper-slide>
             <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
             <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
-          </swiper>
+          </swiper> -->
           <!-- swiper2 Thumbs -->
-          <swiper class="swiper gallery-thumbs" :options="swiperOptionThumbs" ref="swiperThumbs">
+          <!-- <swiper class="swiper gallery-thumbs" :options="swiperOptionThumbs" ref="swiperThumbs">
             <swiper-slide class="slide-1"> </swiper-slide>
             <swiper-slide class="slide-2"> </swiper-slide>
             <swiper-slide class="slide-3"> </swiper-slide>
             <swiper-slide class="slide-4"> </swiper-slide>
             <swiper-slide class="slide-5"> </swiper-slide>
-          </swiper>
+          </swiper> -->
         </div>
       </div>
     </div>
@@ -30,8 +30,8 @@
   </div>
 </template>
 <script>
-import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
-import 'swiper/css/swiper.css';
+// import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
+// import 'swiper/css/swiper.css';
 
 export default {
   name: 'swiper-example-thumbs-gallery',

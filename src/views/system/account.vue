@@ -25,7 +25,7 @@
         <a-table-column key="tags" title="状态" :width="130" data-index="userStatus" align="center">
           <template slot-scope="tags">
             <span>
-              <a-tag v-for="(tag, index) in tags" :key="index" :color="tag.state === '1' ? 'green' : 'red'">{{ tag.state === 1 ? tag.title : tag.title }}</a-tag>
+              <a-tag v-for="(tag, index) in tags" :key="index" :color="tags === '1' ? 'green' : 'red'">{{ tags === '0' ? '离线' : '在线' }}</a-tag>
             </span>
           </template>
         </a-table-column>
@@ -308,15 +308,21 @@ export default {
       console.log('onCheck', val);
     }
   },
-  created() {
+  created() {},
+  mounted() {
     this.obtainUserList();
   },
   methods: {
     async obtainUserList() {
-      const { code, data, pageNum, count } = await userList({ page: 1, limit: 10 });
-      this.data = data;
-      this.pagination.page = pageNum;
-      this.pagination.total = count;
+      const { code, msg, data, pageNum, count } = await userList({ page: 1, limit: 10 });
+      if (code === 200) {
+        this.data = data;
+        // for (let i = 0; i < this.data.length; i++) {
+        //   this.data[i]['userStatus'] = '1'
+        // }
+        this.pagination.page = pageNum;
+        this.pagination.total = count;
+      }
 
       console.log(this.data);
     },

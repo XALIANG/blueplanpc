@@ -142,6 +142,7 @@ export default {
             if (res.status === 200) {
               this.iconLoading = !this.iconLoading;
               const params = {
+                userId: res.data.userId,
                 userName: res.data.userName,
                 token: res.data.token,
                 headPortrait: res.data.userImage,
@@ -153,6 +154,9 @@ export default {
               this.$store.dispatch('user/setUserInfo', params);
               Message.loading('正在登录中...', 1).then(() => {
                 this.$router.push('/');
+                setTimeout(() => {
+                  location.reload();
+                }, 300);
                 Notification['success']({
                   message: `Welcome ${res.data.userName}`,
                   description: `Hey, my friend`

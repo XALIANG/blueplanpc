@@ -157,7 +157,7 @@ function table(data, _bind_, _fn_bind_) {
     return html;
   };
   let bind = _fn_bind_(data, _bind_, () => []);
-  return `<a-table size="${data.size}" border ${bind ? ':data="data.' + data.value + '"' : ''} style="width: ${data.width}">${item(data.column)}</a-table>`;
+  return `<a-table :dataSource="data" size="${data.size}" border ${bind ? ':data="data.' + data.value + '"' : ''} style="width: ${data.width}">${item(data.column)}</a-table>`;
 }
 map.table = table;
 

@@ -28,7 +28,7 @@
     </div>
     <span class="m-r-30 fz-13 person-num">
       在线人数：
-      <a-badge status="success" />
+      <a-badge :status="onlineNum === 0 ? 'error' : 'success'" />
       {{ onlineNum }}
     </span>
     <a-icon class="fz-20 m-r-20" type="search" />
@@ -46,6 +46,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import { mixinUser } from '../../../utils/mixin';
+import { userOutCode } from '../../../apis/user';
 export default {
   mixins: [mixinUser],
   props: {
@@ -68,8 +69,8 @@ export default {
   mounted() {},
   methods: {
     loginOut() {
-      sessionStorage.removeItem('token');
-      sessionStorage.removeItem('userForm');
+      userOutCode({ userId: this.$store.state.user.userForm.userId });
+      this.$store.commit('user/REMOVE_USER_INFO');
       this.$router.push('/login');
     },
     cllapsed() {

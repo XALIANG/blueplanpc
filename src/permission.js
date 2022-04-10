@@ -2,7 +2,6 @@ import store from './store';
 import router from './router';
 
 const currentRoles = ['admin'];
-
 router.beforeEach(async (to, from, next) => {
   document.title = `${to.meta.title}`;
   if (to.path === '/login' || to.path === '/register') {

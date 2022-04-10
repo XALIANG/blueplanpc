@@ -128,6 +128,12 @@ const configList = [
     defaultValue: '',
     width: '100%',
     children: []
+  },
+  {
+    type: 'button',
+    name: '按钮',
+    defaultValue: '',
+    width: '100%',
   }
 ];
 

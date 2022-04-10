@@ -9,11 +9,7 @@
       <!-- message view -->
       <div class="message-view p-10">
         <UserContent ref="UserContent" />
-        <WebSocket
-                    ref="websocket"
-                    @onGroupChat="obtianMessageList"
-                    :params="userParamText"
-                />
+        <WebSocket ref="websocket" @onGroupChat="obtianMessageList" :params="userParamText" />
       </div>
       <!-- input content -->
       <div class="message-text">
@@ -34,6 +30,7 @@
 <script>
 import UserList from './components/userList.vue';
 import UserContent from './components/userContent.vue';
+import { uuid } from '@/utils/index';
 export default {
   components: {
     UserList,
@@ -57,6 +54,7 @@ export default {
         }
       });
       this.$refs.websocket.groupChat();
+      this.$refs.websocket.message.push({ position: 'right', msg: this.userParamText, id: uuid(16, 8) });
       this.userParamText = '';
     },
     arrayUnique2(arr, name) {

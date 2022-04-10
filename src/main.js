@@ -22,12 +22,19 @@ Object.keys(filters).forEach((key) => {
 });
 Vue.use(highlight);
 Vue.use(VueStorage, config.storageOptions);
+Vue.use(
+  new Socketio({
+    debug: false,
+    connection: `${process.env.VUE_APP_SOCKET_API}?userId=${store.getters.userForm.userId}`
+  })
+);
+Vue.use(WbeSocket);
 
-// Vue.use(new Socketio({
-//   debug: false,
-//   connection: `192.168.3.11:9090?userId=${uuid(8, 16)}`
-// }))
-// Vue.use(WbeSocket)
+window.addEventListener('beforeunload', function(e) {
+  //窗口关闭前  干掉 socekt 模块
+  return (e.returnValue = '确认要关闭当前窗口？');
+});
+
 new Vue({
   router,
   store,

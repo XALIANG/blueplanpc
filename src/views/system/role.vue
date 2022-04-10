@@ -1,69 +1,49 @@
 <template>
-<div class="role-container bgsytle">
-    <a-table :columns="columns" :data-source="data">
-        <a slot="action" slot-scope="text" href="javascript:;">Delete</a>
-        <p slot="expandedRowRender" slot-scope="record" style="margin: 0">
-            {{ record.description }}
-        </p>
-    </a-table>
-</div>
+  <div class="role-container m-b-20 bg p-20">
+    <a-layout>
+      <div class="bg">
+        <a-table :dataSource="roleList" :columns="columns" rowKey="roleId" size="middle" border style="width: 100%"> </a-table>
+      </div>
+    </a-layout>
+  </div>
 </template>
 
 <script>
-const columns = [{
-        title: 'Name',
-        dataIndex: 'name',
-        key: 'name'
-    },
-    {
-        title: 'Age',
-        dataIndex: 'age',
-        key: 'age'
-    },
-    {
-        title: 'Address',
-        dataIndex: 'address',
-        key: 'address'
-    },
-    {
-        title: 'Action',
-        dataIndex: '',
-        key: 'x',
-        scopedSlots: {
-            customRender: 'action'
-        }
-    },
-];
-
-const data = [{
-        key: 1,
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        description: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
-    },
-    {
-        key: 2,
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-        description: 'My name is Jim Green, I am 42 years old, living in London No. 1 Lake Park.',
-    },
-    {
-        key: 3,
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-        description: 'My name is Joe Black, I am 32 years old, living in Sidney No. 1 Lake Park.',
-    },
-];
-
+import { role } from '../../apis/role';
 export default {
-    data() {
-        return {
-            data,
-            columns,
-        };
-    },
+  data() {
+    return {
+      roleList: [],
+      columns: [
+        {
+          title: '角色',
+          dataIndex: 'roleName',
+          key: '1'
+        },
+        {
+          title: '描述',
+          dataIndex: 'roleDescription',
+          key: '2'
+        },
+        {
+          title: '会员',
+          dataIndex: 'rolePrivilege',
+          key: '3'
+        }
+      ],
+      role: {}
+    };
+  },
+  mounted() {
+    this.obitanRole();
+  },
+  methods: {
+    async obitanRole() {
+      const { data, status } = await role();
+      if (status === 200) {
+        this.roleList = data;
+      }
+    }
+  }
 };
 </script>

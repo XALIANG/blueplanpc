@@ -1,6 +1,6 @@
 <template>
   <a-layout :style="{ background: navTheme === 'dark' ? '#001529' : '#fff' }" id="components-layout-demo-custom-trigger">
-    <a-layout-sider :style="{ display: layoutHeader ? 'none' : 'block' }" :class="navTheme === 'dark' ? 'active-layout-sider' : 'layout-sider'" v-model="collapsed" :trigger="null" collapsible>
+    <a-layout-sider  id="sider-active" :style="{ display: layoutHeader ? 'none' : 'block' }" :class="navTheme === 'dark' ? 'active-layout-sider' : 'layout-sider'" v-model="collapsed" :trigger="null" collapsible>
       <div class="logo">{{ collapsed ? '' : logo }}</div>
       <Sidebar class="sidebar-container" />
     </a-layout-sider>
@@ -18,7 +18,7 @@
 
       <a-layout-header v-else class="layout-header-navber" style="background: #fff; padding: 0">
         <a-icon class="trigger" :type="collapsed ? 'menu-unfold' : 'menu-fold'" @click="() => (collapsed = !collapsed)" />
-        <Breadcrumb />
+        <Breadcrumb  id="Breadcrumb" />
         <Navbar />
         <Tagsview class="layout-tagsview" v-if="multiTab" />
         <SettingDrawer />
@@ -32,6 +32,7 @@
         }"
       >
         <div class="blueplan-container">
+          <WebSocket/>
           <App-main />
         </div>
       </a-layout-content>
