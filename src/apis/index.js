@@ -8,7 +8,7 @@ NProgress.configure({ showSpinner: false });
 const token = Store.getters.userForm.token;
 axios.defaults.timeout = 10000;
 axios.defaults.baseURL = process.env.VUE_APP_BASE_API;
-axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true; // 配合 sever cookie 跨域
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8;';
 
 axios.interceptors.request.use(

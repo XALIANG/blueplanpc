@@ -46,29 +46,9 @@
 <script>
 import { userLogin } from '@/apis/user';
 import settings from '@/settings';
+import {rules} from './config';
 export default {
   data() {
-    let validatePass = (rule, value, callback) => {
-      if (this.formInline.user === '') {
-        callback(new Error('登录名为空'));
-        this.$refs.formInline.validateField('checkPass');
-      }
-      callback();
-    };
-    let validatePass2 = (rule, value, callback) => {
-      if (this.formInline.password === '') {
-        callback(new Error('密码不得为空'));
-        this.$refs.formInline.validateField('checkPass');
-      }
-      callback();
-    };
-    let validatePass3 = (rule, value, callback) => {
-      if (this.formInline.code === '') {
-        callback(new Error('验证码为空'));
-        this.$refs.formInline.validateField('checkPass');
-      }
-      callback();
-    };
     return {
       currentUrl: process.env.VUE_APP_BASE_API,
       iconLoading: false,
@@ -85,29 +65,6 @@ export default {
         numberPhone: '',
         code: ''
       },
-      rules: {
-        user: [
-          {
-            required: true,
-            validator: validatePass,
-            trigger: 'change'
-          }
-        ],
-        password: [
-          {
-            required: true,
-            validator: validatePass2,
-            trigger: 'change'
-          }
-        ],
-        code: [
-          {
-            required: true,
-            validator: validatePass3,
-            trigger: 'change'
-          }
-        ]
-      }
     };
   },
   mounted() {
